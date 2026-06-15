@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Katholieke Gebeden — Nederlands &amp; Latijn</title>
+  <meta name="description" content="Een verzameling katholieke gebeden in het Nederlands en Latijn, naast elkaar te lezen." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Cinzel:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="brand">
+        <span class="brand-mark">✚</span>
+        <div class="brand-text">
+          <h1>Katholieke Gebeden</h1>
+          <p>Nederlands &amp; Latijn</p>
+        </div>
+      </div>
+
+      <div class="lang-toggle" role="group" aria-label="Taalkeuze">
+        <button class="lang-btn" data-lang="nl">Nederlands</button>
+        <button class="lang-btn" data-lang="la">Latijn</button>
+        <button class="lang-btn is-active" data-lang="both">Beide</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="layout">
+    <aside class="sidebar">
+      <div class="search-wrap">
+        <input
+          type="search"
+          id="search"
+          class="search-input"
+          placeholder="Zoek een gebed…"
+          autocomplete="off"
+          aria-label="Zoek een gebed"
+        />
+      </div>
+      <nav id="prayer-list" class="prayer-list" aria-label="Lijst van gebeden"></nav>
+    </aside>
+
+    <section class="content">
+      <article id="prayer-view" class="prayer-view" aria-live="polite"></article>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Gemaakt met eerbied · Bronnen: <a href="https://rkliturgie.nl" target="_blank" rel="noopener">rkliturgie.nl</a></p>
+  </footer>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
