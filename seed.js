@@ -131,6 +131,30 @@ export const SEED = {
       "category": "maria-antifoon",
       "notes": "Paastijdse mariale antifoon.",
       "source_url": "https://rkliturgie.nl/links/algemene-of-dagelijkse-gebeden-en-oefeningen"
+    },
+    {
+      "key": "confiteor",
+      "source": "standard",
+      "title_nl": "Schuldbelijdenis",
+      "title_la": "Confiteor",
+      "text_nl": "Ik belijd voor de almachtige God,\nvoor de heilige Maria, altijd Maagd,\nvoor de heilige aartsengel Michaël,\nvoor de heilige Johannes de Doper,\nvoor de heilige apostelen Petrus en Paulus,\nvoor alle heiligen\nen voor u, Vader,\ndat ik zeer gezondigd heb,\nin gedachte, woord en daad,\ndoor mijn schuld, door mijn schuld,\ndoor mijn grote schuld.\nDaarom smeek ik de heilige Maria, altijd Maagd,\nde heilige aartsengel Michaël,\nde heilige Johannes de Doper,\nde heilige apostelen Petrus en Paulus,\nalle heiligen,\nen u, Vader,\nvoor mij te bidden tot de Heer, onze God.",
+      "text_la": "Confíteor Deo omnipoténti,\nbeátae Maríae semper Vírgini,\nbeáto Michaéli Archángelo,\nbeáto Ioánni Baptístae,\nsanctis Apóstolis Petro et Paulo,\nómnibus Sanctis,\net tibi, Pater,\nquia peccávi nimis\ncogitatióne, verbo et ópere:\nmea culpa, mea culpa,\nmea máxima culpa.\nÍdeo precor beátam Maríam semper Vírginem,\nbeátum Michaélem Archángelum,\nbeátum Ioánnem Baptístam,\nsanctos Apóstolos Petrum et Paulum,\nomnes Sanctos,\net te, Pater,\noráre pro me ad Dóminum Deum nostrum.",
+      "language": "both",
+      "category": "standaardgebed",
+      "notes": "Schuldbelijdenis volgens de buitengewone vorm (Tridentijnse Mis).",
+      "source_url": "https://nl.wikipedia.org/wiki/Confiteor"
+    },
+    {
+      "key": "credo",
+      "source": "standard",
+      "title_nl": "Geloofsbelijdenis",
+      "title_la": "Credo",
+      "text_nl": "Ik geloof in één God\nde almachtige Vader\nSchepper van hemel en aarde,\nvan al wat zichtbaar en onzichtbaar is.\n\nEn in één Heer, Jezus Christus,\neniggeboren Zoon van God,\nvóór alle tijden geboren uit de Vader.\n\nGod uit God, licht uit licht,\nware God uit de ware God.\nGeboren, niet geschapen,\néén in wezen met de Vader,\nen door Wie alles geschapen is.\n\nHij is voor ons, mensen,\nen omwille van ons heil\nuit de hemel neergedaald.\n\nHij heeft het vlees aangenomen\ndoor de Heilige Geest\nuit de Maagd Maria\nen is mens geworden.\n\nHij werd voor ons gekruisigd,\nHij heeft geleden onder Pontius Pilatus\nen is begraven.\nHij is verrezen op de derde dag,\nvolgens de Schriften.\nHij is opgevaren ten hemel:\nzit aan de rechterhand van de Vader.\n\nHij zal wederkomen in heerlijkheid\nom te oordelen levenden en doden\nen aan Zijn rijk komt geen einde.\n\nIk geloof in de Heilige Geest\nDie Heer is en het leven geeft\nDie voortkomt uit de Vader en de Zoon;\n\nDie met de Vader en de Zoon\ntezamen wordt aanbeden en verheerlijkt;\nDie gesproken heeft door de profeten.\n\nIk geloof in de ene, heilige, katholieke\nen apostolische Kerk.\n\nIk belijd één doopsel\ntot vergeving van de zonden.\n\nIk verwacht de opstanding van de doden\nen het leven van het komend rijk.\n\nAmen.",
+      "text_la": "Credo in unum Deum,\nPatrem omnipotentem,\nFactorem coelis et terrae,\nvisibilium omnium et invisibilium.\n\nEt in unum Dominum Iesum Christum,\nFilium Dei unigenitum,\net ex Patre natum ante omnia saecula.\n\nDeum de Deo, Lumen de Lumine,\nDeum verum de Deo vero,\ngenitum non factum,\nconsubstantialem Patri;\nper quem omnia facta sunt.\n\nQui propter nos homines\net propter nostram salutem\ndescendit de caelis.\n\nEt incarnatus est\nde Spiritu Sancto\nex Maria Virgine,\net homo factus est.\n\nCrucifixus etiam pro nobis\nsub Pontio Pilato, passus\net sepultus est.\nEt resurrexit tertia die,\nsecundum Scripturas,\net ascendit in caelum,\nsedet ad dexteram Patris.\n\nEt iterum venturus est cum gloria,\niudicare vivos et mortuos,\ncuius regni non erit finis.\n\nEt in Spiritum Sanctum,\nDominum et vivificantem,\nqui ex Patre Filioque procedit.\n\nQui cum Patre et Filio\nsimul adoratur et conglorificatur:\nqui locutus est per prophetas.\n\nEt unam, sanctam, catholicam\net apostolicam Ecclesiam.\n\nConfiteor unum baptisma\nin remissionem peccatorum.\n\nEt expecto resurrectionem mortuorum,\net vitam venturi saeculi.\n\nAmen.",
+      "language": "both",
+      "category": "geloofsbelijdenis",
+      "notes": "Geloofsbelijdenis van Nicea-Constantinopel, gebeden in de Mis.",
+      "source_url": "http://www.katholiek.org/credo.htm"
     }
   ]
 };
