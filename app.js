@@ -4,6 +4,8 @@ const prayers = SEED.prayers;
 
 const CATEGORY_LABELS = {
   standaardgebed: "Standaardgebeden",
+  "maria-antifoon": "Maria-antifoon",
+  antifoon: "Antifonen",
   litanie: "Litanieën",
   evangelielofzang: "Evangelielofzangen",
   hymne: "Hymnen",
@@ -13,6 +15,8 @@ const CATEGORY_ORDER = [
   "standaardgebed",
   "evangelielofzang",
   "hymne",
+  "maria-antifoon",
+  "antifoon",
   "litanie",
 ];
 

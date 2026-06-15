@@ -56,8 +56,8 @@ export const SEED = {
       "text_nl": "Wees gegroet, Koningin, Moeder van barmhartigheid;\nons leven, onze vreugde en onze hoop, wees gegroet.\nTot u roepen wij, ballingen, kinderen van Eva;\ntot u smeken wij, zuchtend en wenend in dit dal van tranen.\nDaarom dan, onze voorspreekster,\nsla op ons uw barmhartige ogen;\nen toon ons, na deze ballingschap,\nJezus, de gezegende vrucht van uw schoot.\nO goedertieren, o liefdevolle, o zoete Maagd Maria.",
       "text_la": "Salve, Regína, mater misericórdiae;\nvita, dulcédo et spes nostra, salve.\nAd te clamámus, éxsules fílii Evae.\nAd te suspirámus, geméntes et flentes\nin hac lacrimárum valle.\nEia ergo, advocáta nostra,\nillos tuos misericórdes óculos\nad nos convérte.\nEt Iesum, benedíctum fructum ventris tui,\nnobis post hoc exsílium osténde.\nO clemens, o pia, o dulcis Virgo María.",
       "language": "both",
-      "category": "litanie",
-      "notes": "Mariale slotantifoon, bruikbaar als optionele litanie.",
+      "category": "maria-antifoon",
+      "notes": "Mariale slotantifoon.",
       "source_url": "https://rkliturgie.nl/algemene-of-dagelijkse-gebeden-en-oefeningen/wees-gegroet-koningin-salve-regina"
     },
     {
@@ -128,7 +128,7 @@ export const SEED = {
       "text_nl": "Koningin des hemels, verheug U, alleluia.\nWant Hij die Gij waardig zijt geweest te dragen, alleluia,\nis verrezen zoals Hij gezegd heeft, alleluia.\nBid God voor ons, alleluia.",
       "text_la": "Regína caeli, laetáre, allelúia.\nQuia quem meruísti portáre, allelúia,\nresurréxit, sicut dixit, allelúia.\nOra pro nobis Deum, allelúia.",
       "language": "both",
-      "category": "standaardgebed",
+      "category": "maria-antifoon",
       "notes": "Paastijdse mariale antifoon.",
       "source_url": "https://rkliturgie.nl/links/algemene-of-dagelijkse-gebeden-en-oefeningen"
     }
