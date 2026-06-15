@@ -157,25 +157,14 @@ function renderView() {
   if (showLa) grid.appendChild(makeColumn("la", "Latijn", prayer.text_la, both));
   view.appendChild(grid);
 
-  // Notes + source
-  if (prayer.notes || prayer.source_url) {
+  // Notes
+  if (prayer.notes) {
     const notes = document.createElement("div");
     notes.className = "prayer-notes";
-    if (prayer.notes) {
-      const p = document.createElement("p");
-      p.style.margin = "0";
-      p.textContent = prayer.notes;
-      notes.appendChild(p);
-    }
-    if (prayer.source_url) {
-      const a = document.createElement("a");
-      a.className = "source-link";
-      a.href = prayer.source_url;
-      a.target = "_blank";
-      a.rel = "noopener";
-      a.textContent = "Bron raadplegen ↗";
-      notes.appendChild(a);
-    }
+    const p = document.createElement("p");
+    p.style.margin = "0";
+    p.textContent = prayer.notes;
+    notes.appendChild(p);
     view.appendChild(notes);
   }
 
