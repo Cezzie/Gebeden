@@ -9,7 +9,7 @@ export const SEED = {
       "text_la": "In nómine Patris et Fílii et Spíritus Sancti.\nAmen.",
       "language": "both",
       "category": "standaardgebed",
-      "notes": "Klassieke opening van katholieke gebeden.",
+      "notes": "Klassieke opening",
       "source_url": "https://rkliturgie.nl/links/algemene-of-dagelijkse-gebeden-en-oefeningen"
     },
     {
