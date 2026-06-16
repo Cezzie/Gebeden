@@ -310,6 +310,271 @@ body {
 }
 .site-footer a { color: var(--burgundy); }
 
+/* ---------- Header controls + rozenkrans-knop ---------- */
+.header-controls {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.rosary-open-btn {
+  appearance: none;
+  font-family: "Cinzel", serif;
+  font-size: 13px;
+  letter-spacing: .5px;
+  color: var(--burgundy);
+  background: var(--paper-2);
+  border: 1px solid var(--line);
+  padding: 8px 16px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all .18s ease;
+}
+.rosary-open-btn:hover {
+  background: var(--burgundy);
+  color: #fff;
+  border-color: var(--burgundy);
+}
+
+/* ---------- Rozenkrans-overlay ---------- */
+.rosary-root[hidden] { display: none; }
+body.rosary-open-body { overflow: hidden; }
+
+.rosary-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  background:
+    radial-gradient(1000px 500px at 50% -10%, rgba(169, 133, 47, .12), transparent),
+    var(--paper);
+  animation: rosary-fade .2s ease;
+}
+
+@keyframes rosary-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.rosary-bar {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 22px;
+  border-bottom: 1px solid var(--line);
+  background: rgba(251, 247, 239, .85);
+  backdrop-filter: blur(8px);
+}
+
+.rosary-brand {
+  font-family: "Cinzel", serif;
+  font-size: 18px;
+  color: var(--burgundy);
+  margin-right: auto;
+}
+
+.rosary-lang {
+  display: inline-flex;
+  background: var(--paper-2);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 3px;
+}
+
+.r-lang-btn {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  font-family: inherit;
+  font-size: 14px;
+  color: var(--ink-soft);
+  padding: 6px 14px;
+  border-radius: 999px;
+  cursor: pointer;
+}
+.r-lang-btn.is-active {
+  background: var(--burgundy);
+  color: #fff;
+}
+
+.rosary-close {
+  appearance: none;
+  width: 38px;
+  height: 38px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--paper-2);
+  color: var(--ink-soft);
+  font-size: 16px;
+  cursor: pointer;
+  transition: all .18s ease;
+}
+.rosary-close:hover { color: var(--ink); border-color: var(--gold); }
+
+.rosary-sets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  padding: 14px 22px 0;
+}
+
+.rosary-set-chip {
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: "Cinzel", serif;
+  font-size: 12px;
+  letter-spacing: .5px;
+  color: var(--ink-soft);
+  background: transparent;
+  border: 1px solid var(--line);
+  padding: 7px 14px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all .15s ease;
+}
+.rosary-set-chip:hover { color: var(--ink); border-color: var(--gold); }
+.rosary-set-chip.is-active {
+  color: var(--burgundy);
+  border-color: var(--burgundy);
+  background: var(--paper-2);
+}
+.rosary-set-chip .r-today {
+  font-family: "EB Garamond", serif;
+  font-style: italic;
+  font-size: 11px;
+  color: var(--gold-deep);
+}
+
+.rosary-progress {
+  height: 4px;
+  margin: 16px 22px 0;
+  background: var(--paper-2);
+  border-radius: 999px;
+  overflow: hidden;
+}
+.rosary-progress-bar {
+  display: block;
+  height: 100%;
+  width: 0;
+  background: linear-gradient(to right, var(--gold), var(--burgundy));
+  transition: width .25s ease;
+}
+
+.rosary-stage {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 32px 22px;
+}
+
+.rosary-card {
+  width: 100%;
+  max-width: 760px;
+  background: var(--surface, #fff);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 38px 44px 44px;
+  cursor: pointer;
+  outline: none;
+}
+.rosary-card:focus-visible { box-shadow: 0 0 0 3px rgba(169, 133, 47, .25), var(--shadow); }
+
+.rosary-kicker {
+  font-family: "Cinzel", serif;
+  font-size: 12px;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--gold-deep);
+  margin: 0 0 10px;
+}
+
+.rosary-h2 {
+  font-family: "Cinzel", serif;
+  font-weight: 600;
+  font-size: 28px;
+  margin: 0 0 4px;
+  color: var(--ink);
+}
+.rosary-sub {
+  font-size: 18px;
+  font-style: italic;
+  color: var(--gold-deep);
+  margin: 0;
+}
+
+.rosary-beads {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin: 20px 0 4px;
+}
+.r-bead {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 1px solid var(--gold-deep);
+}
+.r-bead.todo { background: transparent; opacity: .4; }
+.r-bead.done { background: var(--gold); opacity: .55; }
+.r-bead.active {
+  background: var(--burgundy);
+  border-color: var(--burgundy);
+  transform: scale(1.25);
+  box-shadow: 0 0 0 3px rgba(110, 31, 43, .15);
+}
+
+.rosary-text-grid {
+  display: grid;
+  gap: 30px;
+  margin-top: 24px;
+}
+.rosary-text-grid.both { grid-template-columns: 1fr 1fr; }
+
+.rosary-text {
+  white-space: pre-wrap;
+  font-size: 20px;
+  line-height: 1.75;
+  margin: 0;
+}
+.rosary-text.la { font-style: italic; }
+
+.rosary-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px 22px;
+  border-top: 1px solid var(--line);
+  background: rgba(251, 247, 239, .85);
+}
+.rosary-counter {
+  font-size: 14px;
+  font-style: italic;
+  color: var(--ink-soft);
+}
+.rosary-nav {
+  appearance: none;
+  font-family: "Cinzel", serif;
+  font-size: 14px;
+  color: var(--burgundy);
+  background: var(--paper-2);
+  border: 1px solid var(--line);
+  padding: 11px 22px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all .15s ease;
+}
+.rosary-nav:hover:not(:disabled) { background: var(--burgundy); color: #fff; border-color: var(--burgundy); }
+.rosary-nav:disabled { opacity: .4; cursor: default; }
+
 /* ---------- Responsive ---------- */
 @media (max-width: 880px) {
   body { font-size: 18px; }
@@ -323,4 +588,11 @@ body {
   .prayer-view { padding: 26px 22px 32px; }
   .prayer-head h2 { font-size: 25px; }
   .header-inner { padding: 12px 16px; }
+
+  .rosary-brand { font-size: 16px; width: 100%; margin-right: 0; }
+  .rosary-bar { flex-wrap: wrap; gap: 10px; }
+  .rosary-card { padding: 26px 22px 32px; }
+  .rosary-h2 { font-size: 24px; }
+  .rosary-text-grid.both { grid-template-columns: 1fr; gap: 22px; }
+  .rosary-nav { padding: 11px 16px; }
 }

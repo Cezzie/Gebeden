@@ -1,4 +1,5 @@
 import { SEED } from "./seed.js";
+import { initRosary } from "./rosary-ui.js";
 
 const prayers = SEED.prayers;
 
@@ -236,6 +237,8 @@ function init() {
 
   renderList();
   renderView();
+
+  initRosary({ weekday: new Date().getDay() });
 }
 
 init();

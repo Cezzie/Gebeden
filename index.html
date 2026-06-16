@@ -21,10 +21,15 @@
         </div>
       </div>
 
-      <div class="lang-toggle" role="group" aria-label="Taalkeuze">
-        <button class="lang-btn" data-lang="nl">Nederlands</button>
-        <button class="lang-btn" data-lang="la">Latijn</button>
-        <button class="lang-btn is-active" data-lang="both">Beide</button>
+      <div class="header-controls">
+        <button id="rosary-open" class="rosary-open-btn" type="button">
+          <span aria-hidden="true">📿</span> Rozenkrans bidden
+        </button>
+        <div class="lang-toggle" role="group" aria-label="Taalkeuze">
+          <button class="lang-btn" data-lang="nl">Nederlands</button>
+          <button class="lang-btn" data-lang="la">Latijn</button>
+          <button class="lang-btn is-active" data-lang="both">Beide</button>
+        </div>
       </div>
     </div>
   </header>
@@ -52,6 +57,8 @@
   <footer class="site-footer">
     <p>Gemaakt met eerbied · Bron: <a href="https://rkliturgie.nl" target="_blank" rel="noopener">rkliturgie.nl</a></p>
   </footer>
+
+  <div id="rosary-root" class="rosary-root" hidden></div>
 
   <script type="module" src="app.js"></script>
 </body>
