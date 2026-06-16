@@ -27,10 +27,15 @@ const els = {
   view: document.getElementById("prayer-view"),
   search: document.getElementById("search"),
   langButtons: Array.from(document.querySelectorAll(".lang-btn")),
+  themeToggle: document.getElementById("theme-toggle"),
 };
+
+const prefersDark =
+  window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
 
 const state = {
   lang: localStorage.getItem("gebeden-lang") || "both",
+  theme: localStorage.getItem("gebeden-theme") || (prefersDark ? "dark" : "light"),
   query: "",
   activeKey: null,
 };
@@ -149,6 +154,8 @@ function renderView() {
     tag.textContent = categoryLabel(prayer.category);
     head.appendChild(tag);
   }
+
+  head.appendChild(makeCopyButton(prayer));
   view.appendChild(head);
 
   const rule = document.createElement("div");
@@ -176,6 +183,59 @@ function renderView() {
 
   els.view.innerHTML = "";
   els.view.appendChild(view);
+}
+
+function prayerToText(prayer) {
+  const showNl = state.lang === "nl" || state.lang === "both";
+  const showLa = state.lang === "la" || state.lang === "both";
+  const blocks = [];
+  if (showNl && prayer.text_nl) {
+    blocks.push(prayer.title_nl + "\n\n" + prayer.text_nl);
+  }
+  if (showLa && prayer.text_la) {
+    blocks.push(prayer.title_la + "\n\n" + prayer.text_la);
+  }
+  return blocks.join("\n\n— — —\n\n");
+}
+
+function makeCopyButton(prayer) {
+  const btn = document.createElement("button");
+  btn.type = "button";
+  btn.className = "copy-btn";
+  btn.innerHTML =
+    '<span class="copy-icon" aria-hidden="true">⧉</span><span class="copy-label">Kopieer</span>';
+
+  const label = btn.querySelector(".copy-label");
+  let resetTimer = null;
+
+  btn.addEventListener("click", async () => {
+    const text = prayerToText(prayer);
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        await navigator.clipboard.writeText(text);
+      } else {
+        const ta = document.createElement("textarea");
+        ta.value = text;
+        ta.style.position = "fixed";
+        ta.style.opacity = "0";
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand("copy");
+        document.body.removeChild(ta);
+      }
+      btn.classList.add("is-copied");
+      label.textContent = "Gekopieerd";
+    } catch {
+      label.textContent = "Mislukt";
+    }
+    clearTimeout(resetTimer);
+    resetTimer = setTimeout(() => {
+      btn.classList.remove("is-copied");
+      label.textContent = "Kopieer";
+    }, 1800);
+  });
+
+  return btn;
 }
 
 function makeColumn(langCode, label, text, showLabel) {
@@ -218,8 +278,31 @@ function setLang(lang) {
   renderView();
 }
 
+function setTheme(theme) {
+  state.theme = theme;
+  document.documentElement.dataset.theme = theme;
+  localStorage.setItem("gebeden-theme", theme);
+  if (els.themeToggle) {
+    const dark = theme === "dark";
+    els.themeToggle.setAttribute("aria-pressed", String(dark));
+    els.themeToggle.setAttribute(
+      "aria-label",
+      dark ? "Lichte modus inschakelen" : "Donkere modus inschakelen"
+    );
+    const icon = els.themeToggle.querySelector(".theme-icon");
+    if (icon) icon.textContent = dark ? "☀" : "☾";
+  }
+}
+
 /* ---------- Init ---------- */
 function init() {
+  setTheme(state.theme);
+  if (els.themeToggle) {
+    els.themeToggle.addEventListener("click", () =>
+      setTheme(state.theme === "dark" ? "light" : "dark")
+    );
+  }
+
   els.langButtons.forEach((b) =>
     b.addEventListener("click", () => setLang(b.dataset.lang))
   );
