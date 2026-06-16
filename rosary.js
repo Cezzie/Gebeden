@@ -13,73 +13,118 @@ function fromSeed(key) {
   };
 }
 
-/* Gebeden die niet in de hoofdverzameling staan, maar de rozenkrans nodig heeft. */
-const APOSTLES_CREED = {
-  title_nl: "Geloofsbelijdenis",
-  title_la: "Symbolum Apostolorum",
-  text_nl:
-    "Ik geloof in God, de almachtige Vader,\nSchepper van hemel en aarde.\nEn in Jezus Christus, zijn enige Zoon, onze Heer,\ndie ontvangen is van de Heilige Geest,\ngeboren uit de Maagd Maria;\ndie geleden heeft onder Pontius Pilatus,\nis gekruisigd, gestorven en begraven;\ndie nedergedaald is ter helle,\nde derde dag verrezen uit de doden;\ndie opgevaren is ten hemel,\nzit aan de rechterhand van God, de almachtige Vader;\nvandaar zal Hij komen oordelen\nde levenden en de doden.\nIk geloof in de Heilige Geest;\nde heilige katholieke Kerk,\nde gemeenschap van de heiligen;\nde vergeving van de zonden;\nde verrijzenis van het lichaam;\nen het eeuwig leven.\nAmen.",
-  text_la:
-    "Credo in Deum Patrem omnipoténtem,\nCreatórem caeli et terrae.\nEt in Iesum Christum, Fílium eius únicum, Dóminum nostrum,\nqui concéptus est de Spíritu Sancto,\nnatus ex María Vírgine,\npassus sub Póntio Piláto,\ncrucifíxus, mórtuus, et sepúltus;\ndescéndit ad ínferos;\ntértia die resurréxit a mórtuis;\nascéndit ad caelos;\nsedet ad déxteram Dei Patris omnipoténtis;\ninde ventúrus est iudicáre vivos et mórtuos.\nCredo in Spíritum Sanctum,\nsanctam Ecclésiam cathólicam,\nSanctórum communiónem,\nremissiónem peccatórum,\ncarnis resurrectiónem,\nvitam aetérnam.\nAmen.",
-};
-
-const FATIMA = {
-  title_nl: "Zuchtgebedje van Fatima",
-  title_la: "Oratio Fatimae",
-  text_nl:
-    "O mijn Jezus, vergeef ons onze zonden,\nbehoed ons voor het vuur van de hel,\nbreng alle zielen naar de hemel,\nvooral die uw barmhartigheid het meest nodig hebben.",
-  text_la:
-    "Dómine Iesu, dimítte nobis débita nostra,\nsalva nos ab igne inferióri,\nperduc in caelum omnes ánimas,\npraesértim eas, quae misericórdiae tuae máxime índigent.",
-};
-
 /* De vier reeksen van geheimen. */
 export const MYSTERY_SETS = {
   blijde: {
     key: "blijde",
     title_nl: "Blijde Geheimen",
-    title_la: "Mysteria gaudiosa",
+    title_la: "Mystéria Gaudiósa",
+    days_nl: "maandag en zaterdag",
     mysteries: [
-      { title_nl: "De aankondiging van de Engel aan Maria", title_la: "Annuntiatio" },
-      { title_nl: "Het bezoek van Maria aan Elisabeth", title_la: "Visitatio" },
-      { title_nl: "De geboorte van Jezus", title_la: "Nativitas Domini" },
-      { title_nl: "De opdracht van Jezus in de tempel", title_la: "Praesentatio in templo" },
-      { title_nl: "De terugvinding van Jezus in de tempel", title_la: "Inventio in templo" },
+      {
+        title_nl: "De engel Gabriël brengt de blijde boodschap aan Maria",
+        title_la: "Annuntiatiónem Beátæ Maríæ Vírginis",
+      },
+      {
+        title_nl: "Maria bezoekt haar nicht Elisabeth",
+        title_la: "Visitatiónem Beátæ Maríæ Vírginis",
+      },
+      {
+        title_nl: "Jezus wordt geboren in een stal van Bethlehem",
+        title_la: "Nativitátem Dómini nostri Iesu Christi",
+      },
+      {
+        title_nl: "Jezus wordt in de tempel opgedragen",
+        title_la: "Oblatiónem Dómini nostri Iesu Christi",
+      },
+      {
+        title_nl: "Jezus wordt in de tempel teruggevonden",
+        title_la: "Inventiónem Dómini nostri Iesu Christi in templo",
+      },
     ],
   },
   lichtende: {
     key: "lichtende",
-    title_nl: "Lichtende Geheimen",
-    title_la: "Mysteria luminosa",
+    title_nl: "Geheimen van het Licht",
+    title_la: "Mystéria Luminósa",
+    days_nl: "donderdag",
     mysteries: [
-      { title_nl: "De doop van Jezus in de Jordaan", title_la: "Baptismus apud Iordanem" },
-      { title_nl: "De openbaring op de bruiloft van Kana", title_la: "Autorevelatio apud Cana" },
-      { title_nl: "De verkondiging van het Rijk Gods", title_la: "Regni Dei proclamatio" },
-      { title_nl: "De gedaanteverandering van Jezus", title_la: "Transfiguratio" },
-      { title_nl: "De instelling van de Eucharistie", title_la: "Eucharistiae institutio" },
+      {
+        title_nl: "Jezus wordt gedoopt in de Jordaan",
+        title_la: "Baptisma Iesu Christe apud Iordanem",
+      },
+      {
+        title_nl: "Jezus openbaart zich op de bruiloft van Kana",
+        title_la: "Suirevelatio Iesu Christe inter Cananense matrimonium",
+      },
+      {
+        title_nl: "Jezus verkondigt het Rijk van God en roept op tot bekering",
+        title_la: "Regni Dei proclamatio ab Iesu Christe atque invitatio ad conversionem",
+      },
+      {
+        title_nl: "Jezus verandert van gedaante",
+        title_la: "Transfiguratio Iesu Christi super Montem Thabor",
+      },
+      {
+        title_nl: "Jezus stelt de Eucharistie in bij het Laatste Avondmaal",
+        title_la: "Eucharistae institutio ab Iesu Christe",
+      },
     ],
   },
   droevige: {
     key: "droevige",
     title_nl: "Droevige Geheimen",
-    title_la: "Mysteria dolorosa",
+    title_la: "Mystéria Dolorósa",
+    days_nl: "dinsdag en vrijdag",
     mysteries: [
-      { title_nl: "De doodsangst van Jezus in de hof", title_la: "Agonia in horto" },
-      { title_nl: "De geseling van Jezus", title_la: "Flagellatio" },
-      { title_nl: "De doornenkroning van Jezus", title_la: "Coronatio spinis" },
-      { title_nl: "De kruisdraging van Jezus", title_la: "Baiulatio crucis" },
-      { title_nl: "De kruisiging en dood van Jezus", title_la: "Crucifixio et mors" },
+      {
+        title_nl: "Jezus bidt in doodsangst tot zijn hemelse Vader",
+        title_la: "Agóniam Dómini nostri Iesu Christi in horto",
+      },
+      {
+        title_nl: "Jezus wordt gegeseld",
+        title_la: "Flagellatiónem Dómini nostri Iesu Christi",
+      },
+      {
+        title_nl: "Jezus wordt met doornen gekroond",
+        title_la: "Coronatiónem spinis Dómini nostri Iesu Christi",
+      },
+      {
+        title_nl: "Jezus draagt Zijn kruis naar de berg van Calvarië",
+        title_la: "Bajulatiónem Crucis",
+      },
+      {
+        title_nl: "Jezus sterft aan het kruis",
+        title_la: "Crucifixiónem Dómini nostri Iesu Christi",
+      },
     ],
   },
   glorievolle: {
     key: "glorievolle",
     title_nl: "Glorievolle Geheimen",
-    title_la: "Mysteria gloriosa",
+    title_la: "Mystéria Gloriósa",
+    days_nl: "zondag en woensdag",
     mysteries: [
-      { title_nl: "De verrijzenis van Jezus", title_la: "Resurrectio" },
-      { title_nl: "De hemelvaart van Jezus", title_la: "Ascensio" },
-      { title_nl: "De nederdaling van de Heilige Geest", title_la: "Descensus Spiritus Sancti" },
-      { title_nl: "De tenhemelopneming van Maria", title_la: "Assumptio Mariae" },
-      { title_nl: "De kroning van Maria in de hemel", title_la: "Coronatio Mariae" },
+      {
+        title_nl: "Jezus verrijst uit de doden",
+        title_la: "Resurrectiónem Dómini nostri Iesu Christi a mórtuis",
+      },
+      {
+        title_nl: "Jezus stijgt op ten hemel",
+        title_la: "Ascensiónem Dómini nostri Iesu Christi in cáelum",
+      },
+      {
+        title_nl: "De Heilige Geest daalt neer over de apostelen",
+        title_la: "Missiónem Spíritus Sancti in discípulos",
+      },
+      {
+        title_nl: "Maria wordt in de hemel opgenomen",
+        title_la: "Assumptiónem Beátæ Maríæ Vírginis in cáelum",
+      },
+      {
+        title_nl: "Maria wordt in de hemel gekroond",
+        title_la: "Coronatiónem Beátæ Maríæ Vírginis in cáelum",
+      },
     ],
   },
 };
@@ -110,7 +155,7 @@ export function buildRosarySteps(setKey) {
   const steps = [];
 
   steps.push({ kind: "kruisteken", kicker: "Begin", ...fromSeed("signum_crucis") });
-  steps.push({ kind: "credo", kicker: "Op het kruisbeeld", ...APOSTLES_CREED });
+  steps.push({ kind: "credo", kicker: "Op het kruisbeeld", ...fromSeed("symbolum_apostolorum") });
   steps.push({ kind: "pater", kicker: "Eerste grote kraal", ...fromSeed("our_father") });
 
   const virtues = ["om geloof", "om hoop", "om liefde"];
@@ -132,8 +177,8 @@ export function buildRosarySteps(setKey) {
       kind: "geheim",
       kicker: `${decade}ᵉ geheim · ${set.title_nl}`,
       decade,
-      title_nl: `${m.title_nl}`,
-      title_la: `${m.title_la}`,
+      title_nl: m.title_nl,
+      title_la: m.title_la,
       text_nl: "Wij overwegen dit geheim en bidden om de vruchten ervan.",
       text_la: "Hoc mysterium contemplámur.",
       mysteryHeading: true,
@@ -150,7 +195,7 @@ export function buildRosarySteps(setKey) {
       });
     }
     steps.push({ kind: "gloria", kicker: `${decade}ᵉ tientje`, decade, ...fromSeed("gloria_patri") });
-    steps.push({ kind: "fatima", kicker: `${decade}ᵉ tientje · slot`, decade, ...FATIMA });
+    steps.push({ kind: "fatima", kicker: `${decade}ᵉ tientje · slot`, decade, ...fromSeed("oratio_fatima") });
   });
 
   steps.push({ kind: "salve", kicker: "Slotgebed", ...fromSeed("salve_regina") });

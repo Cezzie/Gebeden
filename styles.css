@@ -663,6 +663,107 @@ body.rosary-open-body { overflow: hidden; }
 .rosary-nav:hover:not(:disabled) { background: var(--burgundy); color: var(--on-accent); border-color: var(--burgundy); }
 .rosary-nav:disabled { opacity: .4; cursor: default; }
 
+/* Verberg voortgang + navigatie in de overzicht-weergave */
+.rosary-progress[hidden],
+.rosary-controls[hidden] { display: none; }
+
+/* ---------- Weergave-schakelaar (overzicht / stap voor stap) ---------- */
+.rosary-mode {
+  display: inline-flex;
+  background: var(--paper-2);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 3px;
+}
+.r-mode-btn {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  font-family: "Cinzel", serif;
+  font-size: 12px;
+  letter-spacing: .3px;
+  color: var(--ink-soft);
+  padding: 6px 14px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all .15s ease;
+}
+.r-mode-btn:hover { color: var(--ink); }
+.r-mode-btn.is-active {
+  background: var(--burgundy);
+  color: var(--on-accent);
+}
+
+/* ---------- Overzicht-weergave ---------- */
+.rosary-overview {
+  width: 100%;
+  max-width: 760px;
+  background: var(--surface, #fff);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 38px 44px 40px;
+}
+
+.rosary-ov-head { margin-bottom: 22px; }
+.rosary-ov-head .rosary-h2 { margin-top: 4px; }
+
+.rosary-ov-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.rosary-ov-item {
+  display: flex;
+  gap: 16px;
+  align-items: baseline;
+  padding: 16px 0;
+  border-top: 1px solid var(--line);
+}
+
+.rosary-ov-num {
+  flex: none;
+  font-family: "Cinzel", serif;
+  font-size: 15px;
+  color: var(--gold-deep);
+  width: 1.4em;
+  text-align: right;
+}
+
+.rosary-ov-grid {
+  flex: 1;
+  display: grid;
+  gap: 4px 30px;
+}
+.rosary-ov-grid.both { grid-template-columns: 1fr 1fr; gap: 6px 30px; }
+
+.rosary-ov-nl { margin: 0; font-size: 19px; line-height: 1.5; }
+.rosary-ov-la {
+  margin: 0;
+  font-size: 18px;
+  line-height: 1.5;
+  font-style: italic;
+  color: var(--gold-deep);
+}
+
+.rosary-start {
+  appearance: none;
+  margin-top: 28px;
+  font-family: "Cinzel", serif;
+  font-size: 14px;
+  color: var(--on-accent);
+  background: var(--burgundy);
+  border: 1px solid var(--burgundy);
+  padding: 12px 24px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all .15s ease;
+}
+.rosary-start:hover { background: var(--gold-deep); border-color: var(--gold-deep); }
+
 /* ---------- Responsive ---------- */
 @media (max-width: 880px) {
   body { font-size: 18px; }
@@ -683,4 +784,6 @@ body.rosary-open-body { overflow: hidden; }
   .rosary-h2 { font-size: 24px; }
   .rosary-text-grid.both { grid-template-columns: 1fr; gap: 22px; }
   .rosary-nav { padding: 11px 16px; }
+  .rosary-overview { padding: 26px 22px 30px; }
+  .rosary-ov-grid.both { grid-template-columns: 1fr; gap: 4px; }
 }

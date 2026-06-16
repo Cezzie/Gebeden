@@ -155,6 +155,30 @@ export const SEED = {
       "category": "geloofsbelijdenis",
       "notes": "Geloofsbelijdenis van Nicea-Constantinopel, gebeden in de Mis.",
       "source_url": "http://www.katholiek.org/credo.htm"
+    },
+    {
+      "key": "symbolum_apostolorum",
+      "source": "standard",
+      "title_nl": "Apostolische geloofsbelijdenis",
+      "title_la": "Symbolum Apostolicum",
+      "text_nl": "Ik geloof in God, de almachtige Vader,\nSchepper van hemel en aarde.\nEn in Jezus Christus, zijn enige Zoon, onze Heer,\ndie ontvangen is van de heilige Geest,\ngeboren uit de Maagd Maria;\ndie geleden heeft onder Pontius Pilatus,\nis gekruisigd, gestorven en begraven;\ndie nedergedaald is ter helle,\nde derde dag verrezen uit de doden;\ndie opgestegen is ten hemel,\nzit aan de rechterhand van God, de almachtige Vader;\nvandaar zal Hij komen oordelen de levenden en de doden.\nIk geloof in de heilige Geest;\nde heilige katholieke kerk,\nde gemeenschap van de heiligen;\nde vergeving van de zonden;\nde verrijzenis van het lichaam;\nen het eeuwig leven.\nAmen.",
+      "text_la": "Credo in Deum, Patrem omnipotentem,\ncreatorem caeli et terrae.\nEt in Iesum Christum, Filium eius unicum, Dominum nostrum,\nqui conceptus est de Spiritu Sancto,\nnatus ex Maria Virgine,\npassus sub Pontio Pilato,\ncrucifixus, mortuus et sepultus.\nDescendit ad inferos,\ntertia die resurrexit a mortuis.\nAscendit ad caelos,\nsedet ad dextram Dei Patris omnipotentis.\nInde venturus est iudicare vivos et mortuos.\nCredo in Spiritum Sanctum,\nsanctam Ecclesiam catholicam,\nsanctorum communionem,\nremissionem peccatorum,\ncarnis resurrectionem,\nvitam aeternam.\nAmen.",
+      "language": "both",
+      "category": "geloofsbelijdenis",
+      "notes": "De Twaalf Artikelen van het Geloof; gebeden bij het begin van de rozenkrans.",
+      "source_url": "https://www.ewtn.com/catholicism/teachings/prayers-of-the-rosary-in-english-and-latin-164"
+    },
+    {
+      "key": "oratio_fatima",
+      "source": "standard",
+      "title_nl": "Zuchtgebed van Fatima",
+      "title_la": "Oratio Fatima",
+      "text_nl": "O mijn Jezus, vergeef ons onze zonden,\nbehoed ons voor het vuur van de hel,\nbreng alle zielen naar de hemel,\nvooral diegenen die Uw barmhartigheid\nhet meeste nodig hebben.",
+      "text_la": "Domine Iesu, dimitte nobis debita nostra,\nsalva nos ab igne inferni,\nperduc in caelum omnes animas,\npraesertim eas quae misericordiae tuae maximae indigent.",
+      "language": "both",
+      "category": "standaardgebed",
+      "notes": "Gebeden na elk tientje van de rozenkrans (Fatima, 1917).",
+      "source_url": "https://www.ewtn.com/catholicism/teachings/prayers-of-the-rosary-in-english-and-latin-164"
     }
   ]
 };
