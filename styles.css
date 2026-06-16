@@ -1,15 +1,35 @@
 :root {
   --paper: #fbf7ef;
   --paper-2: #f4ecdd;
+  --surface: #ffffff;
   --ink: #2a2320;
   --ink-soft: #5b504a;
   --gold: #a9852f;
   --gold-deep: #8a6a1f;
   --burgundy: #6e1f2b;
+  --on-accent: #ffffff;
   --line: #e2d7c2;
+  --header-bg: rgba(251, 247, 239, .9);
+  --glow: rgba(169, 133, 47, .08);
   --shadow: 0 1px 2px rgba(60, 40, 20, .06), 0 8px 24px rgba(60, 40, 20, .08);
   --radius: 14px;
   --sidebar-w: 300px;
+}
+
+:root[data-theme="dark"] {
+  --paper: #16130f;
+  --paper-2: #211c16;
+  --surface: #1f1a15;
+  --ink: #ece3d3;
+  --ink-soft: #aa9d8c;
+  --gold: #cba450;
+  --gold-deep: #d8b96e;
+  --burgundy: #c06576;
+  --on-accent: #1a1410;
+  --line: #3a3128;
+  --header-bg: rgba(22, 19, 15, .9);
+  --glow: rgba(203, 164, 80, .10);
+  --shadow: 0 1px 2px rgba(0, 0, 0, .35), 0 8px 24px rgba(0, 0, 0, .45);
 }
 
 * { box-sizing: border-box; }
@@ -24,13 +44,14 @@ body {
   font-family: "EB Garamond", Georgia, serif;
   color: var(--ink);
   background:
-    radial-gradient(1200px 600px at 80% -10%, rgba(169, 133, 47, .08), transparent),
+    radial-gradient(1200px 600px at 80% -10%, var(--glow), transparent),
     var(--paper);
   font-size: 19px;
   line-height: 1.6;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  transition: background-color .25s ease, color .25s ease;
 }
 
 /* ---------- Header ---------- */
@@ -38,7 +59,7 @@ body {
   position: sticky;
   top: 0;
   z-index: 10;
-  background: rgba(251, 247, 239, .9);
+  background: var(--header-bg);
   backdrop-filter: blur(8px);
   border-bottom: 1px solid var(--line);
 }
@@ -109,9 +130,46 @@ body {
 
 .lang-btn.is-active {
   background: var(--burgundy);
-  color: #fff;
+  color: var(--on-accent);
   box-shadow: 0 2px 6px rgba(110, 31, 43, .3);
 }
+
+/* ---------- Header controls + theme toggle ---------- */
+.header-controls {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.icon-btn {
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--paper-2);
+  color: var(--gold-deep);
+  font-size: 19px;
+  line-height: 1;
+  cursor: pointer;
+  transition: all .18s ease;
+}
+
+.icon-btn:hover {
+  color: var(--ink);
+  border-color: var(--gold);
+}
+
+.icon-btn:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(169, 133, 47, .25);
+}
+
+.icon-btn .theme-icon { transition: transform .3s ease; }
+:root[data-theme="dark"] .icon-btn .theme-icon { transform: rotate(-20deg); }
 
 /* ---------- Layout ---------- */
 .layout {
@@ -142,7 +200,7 @@ body {
   padding: 11px 14px;
   border: 1px solid var(--line);
   border-radius: 10px;
-  background: #fff;
+  background: var(--surface);
   color: var(--ink);
   box-shadow: var(--shadow);
 }
@@ -192,7 +250,7 @@ body {
 .list-item:hover { background: var(--paper-2); }
 
 .list-item.is-active {
-  background: #fff;
+  background: var(--surface);
   box-shadow: var(--shadow);
   border-left: 3px solid var(--burgundy);
 }
@@ -211,7 +269,7 @@ body {
 
 /* ---------- Prayer view ---------- */
 .prayer-view {
-  background: #fff;
+  background: var(--surface);
   border: 1px solid var(--line);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
@@ -219,7 +277,43 @@ body {
   min-height: 60vh;
 }
 
-.prayer-head { margin-bottom: 26px; }
+.prayer-head {
+  position: relative;
+  margin-bottom: 26px;
+  padding-right: 130px;
+}
+
+/* ---------- Copy button ---------- */
+.copy-btn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-family: "Cinzel", serif;
+  font-size: 11px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--gold-deep);
+  background: var(--paper-2);
+  border: 1px solid var(--line);
+  padding: 8px 14px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all .18s ease;
+}
+
+.copy-btn:hover { color: var(--ink); border-color: var(--gold); }
+.copy-btn:focus-visible { outline: none; box-shadow: 0 0 0 3px rgba(169, 133, 47, .25); }
+.copy-btn.is-copied { color: var(--on-accent); background: var(--burgundy); border-color: var(--burgundy); }
+.copy-btn .copy-icon { font-size: 13px; }
+
+@media (max-width: 880px) {
+  .prayer-head { padding-right: 0; }
+  .copy-btn { position: static; margin-top: 14px; }
+}
 
 .prayer-head h2 {
   font-family: "Cinzel", serif;
