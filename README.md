@@ -9,7 +9,7 @@ te tonen om de vertaling te vergelijken.
 - **Taalwisselaar** — Nederlands · Latijn · Beide (naast elkaar). De keuze wordt onthouden.
 - **Zoeken** — doorzoek titels en tekst, ook zonder accenten (bv. "magnificat" of "barmhartigheid").
 - **Categorieën** — gebeden zijn gegroepeerd (standaardgebeden, lofzangen, hymnen, litanieën).
-- **Bronvermelding** — link naar de bron per gebed.
+- **Bronvermelding** — onderaan de pagina.
 - **Responsief** — werkt op telefoon, tablet en desktop.
 - **Geen build-stap** — pure HTML/CSS/JS, klaar voor GitHub Pages.
 
