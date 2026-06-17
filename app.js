@@ -47,6 +47,7 @@ const state = {
   fontScale: parseFloat(localStorage.getItem("gebeden-fontscale")) || 1,
   query: "",
   activeKey: null,
+  expanded: new Set(),
 };
 
 /* ---------- Helpers ---------- */
@@ -99,11 +100,38 @@ function renderList() {
     return;
   }
 
+  // Tijdens het zoeken staan alle categorieën met treffers open.
+  const searching = state.query.trim() !== "";
+
   for (const [cat, items] of groupByCategory(visible)) {
-    const heading = document.createElement("h3");
-    heading.className = "cat-heading";
-    heading.textContent = categoryLabel(cat);
+    const isOpen = searching || state.expanded.has(cat);
+
+    const heading = document.createElement("button");
+    heading.type = "button";
+    heading.className = "cat-toggle" + (isOpen ? " is-open" : "");
+    heading.setAttribute("aria-expanded", String(isOpen));
+
+    const label = document.createElement("span");
+    label.className = "cat-label";
+    label.textContent = categoryLabel(cat);
+
+    const count = document.createElement("span");
+    count.className = "cat-count";
+    count.textContent = String(items.length);
+
+    const chevron = document.createElement("span");
+    chevron.className = "cat-chevron";
+    chevron.setAttribute("aria-hidden", "true");
+    chevron.textContent = "›";
+
+    heading.append(chevron, label, count);
+    if (!searching) {
+      heading.addEventListener("click", () => toggleCategory(cat));
+    }
     els.list.appendChild(heading);
+
+    const group = document.createElement("div");
+    group.className = "cat-group" + (isOpen ? "" : " is-collapsed");
 
     for (const p of items) {
       const btn = document.createElement("button");
@@ -122,9 +150,22 @@ function renderList() {
       }
 
       btn.addEventListener("click", () => selectPrayer(p.key));
-      els.list.appendChild(btn);
+      group.appendChild(btn);
     }
+
+    els.list.appendChild(group);
   }
+}
+
+function toggleCategory(cat) {
+  if (state.expanded.has(cat)) state.expanded.delete(cat);
+  else state.expanded.add(cat);
+  renderList();
+}
+
+function categoryOf(key) {
+  const prayer = prayers.find((p) => p.key === key);
+  return prayer ? prayer.category || "overig" : null;
 }
 
 /* ---------- Prayer view ---------- */
@@ -269,6 +310,8 @@ function makeColumn(langCode, label, text, showLabel) {
 /* ---------- Actions ---------- */
 function selectPrayer(key) {
   state.activeKey = key;
+  const cat = categoryOf(key);
+  if (cat) state.expanded.add(cat);
   if (history.replaceState) {
     history.replaceState(null, "", "#" + key);
   } else {
@@ -339,6 +382,10 @@ function init() {
   const fromHash = decodeURIComponent(location.hash.replace(/^#/, ""));
   const initial = prayers.find((p) => p.key === fromHash) || prayers[0];
   state.activeKey = initial ? initial.key : null;
+  if (state.activeKey) {
+    const cat = categoryOf(state.activeKey);
+    if (cat) state.expanded.add(cat);
+  }
 
   renderList();
   renderView();
