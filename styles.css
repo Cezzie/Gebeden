@@ -250,15 +250,65 @@ body {
   padding-right: 4px;
 }
 
-.cat-heading {
+/* ---------- Uitklapbare categorieën ---------- */
+.cat-toggle {
+  appearance: none;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-align: left;
+  border: 0;
+  background: transparent;
   font-family: "Cinzel", serif;
   font-size: 12px;
   letter-spacing: 1.2px;
   text-transform: uppercase;
   color: var(--gold-deep);
-  margin: 16px 8px 6px;
+  margin: 14px 0 4px;
+  padding: 6px 8px;
+  border-radius: 9px;
+  cursor: pointer;
+  transition: background .15s ease, color .15s ease;
 }
-.cat-heading:first-child { margin-top: 0; }
+.cat-toggle:first-child { margin-top: 0; }
+.cat-toggle:hover { background: var(--paper-2); color: var(--ink); }
+.cat-toggle:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(169, 133, 47, .25);
+}
+
+.cat-toggle .cat-chevron {
+  flex: none;
+  font-size: 15px;
+  line-height: 1;
+  transition: transform .18s ease;
+}
+.cat-toggle.is-open .cat-chevron { transform: rotate(90deg); }
+
+.cat-toggle .cat-label { flex: 1; }
+
+.cat-toggle .cat-count {
+  flex: none;
+  font-family: "EB Garamond", serif;
+  font-size: 13px;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--ink-soft);
+  background: var(--paper-2);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  min-width: 22px;
+  text-align: center;
+  padding: 0 7px;
+}
+
+.cat-group {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.cat-group.is-collapsed { display: none; }
 
 .list-item {
   appearance: none;
