@@ -179,6 +179,30 @@ export const SEED = {
       "category": "standaardgebed",
       "notes": "Gebeden na elk tientje van de rozenkrans (Fatima, 1917).",
       "source_url": "https://www.ewtn.com/catholicism/teachings/prayers-of-the-rosary-in-english-and-latin-164"
+    },
+    {
+      "key": "alma_redemptoris_mater",
+      "source": "standard",
+      "title_nl": "Verheven Moeder van de Verlosser",
+      "title_la": "Alma Redemptoris Mater",
+      "text_nl": "Verheven Moeder van de Verlosser,\ndie altijd zijt de open deur des hemels\nen de ster der zee,\nkom het volk te hulp dat valt en poogt op te staan.\nGij die tot verwondering van de natuur\nuw heilige Schepper hebt gebaard\nen maagd zijt gebleven;\ngij die door Gabriël zijt begroet,\nontferm u over ons, zondaars.",
+      "text_la": "Alma Redemptóris Mater,\nquae pérvia caeli porta manes,\net stella maris, succúrre cadénti,\nsúrgere qui curat, pópulo;\ntu quae genuísti, natúra miránte,\ntuum sanctum Genitórem,\nVirgo prius ac postérius,\nGabriélis ab ore sumens illud Ave,\npeccatórum miserére.",
+      "language": "both",
+      "category": "maria-antifoon",
+      "notes": "Maria-antifoon voor de Advent en Kersttijd (eerste zondag van de Advent tot Maria Lichtmis, 2 februari).",
+      "source_url": "https://rkliturgie.nl/algemene-of-dagelijkse-gebeden-en-oefeningen/verheven-moeder-van-de-verlosser-alma-redemptoris-mater"
+    },
+    {
+      "key": "ave_regina_caelorum",
+      "source": "standard",
+      "title_nl": "Gegroet gij, hemelkoningin",
+      "title_la": "Ave Regina caelorum",
+      "text_nl": "Gegroet gij, hemelkoningin;\ngegroet gij, engelenvorstin;\ngij wortel die het leven draagt;\ngij poort waaruit het licht ons daagt.\nVerheug u, wonderschone Maagd.\nVaarwel en bied uw hulpbetoon,\nwees onze voorspraak bij uw Zoon.",
+      "text_la": "Ave, Regína caelórum,\nave, Dómina angelórum,\nsalve, radix, salve, porta,\nex qua mundo lux est orta.\nGaude, Virgo gloriósa,\nsuper omnes speciósa;\nvale, o valde decóra,\net pro nobis Christum exóra.",
+      "language": "both",
+      "category": "maria-antifoon",
+      "notes": "Maria-antifoon van Maria Lichtmis (2 februari) tot Woensdag in de Goede Week.",
+      "source_url": "https://rkliturgie.nl/algemene-of-dagelijkse-gebeden-en-oefeningen/gegroet-gij-hemelkoningin-ave-regina-caelorum"
     }
   ]
 };

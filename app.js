@@ -1,5 +1,6 @@
 import { SEED } from "./seed.js";
 import { initRosary } from "./rosary-ui.js";
+import { initAntiphons } from "./antiphons-ui.js";
 
 const prayers = SEED.prayers;
 
@@ -322,6 +323,7 @@ function init() {
   renderView();
 
   initRosary();
+  initAntiphons();
 }
 
 init();
