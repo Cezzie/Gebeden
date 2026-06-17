@@ -14,6 +14,7 @@
   --shadow: 0 1px 2px rgba(60, 40, 20, .06), 0 8px 24px rgba(60, 40, 20, .08);
   --radius: 14px;
   --sidebar-w: 300px;
+  --reading-scale: 1;
 }
 
 :root[data-theme="dark"] {
@@ -171,6 +172,34 @@ body {
 
 .icon-btn .theme-icon { transition: transform .3s ease; }
 :root[data-theme="dark"] .icon-btn .theme-icon { transform: rotate(-20deg); }
+
+/* ---------- Lettergrootte ---------- */
+.fontsize-control {
+  display: inline-flex;
+  background: var(--paper-2);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 3px;
+}
+.fs-btn {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  font-family: "Cinzel", serif;
+  font-size: 14px;
+  color: var(--ink-soft);
+  padding: 6px 12px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all .15s ease;
+}
+.fs-btn:first-child { letter-spacing: -.5px; }
+.fs-btn:hover:not(:disabled) { color: var(--ink); }
+.fs-btn:disabled { opacity: .35; cursor: default; }
+.fs-btn:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(169, 133, 47, .25);
+}
 
 /* ---------- Layout ---------- */
 .layout {
@@ -369,7 +398,7 @@ body {
 
 .prayer-text {
   white-space: pre-wrap;
-  font-size: 20px;
+  font-size: calc(20px * var(--reading-scale));
   line-height: 1.75;
   margin: 0;
 }
@@ -630,7 +659,7 @@ body.rosary-open-body { overflow: hidden; }
 
 .rosary-text {
   white-space: pre-wrap;
-  font-size: 20px;
+  font-size: calc(20px * var(--reading-scale));
   line-height: 1.75;
   margin: 0;
 }
@@ -742,10 +771,10 @@ body.rosary-open-body { overflow: hidden; }
 }
 .rosary-ov-grid.both { grid-template-columns: 1fr 1fr; gap: 6px 30px; }
 
-.rosary-ov-nl { margin: 0; font-size: 19px; line-height: 1.5; }
+.rosary-ov-nl { margin: 0; font-size: calc(19px * var(--reading-scale)); line-height: 1.5; }
 .rosary-ov-la {
   margin: 0;
-  font-size: 18px;
+  font-size: calc(18px * var(--reading-scale));
   line-height: 1.5;
   font-style: italic;
   color: var(--gold-deep);

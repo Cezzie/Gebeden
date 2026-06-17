@@ -29,7 +29,13 @@ const els = {
   search: document.getElementById("search"),
   langButtons: Array.from(document.querySelectorAll(".lang-btn")),
   themeToggle: document.getElementById("theme-toggle"),
+  fontSmaller: document.getElementById("font-smaller"),
+  fontLarger: document.getElementById("font-larger"),
 };
+
+const FONT_MIN = 0.8;
+const FONT_MAX = 1.6;
+const FONT_STEP = 0.1;
 
 const prefersDark =
   window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
@@ -37,6 +43,7 @@ const prefersDark =
 const state = {
   lang: localStorage.getItem("gebeden-lang") || "both",
   theme: localStorage.getItem("gebeden-theme") || (prefersDark ? "dark" : "light"),
+  fontScale: parseFloat(localStorage.getItem("gebeden-fontscale")) || 1,
   query: "",
   activeKey: null,
 };
@@ -295,9 +302,23 @@ function setTheme(theme) {
   }
 }
 
+function setFontScale(scale) {
+  const clamped = Math.min(FONT_MAX, Math.max(FONT_MIN, Math.round(scale * 100) / 100));
+  state.fontScale = clamped;
+  document.documentElement.style.setProperty("--reading-scale", String(clamped));
+  localStorage.setItem("gebeden-fontscale", String(clamped));
+  if (els.fontSmaller) els.fontSmaller.disabled = clamped <= FONT_MIN + 1e-9;
+  if (els.fontLarger) els.fontLarger.disabled = clamped >= FONT_MAX - 1e-9;
+}
+
 /* ---------- Init ---------- */
 function init() {
   setTheme(state.theme);
+  setFontScale(state.fontScale);
+  if (els.fontSmaller)
+    els.fontSmaller.addEventListener("click", () => setFontScale(state.fontScale - FONT_STEP));
+  if (els.fontLarger)
+    els.fontLarger.addEventListener("click", () => setFontScale(state.fontScale + FONT_STEP));
   if (els.themeToggle) {
     els.themeToggle.addEventListener("click", () =>
       setTheme(state.theme === "dark" ? "light" : "dark")
