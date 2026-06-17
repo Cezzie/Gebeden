@@ -11,21 +11,24 @@ import {
  *   - "interactief": stap voor stap, kraal voor kraal bidden
  * Hergebruikt de taalkeuze (localStorage "gebeden-lang") van de hoofd-app.
  */
-export function initRosary({ weekday }) {
+export function initRosary() {
   const root = document.getElementById("rosary-root");
   const openBtn = document.getElementById("rosary-open");
   if (!root || !openBtn) return;
 
+  /* "Vandaag" wordt live bepaald, zodat een lang openstaande tab klopt. */
+  const currentWeekday = () => new Date().getDay();
+
   const state = {
     open: false,
     mode: "overzicht",
-    setKey: defaultMysteryKey(weekday),
+    todayKey: defaultMysteryKey(currentWeekday()),
+    setKey: null,
     steps: [],
     index: 0,
     lang: localStorage.getItem("gebeden-lang") || "both",
   };
-  const todayKey = defaultMysteryKey(weekday);
-
+  state.setKey = state.todayKey;
   state.steps = buildRosarySteps(state.setKey);
 
   /* ---------- Statische opbouw ---------- */
@@ -76,8 +79,7 @@ export function initRosary({ weekday }) {
     chip.className = "rosary-set-chip";
     chip.dataset.set = key;
     chip.innerHTML =
-      `<span>${set.title_nl}</span>` +
-      (key === todayKey ? `<span class="r-today">vandaag</span>` : "");
+      `<span>${set.title_nl}</span><span class="r-today">vandaag</span>`;
     chip.addEventListener("click", () => selectSet(key));
     setsWrap.appendChild(chip);
   }
@@ -97,9 +99,10 @@ export function initRosary({ weekday }) {
     modeBtns.forEach((b) =>
       b.classList.toggle("is-active", b.dataset.mode === state.mode)
     );
-    Array.from(setsWrap.children).forEach((c) =>
-      c.classList.toggle("is-active", c.dataset.set === state.setKey)
-    );
+    Array.from(setsWrap.children).forEach((c) => {
+      c.classList.toggle("is-active", c.dataset.set === state.setKey);
+      c.classList.toggle("is-today", c.dataset.set === state.todayKey);
+    });
   }
 
   function langFlags() {
@@ -237,6 +240,10 @@ export function initRosary({ weekday }) {
   function open() {
     state.open = true;
     state.lang = localStorage.getItem("gebeden-lang") || state.lang;
+    state.todayKey = defaultMysteryKey(currentWeekday());
+    state.setKey = state.todayKey;
+    state.steps = buildRosarySteps(state.setKey);
+    state.index = 0;
     root.hidden = false;
     document.body.classList.add("rosary-open-body");
     render();

@@ -532,11 +532,13 @@ body.rosary-open-body { overflow: hidden; }
   background: var(--paper-2);
 }
 .rosary-set-chip .r-today {
+  display: none;
   font-family: "EB Garamond", serif;
   font-style: italic;
   font-size: 11px;
   color: var(--gold-deep);
 }
+.rosary-set-chip.is-today .r-today { display: inline; }
 
 .rosary-progress {
   height: 4px;

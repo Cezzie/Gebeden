@@ -144,7 +144,7 @@ export function defaultMysteryKey(weekday) {
   return WEEKDAY_SET[weekday] ?? "blijde";
 }
 
-export const MYSTERY_ORDER = ["blijde", "lichtende", "droevige", "glorievolle"];
+export const MYSTERY_ORDER = ["blijde", "droevige", "glorievolle", "lichtende"];
 
 /*
  * Bouwt de volledige reeks stappen voor één rozenhoedje.
