@@ -321,7 +321,7 @@ function init() {
   renderList();
   renderView();
 
-  initRosary({ weekday: new Date().getDay() });
+  initRosary();
 }
 
 init();
