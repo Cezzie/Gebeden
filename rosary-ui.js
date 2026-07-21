@@ -244,6 +244,7 @@ export function initRosary() {
     /* Na een keuze op een smal scherm klappen de chips weer in. */
     if (isNarrow()) state.chipsOpen = false;
     render();
+    stage.scrollTop = 0;
     if (state.mode === "interactief") focusCard();
   }
 
@@ -261,6 +262,7 @@ export function initRosary() {
     state.mode = mode;
     if (mode === "interactief") state.index = 0;
     render();
+    stage.scrollTop = 0;
     if (mode === "interactief") focusCard();
   }
 
@@ -269,6 +271,7 @@ export function initRosary() {
     if (next < 0 || next >= state.steps.length) return;
     state.index = next;
     renderInteractive();
+    stage.scrollTop = 0;
     focusCard();
   }
 
@@ -288,6 +291,7 @@ export function initRosary() {
     root.hidden = false;
     document.body.classList.add("rosary-open-body");
     render();
+    stage.scrollTop = 0;
     if (state.mode === "interactief") focusCard();
   }
 
