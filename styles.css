@@ -845,6 +845,109 @@ body.rosary-open-body { overflow: hidden; }
 }
 .rosary-start:hover { background: var(--gold-deep); border-color: var(--gold-deep); }
 
+/* ---------- Novena ---------- */
+.novena-choice { padding-bottom: 0; }
+
+.novena-days .rosary-set-chip { padding: 6px 12px; }
+
+.n-mode-btn {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  font-family: "Cinzel", serif;
+  font-size: 12px;
+  letter-spacing: .3px;
+  color: var(--ink-soft);
+  padding: 6px 14px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all .15s ease;
+}
+.n-mode-btn:hover { color: var(--ink); }
+.n-mode-btn.is-active {
+  background: var(--burgundy);
+  color: var(--on-accent);
+}
+
+.n-lang-btn {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  font-family: inherit;
+  font-size: 14px;
+  color: var(--ink-soft);
+  padding: 6px 14px;
+  border-radius: 999px;
+  cursor: pointer;
+}
+.n-lang-btn.is-active {
+  background: var(--burgundy);
+  color: var(--on-accent);
+}
+
+.n-latin-btn {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  font-family: inherit;
+  font-size: 14px;
+  font-style: italic;
+  color: var(--ink-soft);
+  padding: 6px 14px;
+  border-radius: 999px;
+  cursor: pointer;
+}
+.n-latin-btn:hover { color: var(--ink); }
+.n-latin-btn.is-active {
+  background: var(--gold-deep);
+  color: var(--on-accent);
+}
+
+.novena-status {
+  margin: 14px 0 0;
+  font-size: 15px;
+  font-style: italic;
+  color: var(--gold-deep);
+}
+
+.novena-intro {
+  margin: 0 0 24px;
+  font-size: calc(17px * var(--reading-scale));
+  line-height: 1.65;
+  color: var(--ink-soft);
+}
+
+.novena-ov-body { flex: 1; }
+
+.novena-ov-date {
+  margin: 0 0 2px;
+  font-size: 13px;
+  font-style: italic;
+  color: var(--ink-soft);
+}
+
+.rosary-ov-item.is-today {
+  background: var(--glow);
+  border-radius: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin: 0 -10px;
+}
+
+/* Portugese kolom: gewone (niet-cursieve) leestekst */
+.rosary-text.pt { font-style: normal; }
+
+.novena-col-label {
+  font-family: "Cinzel", serif;
+  font-size: 12px;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--gold-deep);
+  margin: 0 0 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--line);
+}
+
 /* ---------- Responsive ---------- */
 @media (max-width: 880px) {
   body { font-size: 18px; }
