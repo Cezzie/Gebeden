@@ -9,18 +9,12 @@ const byKey = Object.fromEntries(SEED.prayers.map((p) => [p.key, p]));
  * Deze noveen kent naast het Nederlands een Portugese (Portugal) vertaling.
  */
 
-/* Slot dat elk daggebed afsluit (naar praymorenovenas.com). */
-const DAG_SLOT_NL =
-  "Bid voor mij, en in het bijzonder voor de intentie die ik u nu toevertrouw…\n[noem hier uw intentie]\n\n" +
-  "Hemelse Vader, verhoor de bede die uw dienaar Ignatius U voor mij voorlegt, als zij strekt tot uw eer. " +
-  "Schenk mij dezelfde genade die Gij aan de heilige Ignatius hebt geschonken, opdat ik zijn vurige liefde voor Christus " +
-  "en zijn ijver voor de opbouw van uw Rijk mag delen.\n\nHeilige Ignatius van Loyola, bid voor ons!";
-
-const DAG_SLOT_PT =
-  "Rogai por mim, e em especial pela intenção que agora vos confio…\n[mencione aqui a sua intenção]\n\n" +
-  "Pai celeste, escutai o pedido que o Vosso servo Inácio Vos apresenta por mim, se for para Vossa glória. " +
-  "Concedei-me a mesma graça que destes a Santo Inácio, para que eu partilhe o seu ardente amor a Cristo " +
-  "e o seu zelo pela edificação do Vosso Reino.\n\nSanto Inácio de Loiola, rogai por nós!";
+/*
+ * Korte aanroeping die elk daggebed afsluit. Het intentiemoment zit niet
+ * hier maar in het vaste noveengebed, zodat het niet dubbel voorkomt.
+ */
+const DAG_SLOT_NL = "Heilige Ignatius van Loyola, bid voor ons!";
+const DAG_SLOT_PT = "Santo Inácio de Loiola, rogai por nós!";
 
 export const NOVENAS = {
   ignatius: {
@@ -34,13 +28,13 @@ export const NOVENAS = {
     intro_nl:
       "Deze noveen wordt gebeden van woensdag 22 tot en met donderdag 30 juli 2026, aan de vooravond van het hoogfeest " +
       "van de heilige Ignatius van Loyola (31 juli). Elke dag bestaat uit de vaste gebeden van de heilige Ignatius — " +
-      "het Suscipe, het Anima Christi en het Gebed om edelmoedigheid — gevolgd door het gebed van de dag met uw intentie, " +
-      "het Onze Vader, het Wees gegroet en het Eer aan de Vader, en het noveengebed.",
+      "het Suscipe, het Anima Christi en het Gebed om edelmoedigheid — gevolgd door de overweging van de dag, " +
+      "het noveengebed met uw intentie, en het Onze Vader, Wees gegroet en Eer aan de Vader.",
     intro_pt:
       "Esta novena reza-se de quarta-feira, 22, a quinta-feira, 30 de julho de 2026, na véspera da solenidade de " +
       "Santo Inácio de Loiola (31 de julho). Cada dia é composto pelas orações próprias de Santo Inácio — o Suscipe, " +
-      "o Anima Christi e a Oração da Generosidade — seguidas da oração do dia com a sua intenção, do Pai Nosso, " +
-      "da Avé Maria e do Glória ao Pai, e da oração da novena.",
+      "o Anima Christi e a Oração da Generosidade — seguidas da meditação do dia, da oração da novena com a sua " +
+      "intenção, e do Pai Nosso, da Avé Maria e do Glória ao Pai.",
     start: [2026, 7, 22],
     days: [
       {
@@ -353,7 +347,8 @@ export function buildNovenaSteps(novenaKey, day) {
       title_la: "Signum crucis",
       text_nl: byKey.signum_crucis.text_nl,
       text_pt: KRUISTEKEN_PT,
-      text_la: byKey.signum_crucis.text_la,    },
+      text_la: byKey.signum_crucis.text_la,
+    },
     {
       kicker_nl: "Vaste gebeden van de H. Ignatius",
       kicker_pt: "Orações de Santo Inácio",
@@ -362,7 +357,8 @@ export function buildNovenaSteps(novenaKey, day) {
       title_la: "Suscipe",
       text_nl: SUSCIPE_NL,
       text_pt: SUSCIPE_PT,
-      text_la: byKey.suscipe.text_la,    },
+      text_la: byKey.suscipe.text_la,
+    },
     {
       kicker_nl: "Vaste gebeden van de H. Ignatius",
       kicker_pt: "Orações de Santo Inácio",
@@ -371,21 +367,32 @@ export function buildNovenaSteps(novenaKey, day) {
       title_la: "Anima Christi",
       text_nl: byKey.anima_christi.text_nl,
       text_pt: ANIMA_CHRISTI_PT,
-      text_la: byKey.anima_christi.text_la,    },
+      text_la: byKey.anima_christi.text_la,
+    },
     {
       kicker_nl: "Vaste gebeden van de H. Ignatius",
       kicker_pt: "Orações de Santo Inácio",
       title_nl: "Gebed om edelmoedigheid",
       title_pt: "Oração da Generosidade",
       text_nl: EDELMOEDIGHEID_NL,
-      text_pt: EDELMOEDIGHEID_PT,    },
+      text_pt: EDELMOEDIGHEID_PT,
+    },
     {
-      kicker_nl: `Gebed van dag ${day}`,
-      kicker_pt: `Oração do dia ${day}`,
+      kicker_nl: `Overweging van dag ${day}`,
+      kicker_pt: `Meditação do dia ${day}`,
       title_nl: d.theme_nl,
       title_pt: d.theme_pt,
       text_nl: d.text_nl + "\n\n" + DAG_SLOT_NL,
-      text_pt: d.text_pt + "\n\n" + DAG_SLOT_PT,    },
+      text_pt: d.text_pt + "\n\n" + DAG_SLOT_PT,
+    },
+    {
+      kicker_nl: "Noveengebed · met uw intentie",
+      kicker_pt: "Oração da novena · com a sua intenção",
+      title_nl: "Tot de heilige Ignatius van Loyola",
+      title_pt: "A Santo Inácio de Loiola",
+      text_nl: NOVEENGEBED_NL,
+      text_pt: NOVEENGEBED_PT,
+    },
     {
       kicker_nl: "Na de intentie",
       kicker_pt: "Depois da intenção",
@@ -394,7 +401,8 @@ export function buildNovenaSteps(novenaKey, day) {
       title_la: "Pater noster",
       text_nl: byKey.our_father.text_nl,
       text_pt: PAI_NOSSO_PT,
-      text_la: byKey.our_father.text_la,    },
+      text_la: byKey.our_father.text_la,
+    },
     {
       kicker_nl: "Na de intentie",
       kicker_pt: "Depois da intenção",
@@ -403,7 +411,8 @@ export function buildNovenaSteps(novenaKey, day) {
       title_la: "Ave Maria",
       text_nl: byKey.hail_mary.text_nl,
       text_pt: AVE_MARIA_PT,
-      text_la: byKey.hail_mary.text_la,    },
+      text_la: byKey.hail_mary.text_la,
+    },
     {
       kicker_nl: "Na de intentie",
       kicker_pt: "Depois da intenção",
@@ -412,14 +421,8 @@ export function buildNovenaSteps(novenaKey, day) {
       title_la: "Gloria Patri",
       text_nl: byKey.gloria_patri.text_nl,
       text_pt: GLORIA_PT,
-      text_la: byKey.gloria_patri.text_la,    },
-    {
-      kicker_nl: "Noveengebed",
-      kicker_pt: "Oração da novena",
-      title_nl: "Tot de heilige Ignatius van Loyola",
-      title_pt: "A Santo Inácio de Loiola",
-      text_nl: NOVEENGEBED_NL,
-      text_pt: NOVEENGEBED_PT,    },
+      text_la: byKey.gloria_patri.text_la,
+    },
     {
       kicker_nl: "Besluit",
       kicker_pt: "Conclusão",
@@ -428,6 +431,7 @@ export function buildNovenaSteps(novenaKey, day) {
       title_la: "Laudetur Iesus Christus",
       text_nl: BESLUIT_NL,
       text_pt: BESLUIT_PT,
-      text_la: BESLUIT_LA,    },
+      text_la: BESLUIT_LA,
+    },
   ];
 }
