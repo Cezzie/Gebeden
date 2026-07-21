@@ -89,7 +89,7 @@ export function initNovena() {
     <div class="rosary-overlay" role="dialog" aria-modal="true" aria-label="Novena">
       <div class="rosary-bar">
         <div class="rosary-brand"><span aria-hidden="true">🕯️</span> Novena</div>
-        <div class="novena-bar-controls">
+        <div class="ov-bar-controls">
           <div class="rosary-mode" role="group" aria-label="Weergave">
             <button class="n-mode-btn" data-mode="overzicht">Overzicht</button>
             <button class="n-mode-btn" data-mode="interactief">Stap voor stap</button>
@@ -100,16 +100,16 @@ export function initNovena() {
             <button class="n-latin-btn" type="button" aria-pressed="false">+ Latijn</button>
           </div>
         </div>
-        <button class="novena-bar-toggle" type="button" aria-expanded="false">
-          <span class="novena-bar-chevron" aria-hidden="true">›</span>
+        <button class="ov-bar-toggle" type="button" aria-expanded="false">
+          <span class="ov-bar-chevron" aria-hidden="true">›</span>
         </button>
         <button class="rosary-close" type="button" aria-label="Sluiten">✕</button>
       </div>
-      <button class="novena-fold" type="button" aria-expanded="true">
-        <span class="novena-fold-chevron" aria-hidden="true">›</span>
-        <span class="novena-fold-label"></span>
+      <button class="ov-fold" type="button" aria-expanded="true">
+        <span class="ov-fold-chevron" aria-hidden="true">›</span>
+        <span class="ov-fold-label"></span>
       </button>
-      <div class="novena-chips">
+      <div class="ov-chips">
         <div class="rosary-sets novena-choice" role="group" aria-label="Keuze van noveen"></div>
         <div class="rosary-sets novena-days" role="group" aria-label="Keuze van dag"></div>
       </div>
@@ -124,11 +124,11 @@ export function initNovena() {
   `;
 
   const overlay = root.querySelector(".rosary-overlay");
-  const barControls = root.querySelector(".novena-bar-controls");
-  const barToggle = root.querySelector(".novena-bar-toggle");
-  const foldBtn = root.querySelector(".novena-fold");
-  const foldLabel = root.querySelector(".novena-fold-label");
-  const chipsWrap = root.querySelector(".novena-chips");
+  const barControls = root.querySelector(".ov-bar-controls");
+  const barToggle = root.querySelector(".ov-bar-toggle");
+  const foldBtn = root.querySelector(".ov-fold");
+  const foldLabel = root.querySelector(".ov-fold-label");
+  const chipsWrap = root.querySelector(".ov-chips");
   const choiceWrap = root.querySelector(".novena-choice");
   const daysWrap = root.querySelector(".novena-days");
   const stage = root.querySelector(".rosary-stage");
@@ -223,9 +223,9 @@ export function initNovena() {
         info.status === "tijdens" && n === info.dayNumber
       );
     });
-    prevBtn.innerHTML = `<span aria-hidden="true">←</span><span class="n-nav-word">${escape(t.vorige)}</span>`;
+    prevBtn.innerHTML = `<span aria-hidden="true">←</span><span class="ov-nav-word">${escape(t.vorige)}</span>`;
     prevBtn.setAttribute("aria-label", t.vorige);
-    nextBtn.innerHTML = `<span class="n-nav-word">${escape(t.volgende)}</span><span aria-hidden="true">→</span>`;
+    nextBtn.innerHTML = `<span class="ov-nav-word">${escape(t.volgende)}</span><span aria-hidden="true">→</span>`;
     nextBtn.setAttribute("aria-label", t.volgende);
   }
 

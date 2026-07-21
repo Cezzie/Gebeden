@@ -15,11 +15,17 @@ export function initAntiphons() {
   const openBtn = document.getElementById("antiphon-open");
   if (!root || !openBtn) return;
 
+  /* Op smalle schermen nemen balk en chips te veel ruimte in; daar starten ze ingeklapt. */
+  const isNarrow = () =>
+    window.matchMedia && window.matchMedia("(max-width: 880px)").matches;
+
   const state = {
     open: false,
     nowKey: currentAntiphonKey(),
     selectedKey: null,
     lang: localStorage.getItem("gebeden-lang") || "both",
+    barOpen: false,
+    chipsOpen: !isNarrow(),
   };
   state.selectedKey = state.nowKey;
 
@@ -27,14 +33,25 @@ export function initAntiphons() {
     <div class="rosary-overlay" role="dialog" aria-modal="true" aria-label="Maria-antifoon">
       <div class="rosary-bar">
         <div class="rosary-brand"><span aria-hidden="true">🌸</span> Maria-antifoon</div>
-        <div class="rosary-lang" role="group" aria-label="Taalkeuze">
-          <button class="r-lang-btn" data-lang="nl">NL</button>
-          <button class="r-lang-btn" data-lang="la">LA</button>
-          <button class="r-lang-btn" data-lang="both">Beide</button>
+        <div class="ov-bar-controls">
+          <div class="rosary-lang" role="group" aria-label="Taalkeuze">
+            <button class="r-lang-btn" data-lang="nl">NL</button>
+            <button class="r-lang-btn" data-lang="la">LA</button>
+            <button class="r-lang-btn" data-lang="both">Beide</button>
+          </div>
         </div>
+        <button class="ov-bar-toggle" type="button" aria-expanded="false" aria-label="Taalkeuze">
+          <span class="ov-bar-chevron" aria-hidden="true">›</span>
+        </button>
         <button class="rosary-close" type="button" aria-label="Sluiten">✕</button>
       </div>
-      <div class="rosary-sets" role="group" aria-label="Keuze van antifoon"></div>
+      <button class="ov-fold" type="button" aria-expanded="true">
+        <span class="ov-fold-chevron" aria-hidden="true">›</span>
+        <span class="ov-fold-label"></span>
+      </button>
+      <div class="ov-chips">
+        <div class="rosary-sets" role="group" aria-label="Keuze van antifoon"></div>
+      </div>
       <div class="rosary-stage">
         <article class="rosary-card antiphon-card" aria-live="polite"></article>
       </div>
@@ -42,6 +59,11 @@ export function initAntiphons() {
   `;
 
   const overlay = root.querySelector(".rosary-overlay");
+  const barControls = root.querySelector(".ov-bar-controls");
+  const barToggle = root.querySelector(".ov-bar-toggle");
+  const foldBtn = root.querySelector(".ov-fold");
+  const foldLabel = root.querySelector(".ov-fold-label");
+  const chipsWrap = root.querySelector(".ov-chips");
   const setsWrap = root.querySelector(".rosary-sets");
   const card = root.querySelector(".antiphon-card");
   const closeBtn = root.querySelector(".rosary-close");
@@ -82,6 +104,13 @@ export function initAntiphons() {
 
     card.innerHTML = parts.join("");
 
+    foldLabel.textContent = a.label;
+    foldBtn.classList.toggle("is-open", state.chipsOpen);
+    foldBtn.setAttribute("aria-expanded", String(state.chipsOpen));
+    chipsWrap.classList.toggle("is-collapsed", !state.chipsOpen);
+    barControls.classList.toggle("is-open", state.barOpen);
+    barToggle.classList.toggle("is-open", state.barOpen);
+    barToggle.setAttribute("aria-expanded", String(state.barOpen));
     langBtns.forEach((b) =>
       b.classList.toggle("is-active", b.dataset.lang === state.lang)
     );
@@ -101,6 +130,18 @@ export function initAntiphons() {
   /* ---------- Acties ---------- */
   function select(key) {
     state.selectedKey = key;
+    /* Na een keuze op een smal scherm klappen de chips weer in. */
+    if (isNarrow()) state.chipsOpen = false;
+    render();
+  }
+
+  function toggleChips() {
+    state.chipsOpen = !state.chipsOpen;
+    render();
+  }
+
+  function toggleBar() {
+    state.barOpen = !state.barOpen;
     render();
   }
 
@@ -130,6 +171,8 @@ export function initAntiphons() {
   /* ---------- Koppelingen ---------- */
   openBtn.addEventListener("click", open);
   closeBtn.addEventListener("click", close);
+  foldBtn.addEventListener("click", toggleChips);
+  barToggle.addEventListener("click", toggleBar);
   langBtns.forEach((b) =>
     b.addEventListener("click", () => setLang(b.dataset.lang))
   );

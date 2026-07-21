@@ -221,6 +221,36 @@ body {
   align-self: start;
 }
 
+/* Hamburgerknop die op mobiel de gebedenlijst in- en uitklapt */
+.sidebar-toggle {
+  display: none;
+  appearance: none;
+  width: 100%;
+  align-items: center;
+  gap: 10px;
+  text-align: left;
+  font-family: "Cinzel", serif;
+  font-size: 13px;
+  letter-spacing: .5px;
+  color: var(--gold-deep);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  padding: 10px 16px;
+  border-radius: 999px;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+  margin-bottom: 12px;
+  transition: all .15s ease;
+}
+.sidebar-toggle:hover { color: var(--ink); border-color: var(--gold); }
+.sidebar-toggle .sidebar-toggle-icon { font-size: 16px; line-height: 1; }
+.sidebar-toggle .sidebar-toggle-label {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 .search-wrap { margin-bottom: 14px; }
 
 .search-input {
@@ -845,12 +875,12 @@ body.rosary-open-body { overflow: hidden; }
 }
 .rosary-start:hover { background: var(--gold-deep); border-color: var(--gold-deep); }
 
-/* ---------- Novena ---------- */
+/* ---------- Overlay-hulpmiddelen (rozenkrans, antifoon, novena) ---------- */
 /* Weergave- en taalknoppen: op brede schermen gewoon in de balk,
    op smalle schermen ingeklapt achter het chevron-knopje. */
-.novena-bar-controls { display: contents; }
+.ov-bar-controls { display: contents; }
 
-.novena-bar-toggle {
+.ov-bar-toggle {
   display: none;
   appearance: none;
   align-items: center;
@@ -865,36 +895,22 @@ body.rosary-open-body { overflow: hidden; }
   cursor: pointer;
   transition: all .18s ease;
 }
-.novena-bar-toggle:hover { color: var(--ink); border-color: var(--gold); }
-.novena-bar-toggle .novena-bar-chevron {
+.ov-bar-toggle:hover { color: var(--ink); border-color: var(--gold); }
+.ov-bar-toggle .ov-bar-chevron {
   display: inline-block;
   line-height: 1;
   transition: transform .18s ease;
 }
-.novena-bar-toggle.is-open .novena-bar-chevron { transform: rotate(90deg); }
+.ov-bar-toggle.is-open .ov-bar-chevron { transform: rotate(90deg); }
 
-#novena-root .rosary-nav {
+.rosary-nav {
   display: inline-flex;
   align-items: center;
   gap: 6px;
 }
 
-@media (max-width: 880px) {
-  #novena-root .rosary-brand { width: auto; margin-right: auto; }
-  .novena-bar-toggle { display: inline-flex; }
-  .novena-bar-controls { display: none; order: 20; width: 100%; }
-  .novena-bar-controls.is-open {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 10px;
-  }
-  /* Vorige/Volgende alleen als pijltje, zodat de onderbalk smal blijft */
-  #novena-root .rosary-nav .n-nav-word { display: none; }
-  #novena-root .rosary-nav { padding: 11px 18px; font-size: 16px; }
-}
-
-.novena-fold {
+/* Inklapbare keuzechips, met knop die de huidige keuze toont */
+.ov-fold {
   appearance: none;
   display: flex;
   align-items: center;
@@ -911,16 +927,17 @@ body.rosary-open-body { overflow: hidden; }
   cursor: pointer;
   transition: all .15s ease;
 }
-.novena-fold:hover { color: var(--ink); border-color: var(--gold); }
-.novena-fold .novena-fold-chevron {
+.ov-fold:hover { color: var(--ink); border-color: var(--gold); }
+.ov-fold .ov-fold-chevron {
   font-size: 14px;
   line-height: 1;
   transition: transform .18s ease;
 }
-.novena-fold.is-open .novena-fold-chevron { transform: rotate(90deg); }
+.ov-fold.is-open .ov-fold-chevron { transform: rotate(90deg); }
 
-.novena-chips.is-collapsed { display: none; }
+.ov-chips.is-collapsed { display: none; }
 
+/* ---------- Novena ---------- */
 .novena-choice { padding-bottom: 0; }
 
 .novena-days .rosary-set-chip { padding: 6px 12px; }
@@ -1028,21 +1045,45 @@ body.rosary-open-body { overflow: hidden; }
   body { font-size: 18px; }
   .layout {
     grid-template-columns: 1fr;
-    padding: 16px;
+    padding: 12px;
+    gap: 14px;
   }
   .sidebar { position: static; }
-  .prayer-list { max-height: 260px; }
+  .prayer-list { max-height: 50vh; }
   .text-grid.both { grid-template-columns: 1fr; gap: 26px; }
-  .prayer-view { padding: 26px 22px 32px; }
+  .prayer-view { padding: 22px 16px 26px; }
   .prayer-head h2 { font-size: 25px; }
-  .header-inner { padding: 12px 16px; }
+  .header-inner { padding: 10px 12px; gap: 10px; }
 
-  .rosary-brand { font-size: 16px; width: 100%; margin-right: 0; }
-  .rosary-bar { flex-wrap: wrap; gap: 10px; }
-  .rosary-card { padding: 26px 22px 32px; }
+  /* Gebedenlijst achter de hamburgerknop */
+  .sidebar-toggle { display: flex; }
+  .sidebar .search-wrap,
+  .sidebar .prayer-list { display: none; }
+  .sidebar.is-open .search-wrap { display: block; }
+  .sidebar.is-open .prayer-list { display: flex; }
+
+  /* Overlays: compacte balk en chips, meer ruimte voor het gebed */
+  .rosary-brand { font-size: 16px; }
+  .rosary-bar { flex-wrap: wrap; gap: 8px; padding: 10px 14px; }
+  .ov-bar-toggle { display: inline-flex; }
+  .ov-bar-controls { display: none; order: 20; width: 100%; }
+  .ov-bar-controls.is-open {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+  }
+  .ov-fold { margin-top: 8px; padding: 6px 13px; }
+  .rosary-sets { padding: 8px 12px 0; gap: 6px; }
+  .rosary-set-chip { padding: 6px 11px; }
+  .rosary-progress { margin: 10px 14px 0; }
+  .rosary-stage { padding: 14px 10px 20px; }
+  .rosary-card { padding: 22px 18px 26px; }
   .rosary-h2 { font-size: 24px; }
   .rosary-text-grid.both { grid-template-columns: 1fr; gap: 22px; }
-  .rosary-nav { padding: 11px 16px; }
-  .rosary-overview { padding: 26px 22px 30px; }
+  .rosary-controls { padding: 10px 14px; }
+  .rosary-nav { padding: 11px 18px; font-size: 16px; }
+  .rosary-nav .ov-nav-word { display: none; }
+  .rosary-overview { padding: 22px 18px 26px; }
   .rosary-ov-grid.both { grid-template-columns: 1fr; gap: 4px; }
 }
