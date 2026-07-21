@@ -24,6 +24,10 @@ export function initNovena() {
   /* "Vandaag" wordt live bepaald, zodat een lang openstaande tab klopt. */
   const dayInfo = () => novenaDayInfo(getNovena(state.novenaKey));
 
+  /* Op smalle schermen nemen de chips te veel ruimte in; daar starten ze ingeklapt. */
+  const isNarrow = () =>
+    window.matchMedia && window.matchMedia("(max-width: 880px)").matches;
+
   const storedLang = localStorage.getItem("gebeden-novena-lang");
   const state = {
     open: false,
@@ -34,6 +38,7 @@ export function initNovena() {
     index: 0,
     lang: storedLang === "pt" ? "pt" : "nl",
     latin: localStorage.getItem("gebeden-novena-latin") === "1",
+    chipsOpen: !isNarrow(),
   };
 
   /* Vertaling van de vaste UI-teksten. */
@@ -92,8 +97,14 @@ export function initNovena() {
         </div>
         <button class="rosary-close" type="button" aria-label="Sluiten">✕</button>
       </div>
-      <div class="rosary-sets novena-choice" role="group" aria-label="Keuze van noveen"></div>
-      <div class="rosary-sets novena-days" role="group" aria-label="Keuze van dag"></div>
+      <button class="novena-fold" type="button" aria-expanded="true">
+        <span class="novena-fold-chevron" aria-hidden="true">›</span>
+        <span class="novena-fold-label"></span>
+      </button>
+      <div class="novena-chips">
+        <div class="rosary-sets novena-choice" role="group" aria-label="Keuze van noveen"></div>
+        <div class="rosary-sets novena-days" role="group" aria-label="Keuze van dag"></div>
+      </div>
       <div class="rosary-progress"><span class="rosary-progress-bar"></span></div>
       <div class="rosary-stage"></div>
       <div class="rosary-controls">
@@ -105,6 +116,9 @@ export function initNovena() {
   `;
 
   const overlay = root.querySelector(".rosary-overlay");
+  const foldBtn = root.querySelector(".novena-fold");
+  const foldLabel = root.querySelector(".novena-fold-label");
+  const chipsWrap = root.querySelector(".novena-chips");
   const choiceWrap = root.querySelector(".novena-choice");
   const daysWrap = root.querySelector(".novena-days");
   const stage = root.querySelector(".rosary-stage");
@@ -162,6 +176,13 @@ export function initNovena() {
 
     const t = ui();
     const info = dayInfo();
+    const activeNovena = getNovena(state.novenaKey);
+    foldLabel.textContent = `${
+      state.lang === "pt" ? activeNovena.label_pt : activeNovena.label_nl
+    } · ${t.dag(state.day)}`;
+    foldBtn.classList.toggle("is-open", state.chipsOpen);
+    foldBtn.setAttribute("aria-expanded", String(state.chipsOpen));
+    chipsWrap.classList.toggle("is-collapsed", !state.chipsOpen);
     langBtns.forEach((b) =>
       b.classList.toggle("is-active", b.dataset.lang === state.lang)
     );
@@ -323,8 +344,15 @@ export function initNovena() {
     state.day = day;
     state.steps = buildNovenaSteps(state.novenaKey, day);
     state.index = 0;
+    /* Na een keuze op een smal scherm klappen de chips weer in. */
+    if (isNarrow()) state.chipsOpen = false;
     render();
     if (state.mode === "interactief") focusCard();
+  }
+
+  function toggleChips() {
+    state.chipsOpen = !state.chipsOpen;
+    render();
   }
 
   function setMode(mode) {
@@ -381,6 +409,7 @@ export function initNovena() {
     b.addEventListener("click", () => setLang(b.dataset.lang))
   );
   latinBtn.addEventListener("click", toggleLatin);
+  foldBtn.addEventListener("click", toggleChips);
   modeBtns.forEach((b) =>
     b.addEventListener("click", () => setMode(b.dataset.mode))
   );

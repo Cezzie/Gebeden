@@ -846,6 +846,33 @@ body.rosary-open-body { overflow: hidden; }
 .rosary-start:hover { background: var(--gold-deep); border-color: var(--gold-deep); }
 
 /* ---------- Novena ---------- */
+.novena-fold {
+  appearance: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 12px auto 0;
+  font-family: "Cinzel", serif;
+  font-size: 12px;
+  letter-spacing: .5px;
+  color: var(--gold-deep);
+  background: var(--paper-2);
+  border: 1px solid var(--line);
+  padding: 7px 16px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all .15s ease;
+}
+.novena-fold:hover { color: var(--ink); border-color: var(--gold); }
+.novena-fold .novena-fold-chevron {
+  font-size: 14px;
+  line-height: 1;
+  transition: transform .18s ease;
+}
+.novena-fold.is-open .novena-fold-chevron { transform: rotate(90deg); }
+
+.novena-chips.is-collapsed { display: none; }
+
 .novena-choice { padding-bottom: 0; }
 
 .novena-days .rosary-set-chip { padding: 6px 12px; }
