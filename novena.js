@@ -338,13 +338,11 @@ const BESLUIT_LA =
  * Bouwt de reeks stappen voor één noveendag, in de klassieke noveenvolgorde:
  * opening — vaste gebeden — gebed van de dag met intentie — Onze Vader,
  * Wees gegroet, Eer aan de Vader — noveengebed — besluit.
- * Elke stap draagt het dagnummer mee (bead/beadTotal) voor de negen stipjes.
  * text_la is alleen aanwezig waar een authentieke Latijnse tekst bestaat.
  */
 export function buildNovenaSteps(novenaKey, day) {
   const novena = getNovena(novenaKey);
   const d = novena.days[day - 1];
-  const dots = { bead: day, beadTotal: novena.days.length };
 
   return [
     {
@@ -355,9 +353,7 @@ export function buildNovenaSteps(novenaKey, day) {
       title_la: "Signum crucis",
       text_nl: byKey.signum_crucis.text_nl,
       text_pt: KRUISTEKEN_PT,
-      text_la: byKey.signum_crucis.text_la,
-      ...dots,
-    },
+      text_la: byKey.signum_crucis.text_la,    },
     {
       kicker_nl: "Vaste gebeden van de H. Ignatius",
       kicker_pt: "Orações de Santo Inácio",
@@ -366,9 +362,7 @@ export function buildNovenaSteps(novenaKey, day) {
       title_la: "Suscipe",
       text_nl: SUSCIPE_NL,
       text_pt: SUSCIPE_PT,
-      text_la: byKey.suscipe.text_la,
-      ...dots,
-    },
+      text_la: byKey.suscipe.text_la,    },
     {
       kicker_nl: "Vaste gebeden van de H. Ignatius",
       kicker_pt: "Orações de Santo Inácio",
@@ -377,27 +371,21 @@ export function buildNovenaSteps(novenaKey, day) {
       title_la: "Anima Christi",
       text_nl: byKey.anima_christi.text_nl,
       text_pt: ANIMA_CHRISTI_PT,
-      text_la: byKey.anima_christi.text_la,
-      ...dots,
-    },
+      text_la: byKey.anima_christi.text_la,    },
     {
       kicker_nl: "Vaste gebeden van de H. Ignatius",
       kicker_pt: "Orações de Santo Inácio",
       title_nl: "Gebed om edelmoedigheid",
       title_pt: "Oração da Generosidade",
       text_nl: EDELMOEDIGHEID_NL,
-      text_pt: EDELMOEDIGHEID_PT,
-      ...dots,
-    },
+      text_pt: EDELMOEDIGHEID_PT,    },
     {
       kicker_nl: `Gebed van dag ${day}`,
       kicker_pt: `Oração do dia ${day}`,
       title_nl: d.theme_nl,
       title_pt: d.theme_pt,
       text_nl: d.text_nl + "\n\n" + DAG_SLOT_NL,
-      text_pt: d.text_pt + "\n\n" + DAG_SLOT_PT,
-      ...dots,
-    },
+      text_pt: d.text_pt + "\n\n" + DAG_SLOT_PT,    },
     {
       kicker_nl: "Na de intentie",
       kicker_pt: "Depois da intenção",
@@ -406,9 +394,7 @@ export function buildNovenaSteps(novenaKey, day) {
       title_la: "Pater noster",
       text_nl: byKey.our_father.text_nl,
       text_pt: PAI_NOSSO_PT,
-      text_la: byKey.our_father.text_la,
-      ...dots,
-    },
+      text_la: byKey.our_father.text_la,    },
     {
       kicker_nl: "Na de intentie",
       kicker_pt: "Depois da intenção",
@@ -417,9 +403,7 @@ export function buildNovenaSteps(novenaKey, day) {
       title_la: "Ave Maria",
       text_nl: byKey.hail_mary.text_nl,
       text_pt: AVE_MARIA_PT,
-      text_la: byKey.hail_mary.text_la,
-      ...dots,
-    },
+      text_la: byKey.hail_mary.text_la,    },
     {
       kicker_nl: "Na de intentie",
       kicker_pt: "Depois da intenção",
@@ -428,18 +412,14 @@ export function buildNovenaSteps(novenaKey, day) {
       title_la: "Gloria Patri",
       text_nl: byKey.gloria_patri.text_nl,
       text_pt: GLORIA_PT,
-      text_la: byKey.gloria_patri.text_la,
-      ...dots,
-    },
+      text_la: byKey.gloria_patri.text_la,    },
     {
       kicker_nl: "Noveengebed",
       kicker_pt: "Oração da novena",
       title_nl: "Tot de heilige Ignatius van Loyola",
       title_pt: "A Santo Inácio de Loiola",
       text_nl: NOVEENGEBED_NL,
-      text_pt: NOVEENGEBED_PT,
-      ...dots,
-    },
+      text_pt: NOVEENGEBED_PT,    },
     {
       kicker_nl: "Besluit",
       kicker_pt: "Conclusão",
@@ -448,8 +428,6 @@ export function buildNovenaSteps(novenaKey, day) {
       title_la: "Laudetur Iesus Christus",
       text_nl: BESLUIT_NL,
       text_pt: BESLUIT_PT,
-      text_la: BESLUIT_LA,
-      ...dots,
-    },
+      text_la: BESLUIT_LA,    },
   ];
 }
