@@ -892,6 +892,17 @@ body.rosary-open-body { overflow: hidden; }
   /* Vorige/Volgende alleen als pijltje, zodat de onderbalk smal blijft */
   #novena-root .rosary-nav .n-nav-word { display: none; }
   #novena-root .rosary-nav { padding: 11px 18px; font-size: 16px; }
+
+  /* Krappere marges rond balk, chips en kaart: meer ruimte voor het gebed */
+  #novena-root .rosary-bar { padding: 10px 14px; gap: 8px; }
+  #novena-root .novena-fold { margin-top: 8px; padding: 6px 13px; }
+  #novena-root .rosary-sets { padding: 8px 12px 0; gap: 6px; }
+  #novena-root .rosary-set-chip { padding: 6px 11px; }
+  #novena-root .rosary-progress { margin: 10px 14px 0; }
+  #novena-root .rosary-stage { padding: 14px 10px 20px; }
+  #novena-root .rosary-card { padding: 22px 18px 26px; }
+  #novena-root .rosary-overview { padding: 22px 18px 26px; }
+  #novena-root .rosary-controls { padding: 10px 14px; }
 }
 
 .novena-fold {
