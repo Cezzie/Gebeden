@@ -33,7 +33,14 @@ const els = {
   themeToggle: document.getElementById("theme-toggle"),
   fontSmaller: document.getElementById("font-smaller"),
   fontLarger: document.getElementById("font-larger"),
+  sidebar: document.querySelector(".sidebar"),
+  sidebarToggle: document.getElementById("sidebar-toggle"),
+  sidebarToggleLabel: document.getElementById("sidebar-toggle-label"),
 };
+
+/* Op smalle schermen staat de gebedenlijst achter de hamburgerknop. */
+const isNarrow = () =>
+  window.matchMedia && window.matchMedia("(max-width: 880px)").matches;
 
 const FONT_MIN = 0.8;
 const FONT_MAX = 1.6;
@@ -49,6 +56,7 @@ const state = {
   query: "",
   activeKey: null,
   expanded: new Set(),
+  sidebarOpen: false,
 };
 
 /* ---------- Helpers ---------- */
@@ -309,6 +317,20 @@ function makeColumn(langCode, label, text, showLabel) {
 }
 
 /* ---------- Actions ---------- */
+function setSidebarOpen(open) {
+  state.sidebarOpen = open;
+  if (els.sidebar) els.sidebar.classList.toggle("is-open", open);
+  if (els.sidebarToggle) {
+    els.sidebarToggle.setAttribute("aria-expanded", String(open));
+  }
+}
+
+function updateSidebarLabel() {
+  if (!els.sidebarToggleLabel) return;
+  const prayer = prayers.find((p) => p.key === state.activeKey);
+  els.sidebarToggleLabel.textContent = prayer ? prayer.title_nl : "Gebeden";
+}
+
 function selectPrayer(key) {
   state.activeKey = key;
   const cat = categoryOf(key);
@@ -318,6 +340,9 @@ function selectPrayer(key) {
   } else {
     location.hash = key;
   }
+  /* Na een keuze op een smal scherm klapt de lijst weer in. */
+  if (isNarrow()) setSidebarOpen(false);
+  updateSidebarLabel();
   renderList();
   renderView();
 }
@@ -380,6 +405,12 @@ function init() {
     renderList();
   });
 
+  if (els.sidebarToggle) {
+    els.sidebarToggle.addEventListener("click", () =>
+      setSidebarOpen(!state.sidebarOpen)
+    );
+  }
+
   const fromHash = decodeURIComponent(location.hash.replace(/^#/, ""));
   const initial = prayers.find((p) => p.key === fromHash) || prayers[0];
   state.activeKey = initial ? initial.key : null;
@@ -388,6 +419,7 @@ function init() {
     if (cat) state.expanded.add(cat);
   }
 
+  updateSidebarLabel();
   renderList();
   renderView();
 
