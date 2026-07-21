@@ -205,6 +205,78 @@ export const SEED = {
       "source_url": "https://rkliturgie.nl/algemene-of-dagelijkse-gebeden-en-oefeningen/gegroet-gij-hemelkoningin-ave-regina-caelorum"
     },
     {
+      "key": "suscipe",
+      "source": "standard",
+      "title_nl": "Neem, Heer, en aanvaard",
+      "title_la": "Suscipe",
+      "text_nl": "Neem, Heer, en aanvaard\nheel mijn vrijheid,\nmijn geheugen, mijn verstand\nen heel mijn wil,\nalles wat ik heb en bezit.\nGij hebt het mij gegeven;\naan U, Heer, geef ik het terug.\nAlles is van U:\nbeschik erover geheel naar uw wil.\nGeef mij slechts uw liefde en uw genade;\ndie zijn mij genoeg.\nAmen.",
+      "text_la": "Súscipe, Dómine, univérsam meam libertátem.\nÁccipe memóriam, intelléctum\natque voluntátem omnem.\nQuidquid hábeo vel possídeo, mihi largítus es;\nid tibi totum restítuo,\nac tuae prorsus voluntáti trado gubernándum.\nAmórem tui solum cum grátia tua mihi dones,\net dives sum satis,\nnec áliud quidquam ultra posco.\nAmen.",
+      "language": "both",
+      "category": "standaardgebed",
+      "notes": "Overgavegebed van de H. Ignatius van Loyola, uit de Geestelijke Oefeningen (nr. 234).",
+      "source_url": "https://www.catholicdoors.com/prayers/novenas/p03740.htm"
+    },
+    {
+      "key": "gebed_om_edelmoedigheid",
+      "source": "standard",
+      "title_nl": "Gebed om edelmoedigheid",
+      "title_la": "Gebed om edelmoedigheid",
+      "text_nl": "Heer, leer mij edelmoedig te zijn.\nLeer mij U te dienen zoals Gij het verdient:\nte geven zonder te tellen,\nte strijden zonder acht te slaan op de wonden,\nte zwoegen zonder rust te zoeken,\nmij weg te schenken zonder ander loon te verwachten\ndan het besef dat ik uw goddelijke\nen heilige wil volbreng.\nAmen.",
+      "text_la": "",
+      "language": "nl",
+      "category": "standaardgebed",
+      "notes": "Toegeschreven aan de H. Ignatius van Loyola. Er is geen overgeleverde Latijnse tekst; het gebed is daarom alleen in het Nederlands opgenomen.",
+      "source_url": "https://www.catholicdoors.com/prayers/novenas/p03740.htm"
+    },
+    {
+      "key": "eeuwige_heer_van_alle_dingen",
+      "source": "standard",
+      "title_nl": "Eeuwige Heer van alle dingen",
+      "title_la": "Aeterne Domine rerum omnium",
+      "text_nl": "Eeuwige Heer van alle dingen,\nik draag U mijn offerande op,\nmet uw gunst en hulp,\nvoor het aanschijn van uw oneindige Goedheid\nen ten overstaan van uw glorierijke Moeder\nen van alle heiligen van het hemels hof:\ndat ik wil en verlang,\nen dat het mijn weloverwogen besluit is,\nals het maar strekt tot uw grotere dienst en lof,\nU na te volgen in het dragen van alle beledigingen,\nalle smaad en alle armoede,\nzowel de daadwerkelijke als de geestelijke,\nindien uw allerheiligste Majesteit\nmij tot zulk een leven en staat\nwil uitkiezen en aannemen.",
+      "text_la": "Aetérne Dómine rerum ómnium,\nego fácio meam oblatiónem\ncum tuo favóre et auxílio,\ncoram infiníta Bonitáte tua\net in conspéctu gloriósae Matris tuae\net ómnium Sanctórum et Sanctárum Cúriae caeléstis:\nquod ego volo et desídero,\net mea est determinátio deliberáta,\ndúmmodo sit maius servítium tuum et maior laus tua,\nimitári te in feréndis ómnibus iniúriis\net omni vitupério et omni paupertáte,\ntam actuáli quam spirituáli,\nsi Maiéstas tua sanctíssima volúerit\nme elígere ac recípere\nad talem vitam et statum.",
+      "language": "both",
+      "category": "standaardgebed",
+      "notes": "Overgavegebed van de H. Ignatius van Loyola uit de Geestelijke Oefeningen (nr. 98), de overweging over het Rijk van Christus. Latijnse tekst naar de versio litteralis (ed. Roothaan).",
+      "source_url": "https://catholic-resources.org/Ignatian-Prayers.htm"
+    },
+    {
+      "key": "beginsel_en_fundament",
+      "source": "standard",
+      "title_nl": "Beginsel en fundament",
+      "title_la": "Principium et Fundamentum",
+      "text_nl": "De mens is geschapen om God, onze Heer,\nte loven, eerbied te bewijzen en te dienen,\nen zo zijn ziel te redden.\nAl het overige op het aardoppervlak\nis geschapen omwille van de mens,\nom hem te helpen het doel na te streven\nwaarvoor hij geschapen is.\nDaaruit volgt dat de mens er zóveel gebruik van moet maken\nals het hem helpt naar zijn doel,\nen er zich zóveel van moet ontdoen\nals het hem daarbij hindert.\nDaarom is het nodig ons gelijkmoedig te maken\ntegenover al het geschapene,\nin alles wat aan onze vrije wil is toegestaan\nen hem niet verboden is;\nzodat wij van onze kant\nniet méér verlangen naar gezondheid dan naar ziekte,\nnaar rijkdom dan naar armoede,\nnaar eer dan naar verachting,\nnaar een lang leven dan naar een kort leven,\nen zo in al het overige;\nmet als enig verlangen en enige keuze\nwat ons meer leidt naar het doel\nwaarvoor wij geschapen zijn.",
+      "text_la": "Homo creátus est, ut laudet Deum Dóminum nostrum,\nei reveréntiam exhíbeat eíque sérviat,\net per haec salvet ánimam suam;\net réliqua super fáciem terrae sita\ncreáta sunt propter hóminem,\net ut eum iuvent in prosecutióne finis,\nob quem creátus est.\nUnde séquitur, hómini tantum uténdum illis esse,\nquantum ipsum iuvent ad finem suum,\net tantum debére eum expedíre se ab illis,\nquantum ipsum ad eum impédiunt.\nQuaprópter necésse est fácere nos indifferéntes\nerga res creátas omnes,\nquantum permíssum est libertáti nostri líberi arbítrii\net non est ei prohíbitum;\nádeo ut non velímus ex parte nostra\nmagis sanitátem quam infirmitátem,\ndivítias quam paupertátem,\nhonórem quam ignomíniam,\nvitam longam quam brevem,\net consequénter in céteris ómnibus;\núnice desiderándo et eligéndo ea,\nquae magis nobis condúcant ad finem,\nob quem creáti sumus.",
+      "language": "both",
+      "category": "standaardgebed",
+      "notes": "Openingsoverweging van de Geestelijke Oefeningen van de H. Ignatius van Loyola (nr. 23). Latijnse tekst naar de versio litteralis (ed. Roothaan).",
+      "source_url": "https://catholic-resources.org/Ignatian-Prayers.htm"
+    },
+    {
+      "key": "dagelijks_gebed_ignatiaans",
+      "source": "standard",
+      "title_nl": "Dagelijks gebed",
+      "title_la": "Dagelijks gebed",
+      "text_nl": "Heer, geef dat ik U dag na dag\nhelderder mag zien,\ninniger mag beminnen\nen trouwer mag navolgen.\nAmen.",
+      "text_la": "",
+      "language": "nl",
+      "category": "standaardgebed",
+      "notes": "Dagelijks gebed uit de ignatiaanse traditie; oorspronkelijk toegeschreven aan de H. Richard van Chichester. Er is geen overgeleverde Latijnse tekst.",
+      "source_url": "https://catholic-resources.org/Ignatian-Prayers.htm"
+    },
+    {
+      "key": "gebed_om_kennis_en_dankbaarheid",
+      "source": "standard",
+      "title_nl": "Gebed om kennis en dankbaarheid",
+      "title_la": "Gebed om kennis en dankbaarheid",
+      "text_nl": "Ik vraag God, de Vader,\nmij een innig besef te geven\nvan de vele gaven die ik heb ontvangen,\nopdat ik, vervuld van dankbaarheid om dit alles,\nin alles zijn goddelijke Majesteit\nmag beminnen en dienen.\nAmen.",
+      "text_la": "",
+      "language": "nl",
+      "category": "standaardgebed",
+      "notes": "Naar de Geestelijke Oefeningen van de H. Ignatius van Loyola (nr. 233), uit de Beschouwing om tot liefde te komen. Er is geen gangbare Latijnse gebedstekst.",
+      "source_url": "https://catholic-resources.org/Ignatian-Prayers.htm"
+    },
+    {
       "key": "litanie_van_loreto",
       "source": "standard",
       "title_nl": "Litanie van Loreto",
