@@ -10,11 +10,21 @@ const byKey = Object.fromEntries(SEED.prayers.map((p) => [p.key, p]));
  */
 
 /*
- * Korte aanroeping die elk daggebed afsluit. Het intentiemoment zit niet
- * hier maar in het vaste noveengebed, zodat het niet dubbel voorkomt.
+ * Slot dat elk daggebed afsluit (naar praymorenovenas.com), zonder het
+ * intentiemoment: dat zit in het vaste noveengebed, zodat het niet
+ * dubbel voorkomt.
  */
-const DAG_SLOT_NL = "Heilige Ignatius van Loyola, bid voor ons!";
-const DAG_SLOT_PT = "Santo Inácio de Loiola, rogai por nós!";
+const DAG_SLOT_NL =
+  "Bid voor mij.\n\n" +
+  "Hemelse Vader, verhoor de bede die uw dienaar Ignatius U voor mij voorlegt, als zij strekt tot uw eer. " +
+  "Schenk mij dezelfde genade die Gij aan de heilige Ignatius hebt geschonken, opdat ik zijn vurige liefde voor Christus " +
+  "en zijn ijver voor de opbouw van uw Rijk mag delen.\n\nHeilige Ignatius van Loyola, bid voor ons!";
+
+const DAG_SLOT_PT =
+  "Rogai por mim.\n\n" +
+  "Pai celeste, escutai o pedido que o Vosso servo Inácio Vos apresenta por mim, se for para Vossa glória. " +
+  "Concedei-me a mesma graça que destes a Santo Inácio, para que eu partilhe o seu ardente amor a Cristo " +
+  "e o seu zelo pela edificação do Vosso Reino.\n\nSanto Inácio de Loiola, rogai por nós!";
 
 export const NOVENAS = {
   ignatius: {
