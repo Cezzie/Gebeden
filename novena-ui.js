@@ -351,6 +351,7 @@ export function initNovena() {
     /* Na een keuze op een smal scherm klappen de chips weer in. */
     if (isNarrow()) state.chipsOpen = false;
     render();
+    stage.scrollTop = 0;
     if (state.mode === "interactief") focusCard();
   }
 
@@ -368,6 +369,7 @@ export function initNovena() {
     state.mode = mode;
     if (mode === "interactief") state.index = 0;
     render();
+    stage.scrollTop = 0;
     if (mode === "interactief") focusCard();
   }
 
@@ -376,6 +378,7 @@ export function initNovena() {
     if (next < 0 || next >= state.steps.length) return;
     state.index = next;
     renderInteractive();
+    stage.scrollTop = 0;
     focusCard();
   }
 
@@ -399,6 +402,7 @@ export function initNovena() {
     root.hidden = false;
     document.body.classList.add("rosary-open-body");
     render();
+    stage.scrollTop = 0;
     if (state.mode === "interactief") focusCard();
   }
 

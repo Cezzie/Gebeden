@@ -65,6 +65,7 @@ export function initAntiphons() {
   const foldLabel = root.querySelector(".ov-fold-label");
   const chipsWrap = root.querySelector(".ov-chips");
   const setsWrap = root.querySelector(".rosary-sets");
+  const stage = root.querySelector(".rosary-stage");
   const card = root.querySelector(".antiphon-card");
   const closeBtn = root.querySelector(".rosary-close");
   const langBtns = Array.from(root.querySelectorAll(".r-lang-btn"));
@@ -133,6 +134,7 @@ export function initAntiphons() {
     /* Na een keuze op een smal scherm klappen de chips weer in. */
     if (isNarrow()) state.chipsOpen = false;
     render();
+    stage.scrollTop = 0;
   }
 
   function toggleChips() {
@@ -159,6 +161,7 @@ export function initAntiphons() {
     root.hidden = false;
     document.body.classList.add("rosary-open-body");
     render();
+    stage.scrollTop = 0;
   }
 
   function close() {
