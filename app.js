@@ -391,9 +391,17 @@ function init() {
   renderList();
   renderView();
 
-  initRosary();
-  initAntiphons();
-  initNovena();
+  /* Eén falende module mag de andere niet meetrekken. */
+  const safeInit = (naam, fn) => {
+    try {
+      fn();
+    } catch (err) {
+      console.error(`Kon ${naam} niet initialiseren:`, err);
+    }
+  };
+  safeInit("rozenkrans", initRosary);
+  safeInit("maria-antifoon", initAntiphons);
+  safeInit("novena", initNovena);
 }
 
 init();
