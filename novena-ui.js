@@ -39,6 +39,7 @@ export function initNovena() {
     lang: storedLang === "pt" ? "pt" : "nl",
     latin: localStorage.getItem("gebeden-novena-latin") === "1",
     chipsOpen: !isNarrow(),
+    barOpen: false,
   };
 
   /* Vertaling van de vaste UI-teksten. */
@@ -47,10 +48,11 @@ export function initNovena() {
       overzicht: "Overzicht",
       interactief: "Stap voor stap",
       latijn: "+ Latijn",
+      instellingen: "Weergave en taal",
       dag: (n) => `Dag ${n}`,
       vandaag: "vandaag",
-      vorige: "← Vorige",
-      volgende: "Volgende →",
+      vorige: "Vorige",
+      volgende: "Volgende",
       stap: (i, n) => `Stap ${i} van ${n}`,
       start: "Stap voor stap bidden →",
       col: "Nederlands",
@@ -63,10 +65,11 @@ export function initNovena() {
       overzicht: "Vista geral",
       interactief: "Passo a passo",
       latijn: "+ Latim",
+      instellingen: "Vista e língua",
       dag: (n) => `Dia ${n}`,
       vandaag: "hoje",
-      vorige: "← Anterior",
-      volgende: "Seguinte →",
+      vorige: "Anterior",
+      volgende: "Seguinte",
       stap: (i, n) => `Passo ${i} de ${n}`,
       start: "Rezar passo a passo →",
       col: "Português",
@@ -86,15 +89,20 @@ export function initNovena() {
     <div class="rosary-overlay" role="dialog" aria-modal="true" aria-label="Novena">
       <div class="rosary-bar">
         <div class="rosary-brand"><span aria-hidden="true">🕯️</span> Novena</div>
-        <div class="rosary-mode" role="group" aria-label="Weergave">
-          <button class="n-mode-btn" data-mode="overzicht">Overzicht</button>
-          <button class="n-mode-btn" data-mode="interactief">Stap voor stap</button>
+        <div class="novena-bar-controls">
+          <div class="rosary-mode" role="group" aria-label="Weergave">
+            <button class="n-mode-btn" data-mode="overzicht">Overzicht</button>
+            <button class="n-mode-btn" data-mode="interactief">Stap voor stap</button>
+          </div>
+          <div class="rosary-lang" role="group" aria-label="Taalkeuze">
+            <button class="n-lang-btn" data-lang="nl">NL</button>
+            <button class="n-lang-btn" data-lang="pt">PT</button>
+            <button class="n-latin-btn" type="button" aria-pressed="false">+ Latijn</button>
+          </div>
         </div>
-        <div class="rosary-lang" role="group" aria-label="Taalkeuze">
-          <button class="n-lang-btn" data-lang="nl">NL</button>
-          <button class="n-lang-btn" data-lang="pt">PT</button>
-          <button class="n-latin-btn" type="button" aria-pressed="false">+ Latijn</button>
-        </div>
+        <button class="novena-bar-toggle" type="button" aria-expanded="false">
+          <span class="novena-bar-chevron" aria-hidden="true">›</span>
+        </button>
         <button class="rosary-close" type="button" aria-label="Sluiten">✕</button>
       </div>
       <button class="novena-fold" type="button" aria-expanded="true">
@@ -116,6 +124,8 @@ export function initNovena() {
   `;
 
   const overlay = root.querySelector(".rosary-overlay");
+  const barControls = root.querySelector(".novena-bar-controls");
+  const barToggle = root.querySelector(".novena-bar-toggle");
   const foldBtn = root.querySelector(".novena-fold");
   const foldLabel = root.querySelector(".novena-fold-label");
   const chipsWrap = root.querySelector(".novena-chips");
@@ -183,6 +193,10 @@ export function initNovena() {
     foldBtn.classList.toggle("is-open", state.chipsOpen);
     foldBtn.setAttribute("aria-expanded", String(state.chipsOpen));
     chipsWrap.classList.toggle("is-collapsed", !state.chipsOpen);
+    barControls.classList.toggle("is-open", state.barOpen);
+    barToggle.classList.toggle("is-open", state.barOpen);
+    barToggle.setAttribute("aria-expanded", String(state.barOpen));
+    barToggle.setAttribute("aria-label", t.instellingen);
     langBtns.forEach((b) =>
       b.classList.toggle("is-active", b.dataset.lang === state.lang)
     );
@@ -209,8 +223,10 @@ export function initNovena() {
         info.status === "tijdens" && n === info.dayNumber
       );
     });
-    prevBtn.textContent = t.vorige;
-    nextBtn.textContent = t.volgende;
+    prevBtn.innerHTML = `<span aria-hidden="true">←</span><span class="n-nav-word">${escape(t.vorige)}</span>`;
+    prevBtn.setAttribute("aria-label", t.vorige);
+    nextBtn.innerHTML = `<span class="n-nav-word">${escape(t.volgende)}</span><span aria-hidden="true">→</span>`;
+    nextBtn.setAttribute("aria-label", t.volgende);
   }
 
   function statusLine() {
@@ -285,9 +301,6 @@ export function initNovena() {
       parts.push(`<p class="rosary-sub">${escape(step.title_la)}</p>`);
     }
 
-    /* De negen stipjes: één per dag van de noveen. */
-    parts.push(renderBeads(step.bead, step.beadTotal));
-
     parts.push(`<div class="rosary-text-grid${withLatin ? " both" : ""}">`);
     parts.push(textCol(pt ? "pt" : "nl", t.col, pt ? step.text_pt : step.text_nl, withLatin));
     if (withLatin) parts.push(textCol("la", t.colLa, step.text_la, true));
@@ -302,15 +315,6 @@ export function initNovena() {
     counter.textContent = t.stap(state.index + 1, state.steps.length);
     prevBtn.disabled = state.index === 0;
     nextBtn.disabled = state.index === state.steps.length - 1;
-  }
-
-  function renderBeads(current, total) {
-    let dots = "";
-    for (let i = 1; i <= total; i++) {
-      const cls = i < current ? "done" : i === current ? "active" : "todo";
-      dots += `<span class="r-bead ${cls}"></span>`;
-    }
-    return `<div class="rosary-beads" aria-hidden="true">${dots}</div>`;
   }
 
   function textCol(lang, label, text, showLabel) {
@@ -352,6 +356,11 @@ export function initNovena() {
 
   function toggleChips() {
     state.chipsOpen = !state.chipsOpen;
+    render();
+  }
+
+  function toggleBar() {
+    state.barOpen = !state.barOpen;
     render();
   }
 
@@ -410,6 +419,7 @@ export function initNovena() {
   );
   latinBtn.addEventListener("click", toggleLatin);
   foldBtn.addEventListener("click", toggleChips);
+  barToggle.addEventListener("click", toggleBar);
   modeBtns.forEach((b) =>
     b.addEventListener("click", () => setMode(b.dataset.mode))
   );
