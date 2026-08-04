@@ -27,14 +27,94 @@ const DAG_SLOT_PT =
   "e o seu zelo pela edificação do Vosso Reino.\n\nSanto Inácio de Loiola, rogai por nós!";
 
 export const NOVENAS = {
+  theresia: {
+    key: "theresia",
+    archived: false,
+    pt: false,
+    label_nl: "H. Theresia van Lisieux",
+    title_nl: "Noveen tot de heilige Theresia van Lisieux",
+    subtitle_nl: "Tot de Kleine Bloem, 5 t/m 13 augustus 2026",
+    intro_nl:
+      "Deze noveen wordt gebeden van woensdag 5 tot en met donderdag 13 augustus 2026. De heilige Theresia van Lisieux " +
+      "(1873–1897), de Kleine Bloem, beloofde haar hemel door te brengen met goed te doen op aarde en rozen te laten " +
+      "regenen. Elke dag bestaat uit de overweging van de dag — met haar reeks schietgebeden, die elke dag met één " +
+      "groeit — gevolgd door het roosgebed met uw intentie, en het Onze Vader, Wees gegroet en Eer aan de Vader.",
+    voltooid_nl:
+      "De noveen is voltooid — heilige Theresia van het Kind Jezus, bid voor ons!",
+    start: [2026, 8, 5],
+    days: [
+      {
+        theme_nl: "Vertrouwen op Gods goedheid",
+        text_nl:
+          "Liefdevolle God, Gij hebt de heilige Theresia gezegend met een groot vermogen tot liefde. " +
+          "Help mij te geloven in uw onvoorwaardelijke liefde voor ieder van uw kinderen — ook voor mij.",
+      },
+      {
+        theme_nl: "Overgave aan Gods voorzienigheid",
+        text_nl:
+          "Liefdevolle God, Gij hadt vreugde in het volkomen vertrouwen waarmee de heilige Theresia zich aan uw zorg " +
+          "toevertrouwde. Help mij te steunen op uw voorzienige zorg in elke omstandigheid van mijn leven, " +
+          "juist in de moeilijkste en zwaarste.",
+      },
+      {
+        theme_nl: "God zien in het gewone",
+        text_nl:
+          "Liefdevolle God, Gij gaf de heilige Theresia de gave U te zien in de gewone gang van elke dag. " +
+          "Help mij uw aanwezigheid op te merken in de alledaagse gebeurtenissen van mijn leven.",
+      },
+      {
+        theme_nl: "De kleine weg van nederigheid en eenvoud",
+        text_nl:
+          "Liefdevolle God, Gij hebt de heilige Theresia geleerd U te vinden langs de ‘kleine weg’ van nederigheid " +
+          "en eenvoud. Geef dat ik nooit de genade misloop die verborgen ligt in de nederige dienst aan anderen.",
+      },
+      {
+        theme_nl: "Vergeving en verzoening",
+        text_nl:
+          "Liefdevolle God, Gij gaf de heilige Theresia de gave anderen te vergeven, ook wanneer zij zich gekwetst " +
+          "en verraden voelde. Help mij hen te vergeven die mij hebben gewond — ook hen die ik nu in stilte " +
+          "voor U noem…",
+      },
+      {
+        theme_nl: "Elke dag ja zeggen tegen Gods wil",
+        text_nl:
+          "Liefdevolle God, de heilige Theresia ervoer elke dag als een geschenk uit uw hand — als tijd om U lief " +
+          "te hebben in de mensen om haar heen. Mag ook ik elke dag zien als een kans om ja te zeggen tegen U.",
+      },
+      {
+        theme_nl: "Kracht in zwakheid",
+        text_nl:
+          "Liefdevolle God, de heilige Theresia bood U haar zwakheid aan. " +
+          "Help mij in mijn zwakheid een kans te zien om geheel op U te steunen.",
+      },
+      {
+        theme_nl: "Bidden voor wie niet geloven",
+        text_nl:
+          "Liefdevolle God, Gij hebt de heilige Theresia met een machtige liefde bemind en haar tot een bron van " +
+          "kracht gemaakt voor wie het geloof in U verloren hadden. Help mij met vertrouwen te bidden voor de mensen " +
+          "in mijn leven die niet geloven dat zij bemind kunnen worden.",
+      },
+      {
+        theme_nl: "Tot zegen zijn voor allen",
+        text_nl:
+          "Liefdevolle God, de heilige Theresia heeft er nooit aan getwijfeld dat haar leven betekenis had. " +
+          "Help mij te zien hoe ik iedereen in mijn leven tot zegen kan zijn en kan liefhebben — ook hen " +
+          "die ik nu in stilte voor U noem…",
+      },
+    ],
+  },
   ignatius: {
     key: "ignatius",
+    archived: true,
+    pt: true,
     label_nl: "H. Ignatius van Loyola",
     label_pt: "Santo Inácio de Loiola",
     title_nl: "Noveen tot de heilige Ignatius van Loyola",
     title_pt: "Novena a Santo Inácio de Loiola",
     subtitle_nl: "Ter voorbereiding op zijn hoogfeest, 31 juli",
     subtitle_pt: "Em preparação para a sua solenidade, 31 de julho",
+    voltooid_nl: "De noveen is voltooid — zalig hoogfeest van de heilige Ignatius!",
+    voltooid_pt: "A novena está concluída — feliz solenidade de Santo Inácio!",
     intro_nl:
       "Deze noveen wordt gebeden van woensdag 22 tot en met donderdag 30 juli 2026, aan de vooravond van het hoogfeest " +
       "van de heilige Ignatius van Loyola (31 juli). Elke dag bestaat uit de vaste gebeden van de heilige Ignatius — " +
@@ -220,7 +300,7 @@ export const NOVENAS = {
   },
 };
 
-export const NOVENA_ORDER = ["ignatius"];
+export const NOVENA_ORDER = ["theresia", "ignatius"];
 
 export function getNovena(key) {
   return NOVENAS[key] || NOVENAS.ignatius;
@@ -338,14 +418,113 @@ const BESLUIT_LA =
   "V. Laudétur Iesus Christus!\nR. Nunc et in aetérnum. Amen.\n\n" +
   "In nómine Patris et Fílii\net Spíritus Sancti.\nAmen.";
 
+/* ---------- Vaste teksten van de Theresianoveen ---------- */
+
+/* Vaste aanhef van de overweging (naar praymorenovenas.com). */
+const THERESIA_AANHEF_NL =
+  "Liefste heilige Theresia van Lisieux, u hebt gezegd dat u uw hemel zou doorbrengen met goed te doen op aarde. " +
+  "Uw vertrouwen op God was volkomen. Bid dat Hij ook mijn vertrouwen op zijn goedheid en barmhartigheid doet groeien.\n\n" +
+  "Bid voor mij, dat ik, zoals u, een groot en argeloos vertrouwen mag hebben in de liefdevolle beloften van onze God. " +
+  "Bid dat ik mijn leven mag leven in eenheid met Gods plan voor mij, en eens het gelaat mag aanschouwen van God, " +
+  "die u zo innig hebt liefgehad.\n\n" +
+  "Heilige Theresia, u bleef God trouw tot in het uur van uw dood. Bid voor mij, dat ik trouw mag zijn aan onze " +
+  "liefdevolle God, en dat mijn leven vrede en liefde in de wereld mag brengen door standvastig te volharden " +
+  "in de liefde voor God, onze Verlosser.";
+
+/*
+ * Schietgebeden: dag 1 kent er één, en er komt er elke dag één bij,
+ * tot alle negen op dag 9 (nieuwste eerst, zoals in de bron).
+ */
+const THERESIA_SCHIETGEBEDEN_NL = [
+  "Ik heb U lief, Heer. Help mij U meer lief te hebben!",
+  "Ik vertrouw op U, Heer. Help mij meer op U te vertrouwen!",
+  "Ik zie U, Heer. Help mij U meer te zien!",
+  "Ik ben nederig, Heer. Geef mij meer nederigheid!",
+  "Ik probeer te vergeven, Heer. Help mij zeventig maal zevenmaal te vergeven!",
+  "Ik aanvaard uw wil, Heer. Help mij uw wil elke dag te aanvaarden!",
+  "Ik steun op U, Heer. Help mij meer op U te steunen!",
+  "Ik weerspiegel U voor de wereld, Heer. Help mij U helderder te weerspiegelen!",
+  "Ik heb uw mensen lief, Heer. Help mij hen meer lief te hebben!",
+];
+
+/* Het klassieke roosgebed, met het intentiemoment van de noveen. */
+const ROOSGEBED_NL =
+  "O kleine Theresia van het Kind Jezus,\npluk voor mij een roos uit de hemelse tuin\n" +
+  "en zend haar mij als een boodschap van liefde.\n\n" +
+  "O Kleine Bloem van Jezus,\nvraag God vandaag de gunsten te verlenen\n" +
+  "die ik nu vol vertrouwen in uw handen leg…\n[noem hier in stilte uw intentie]\n\n" +
+  "Heilige Theresia, help mij altijd te geloven, zoals u,\nin Gods grote liefde voor mij,\n" +
+  "opdat ik dag aan dag uw ‘kleine weg’ mag navolgen.\nAmen.";
+
 /*
  * Bouwt de reeks stappen voor één noveendag, in de klassieke noveenvolgorde:
- * opening — vaste gebeden — gebed van de dag met intentie — Onze Vader,
- * Wees gegroet, Eer aan de Vader — noveengebed — besluit.
+ * opening — (vaste gebeden) — overweging van de dag — noveengebed met
+ * intentie — Onze Vader, Wees gegroet, Eer aan de Vader — besluit.
  * text_la is alleen aanwezig waar een authentieke Latijnse tekst bestaat.
  */
 export function buildNovenaSteps(novenaKey, day) {
   const novena = getNovena(novenaKey);
+  return novena.key === "theresia"
+    ? buildTheresiaSteps(novena, day)
+    : buildIgnatiusSteps(novena, day);
+}
+
+function buildTheresiaSteps(novena, day) {
+  const d = novena.days[day - 1];
+  const schietgebeden = THERESIA_SCHIETGEBEDEN_NL.slice(0, day)
+    .reverse()
+    .join("\n");
+
+  return [
+    {
+      kicker_nl: "Begin",
+      title_nl: "Kruisteken",
+      title_la: "Signum crucis",
+      text_nl: byKey.signum_crucis.text_nl,
+      text_la: byKey.signum_crucis.text_la,
+    },
+    {
+      kicker_nl: `Overweging van dag ${day}`,
+      title_nl: d.theme_nl,
+      text_nl: THERESIA_AANHEF_NL + "\n\n" + d.text_nl + "\n\n" + schietgebeden,
+    },
+    {
+      kicker_nl: "Noveengebed · met uw intentie",
+      title_nl: "Roosgebed",
+      text_nl: ROOSGEBED_NL,
+    },
+    {
+      kicker_nl: "Na de intentie",
+      title_nl: "Onze Vader",
+      title_la: "Pater noster",
+      text_nl: byKey.our_father.text_nl,
+      text_la: byKey.our_father.text_la,
+    },
+    {
+      kicker_nl: "Na de intentie",
+      title_nl: "Wees gegroet",
+      title_la: "Ave Maria",
+      text_nl: byKey.hail_mary.text_nl,
+      text_la: byKey.hail_mary.text_la,
+    },
+    {
+      kicker_nl: "Na de intentie",
+      title_nl: "Eer aan de Vader",
+      title_la: "Gloria Patri",
+      text_nl: byKey.gloria_patri.text_nl,
+      text_la: byKey.gloria_patri.text_la,
+    },
+    {
+      kicker_nl: "Besluit",
+      title_nl: "Geloofd zij Jezus Christus",
+      title_la: "Laudetur Iesus Christus",
+      text_nl: BESLUIT_NL,
+      text_la: BESLUIT_LA,
+    },
+  ];
+}
+
+function buildIgnatiusSteps(novena, day) {
   const d = novena.days[day - 1];
 
   return [
