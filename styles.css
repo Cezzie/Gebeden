@@ -940,6 +940,14 @@ body.rosary-open-body { overflow: hidden; }
 /* ---------- Novena ---------- */
 .novena-choice { padding-bottom: 0; }
 
+.novena-archive-toggle .n-chip-label {
+  font-style: italic;
+  color: var(--ink-soft);
+}
+
+/* Chips met het hidden-attribuut (gearchiveerde novenen) echt verbergen */
+.rosary-set-chip[hidden] { display: none; }
+
 .novena-days .rosary-set-chip { padding: 6px 12px; }
 
 .n-mode-btn {

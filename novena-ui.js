@@ -40,7 +40,11 @@ export function initNovena() {
     latin: localStorage.getItem("gebeden-novena-latin") === "1",
     chipsOpen: !isNarrow(),
     barOpen: false,
+    archiveOpen: false,
   };
+
+  /* Novenen zonder Portugese vertaling vallen terug op het Nederlands. */
+  const effLang = () => (getNovena(state.novenaKey).pt ? state.lang : "nl");
 
   /* Vertaling van de vaste UI-teksten. */
   const UI = {
@@ -59,7 +63,7 @@ export function initNovena() {
       colLa: "Latijn",
       voor: (datum) => `De noveen begint op ${datum}.`,
       tijdens: (n) => `Vandaag is het dag ${n} van 9.`,
-      na: "De noveen is voltooid — zalig hoogfeest van de heilige Ignatius!",
+      archief: "Archief",
     },
     pt: {
       overzicht: "Vista geral",
@@ -76,10 +80,10 @@ export function initNovena() {
       colLa: "Latim",
       voor: (datum) => `A novena começa em ${datum}.`,
       tijdens: (n) => `Hoje é o dia ${n} de 9.`,
-      na: "A novena está concluída — feliz solenidade de Santo Inácio!",
+      archief: "Arquivo",
     },
   };
-  const ui = () => UI[state.lang];
+  const ui = () => UI[effLang()];
 
   state.day = dayInfo().dayNumber;
   state.steps = buildNovenaSteps(state.novenaKey, state.day);
@@ -143,8 +147,9 @@ export function initNovena() {
   const latinBtn = root.querySelector(".n-latin-btn");
   const modeBtns = Array.from(root.querySelectorAll(".n-mode-btn"));
 
-  /* Noveen-keuze (nu één: St.-Ignatius van Loyola) */
-  for (const key of NOVENA_ORDER) {
+  /* Noveen-keuze: actieve novenen eerst, afgesloten novenen achter "Archief". */
+  let archiveToggle = null;
+  const maakNoveenChip = (key) => {
     const chip = document.createElement("button");
     chip.type = "button";
     chip.className = "rosary-set-chip";
@@ -152,6 +157,20 @@ export function initNovena() {
     chip.innerHTML = `<span class="n-chip-label"></span>`;
     chip.addEventListener("click", () => selectNovena(key));
     choiceWrap.appendChild(chip);
+  };
+  NOVENA_ORDER.filter((k) => !getNovena(k).archived).forEach(maakNoveenChip);
+  const archiefKeys = NOVENA_ORDER.filter((k) => getNovena(k).archived);
+  if (archiefKeys.length) {
+    archiveToggle = document.createElement("button");
+    archiveToggle.type = "button";
+    archiveToggle.className = "rosary-set-chip novena-archive-toggle";
+    archiveToggle.innerHTML = `<span class="n-chip-label"></span>`;
+    archiveToggle.addEventListener("click", () => {
+      state.archiveOpen = !state.archiveOpen;
+      render();
+    });
+    choiceWrap.appendChild(archiveToggle);
+    archiefKeys.forEach(maakNoveenChip);
   }
 
   /* Dag-chips 1 t/m 9 */
@@ -168,7 +187,7 @@ export function initNovena() {
 
   /* ---------- Datums ---------- */
   function formatDate(date, opts) {
-    const locale = state.lang === "pt" ? "pt-PT" : "nl-NL";
+    const locale = effLang() === "pt" ? "pt-PT" : "nl-NL";
     return new Intl.DateTimeFormat(
       locale,
       opts || { weekday: "long", day: "numeric", month: "long" }
@@ -188,7 +207,7 @@ export function initNovena() {
     const info = dayInfo();
     const activeNovena = getNovena(state.novenaKey);
     foldLabel.textContent = `${
-      state.lang === "pt" ? activeNovena.label_pt : activeNovena.label_nl
+      effLang() === "pt" ? activeNovena.label_pt || activeNovena.label_nl : activeNovena.label_nl
     } · ${t.dag(state.day)}`;
     foldBtn.classList.toggle("is-open", state.chipsOpen);
     foldBtn.setAttribute("aria-expanded", String(state.chipsOpen));
@@ -197,9 +216,10 @@ export function initNovena() {
     barToggle.classList.toggle("is-open", state.barOpen);
     barToggle.setAttribute("aria-expanded", String(state.barOpen));
     barToggle.setAttribute("aria-label", t.instellingen);
-    langBtns.forEach((b) =>
-      b.classList.toggle("is-active", b.dataset.lang === state.lang)
-    );
+    langBtns.forEach((b) => {
+      b.hidden = b.dataset.lang === "pt" && !activeNovena.pt;
+      b.classList.toggle("is-active", b.dataset.lang === effLang());
+    });
     latinBtn.textContent = t.latijn;
     latinBtn.classList.toggle("is-active", state.latin);
     latinBtn.setAttribute("aria-pressed", String(state.latin));
@@ -208,11 +228,18 @@ export function initNovena() {
       b.textContent = t[b.dataset.mode];
     });
     Array.from(choiceWrap.children).forEach((c) => {
+      if (!c.dataset.novena) return;
       const n = getNovena(c.dataset.novena);
       c.querySelector(".n-chip-label").textContent =
-        state.lang === "pt" ? n.label_pt : n.label_nl;
+        effLang() === "pt" ? n.label_pt || n.label_nl : n.label_nl;
       c.classList.toggle("is-active", c.dataset.novena === state.novenaKey);
+      if (n.archived) c.hidden = !state.archiveOpen;
     });
+    if (archiveToggle) {
+      archiveToggle.querySelector(".n-chip-label").textContent =
+        (state.archiveOpen ? "▾ " : "▸ ") + t.archief;
+      archiveToggle.classList.toggle("is-active", state.archiveOpen);
+    }
     Array.from(daysWrap.children).forEach((c) => {
       const n = Number(c.dataset.day);
       c.querySelector(".n-chip-label").textContent = t.dag(n);
@@ -235,7 +262,10 @@ export function initNovena() {
     if (info.status === "voor") {
       return t.voor(formatDate(novenaDayDate(getNovena(state.novenaKey), 1)));
     }
-    if (info.status === "na") return t.na;
+    if (info.status === "na") {
+      const n = getNovena(state.novenaKey);
+      return effLang() === "pt" ? n.voltooid_pt || n.voltooid_nl : n.voltooid_nl;
+    }
     return t.tijdens(info.dayNumber);
   }
 
@@ -243,7 +273,7 @@ export function initNovena() {
     const novena = getNovena(state.novenaKey);
     const t = ui();
     const info = dayInfo();
-    const pt = state.lang === "pt";
+    const pt = effLang() === "pt";
 
     const items = novena.days
       .map((d, i) => {
@@ -286,7 +316,7 @@ export function initNovena() {
   function renderInteractive() {
     const step = state.steps[state.index];
     const t = ui();
-    const pt = state.lang === "pt";
+    const pt = effLang() === "pt";
     /* Latijn ernaast, alleen waar een authentieke Latijnse tekst bestaat. */
     const withLatin = state.latin && Boolean(step.text_la);
 
