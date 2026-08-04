@@ -311,6 +311,18 @@ export const SEED = {
       "category": "litanie",
       "notes": "Litanie tot de heilige Jozef (goedgekeurd 1909). Inclusief de zeven aanroepingen die paus Franciscus in 2021 toevoegde (o.a. Behoeder van de Verlosser, Dienaar van Christus, Steun in moeilijkheden).",
       "source_url": "https://dionysiusparochie.nl/news/over-nieuwe-invoegingen-in-de-litanie-ter-ere-van-de-heilige-jozef/"
+    },
+    {
+      "key": "litanie_van_vertrouwen",
+      "source": "standard",
+      "title_nl": "Litanie van Vertrouwen",
+      "title_la": "Litanie van Vertrouwen",
+      "text_nl": "(Op iedere aanroeping antwoordt men: Bevrijd mij, Jezus.)\nVan het geloof dat ik Uw liefde moet verdienen,\nVan de angst dat ik niet geliefd ben,\nVan de valse zekerheid dat ik heb wat nodig is,\nVan de angst dat vertrouwen in U mij armzaliger zal achterlaten,\nVan alle twijfels over Uw woorden en beloften,\nVan de opstandigheid tegen de kinderlijke afhankelijkheid van U,\nVan weigering en terughoudendheid in het aanvaarden van Uw wil,\nVan angst voor de toekomst,\nVan afkeer of overmatige bezorgdheid over het verleden,\nVan het rusteloos zoeken naar mijn identiteit,\nVan ongeloof in Uw liefde en aanwezigheid,\nVan de angst om gevraagd te worden om meer te geven dan ik heb,\nVan het geloof dat mijn leven geen betekenis of waarde heeft,\nVan de angst voor wat de liefde vraagt,\nVan ontmoediging,\n\n(Op iedere aanroeping antwoordt men: Jezus, ik vertrouw op U.)\nDat U mij voortdurend vasthoudt, mij ondersteunt, mij liefhebt,\nDat Uw liefde dieper gaat dan mijn zonden en tekortkomingen en mij verandert,\nDat niet weten wat morgen brengt een uitnodiging is om op U te vertrouwen,\nDat U bij mij bent in mijn lijden,\nDat mijn lijden, verenigd met het Uwe, vrucht zal dragen in dit leven en het komende,\nDat U mij niet zult achterlaten als een wees, dat U aanwezig bent in Uw Kerk,\nDat Uw plan beter is dan al het andere,\nDat U mij altijd hoort en in Uw goedheid altijd op mij antwoordt,\nDat U mij de genade geeft om vergeving te aanvaarden en anderen te vergeven,\nDat U mij alle kracht geeft die ik nodig heb voor wat er gevraagd wordt,\nDat mijn leven een geschenk is,\nDat U mij zult leren U te vertrouwen,\nDat U mijn Heer en mijn God bent,\nDat ik Uw geliefde ben.\n\nAmen.",
+      "text_la": "",
+      "language": "nl",
+      "category": "litanie",
+      "notes": "Geschreven door zr. Faustina Maria Pia van de Zusters van het Leven (Sisters of Life); Nederlandse vertaling. Er is geen Latijnse tekst.",
+      "source_url": "https://sistersoflife.org/litany-of-trust/"
     }
   ]
 };
