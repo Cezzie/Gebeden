@@ -277,6 +277,18 @@ export const SEED = {
       "source_url": "https://catholic-resources.org/Ignatian-Prayers.htm"
     },
     {
+      "key": "gebed_tot_de_heilige_jozef",
+      "source": "standard",
+      "title_nl": "Gebed tot de heilige Jozef",
+      "title_la": "Gebed tot de heilige Jozef",
+      "text_nl": "Heilige Jozef,\nGod heeft u een taak gegeven\ndie menselijke krachten te boven gaat.\nWij vragen u, wees ons een hulp\nvanuit de hemel en een voorspreker.\nDat ook wij de taak die God ons geeft,\nmoedig oppakken.\nHelp ons te vertrouwen op Gods Voorzienigheid,\nzuiver en rechtvaardig te leven\nen op te komen voor de kleinen en de kwetsbaren.\nGeef dat we eens mogen sterven zoals u,\nveilig geborgen in de handen van Jezus en Maria.\nAmen.",
+      "text_la": "",
+      "language": "nl",
+      "category": "standaardgebed",
+      "notes": "Gebed tot de heilige Jozef om voorspraak, vertrouwen op de Voorzienigheid en een zalige dood. Er is geen Latijnse tekst.",
+      "source_url": ""
+    },
+    {
       "key": "litanie_van_loreto",
       "source": "standard",
       "title_nl": "Litanie van Loreto",
