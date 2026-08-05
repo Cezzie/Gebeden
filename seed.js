@@ -289,6 +289,18 @@ export const SEED = {
       "source_url": ""
     },
     {
+      "key": "salve_custos_redemptoris",
+      "source": "standard",
+      "title_nl": "Wees gegroet, beschermer van de Verlosser",
+      "title_la": "Salve, Redemptoris custos",
+      "text_nl": "Wees gegroet, beschermer van de Verlosser,\nechtgenoot van de Heilige Maagd Maria.\nAan u heeft God zijn enige Zoon toevertrouwd,\nin u heeft Maria haar vertrouwen gesteld,\nmet u is Christus mens geworden.\n\nO Heilige Jozef,\nwees ook een vader voor ons,\nen leid ons op onze levensweg.\nBekom voor ons genade, tedere liefde en moed,\nen verdedig ons tegen alle kwaad.\nAmen.",
+      "text_la": "Salve, Redemptoris custos\net sponsus Mariae Virginis.\nTibi Deus suum Filium commisit;\nin te Maria fiduciam suam reposuit;\ntecum Christus vir factus est.\n\nO beate Ioseph,\netiam nobis monstra te esse patrem,\natque duc nos in vitae itinere.\nImpetra nobis gratiam, misericordiam et animum,\net tuere nos ab omni malo.\nAmen.",
+      "language": "both",
+      "category": "standaardgebed",
+      "notes": "Slotgebed van paus Franciscus uit de apostolische brief Patris corde (8 december 2020), waarmee het Jaar van Sint-Jozef werd geopend. Latijnse tekst naar vatican.va.",
+      "source_url": "https://www.vatican.va/content/francesco/la/apost_letters/documents/papa-francesco-lettera-ap_20201208_patris-corde.html"
+    },
+    {
       "key": "litanie_van_loreto",
       "source": "standard",
       "title_nl": "Litanie van Loreto",
