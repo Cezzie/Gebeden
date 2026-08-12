@@ -301,6 +301,30 @@ export const SEED = {
       "source_url": "https://www.vatican.va/content/francesco/la/apost_letters/documents/papa-francesco-lettera-ap_20201208_patris-corde.html"
     },
     {
+      "key": "gebed_aartsengel_michael",
+      "source": "standard",
+      "title_nl": "Gebed tot de aartsengel Michaël",
+      "title_la": "Oratio ad Sanctum Michael",
+      "text_nl": "Heilige aartsengel Michaël,\nverdedig ons in de strijd.\nWees onze bescherming\ntegen de boosheid en de listen van de duivel.\nWij smeken ootmoedig\ndat God hem zijn macht doe gevoelen.\nEn gij, vorst van de hemelse legerscharen,\ndrijf Satan en de andere boze geesten,\ndie tot verderf van de zielen\nover de wereld rondgaan,\ndoor de goddelijke kracht in de hel terug.\nAmen.",
+      "text_la": "Sancte Míchaël Archángele,\ndefénde nos in proélio;\ncontra nequítiam et insídias diáboli\nesto praesídium.\nÍmperet illi Deus,\nsúpplices deprecámur:\ntuque, Princeps milítiae caeléstis,\nSátanam aliósque spíritus malígnos,\nqui ad perditiónem animárum\npervagántur in mundo,\ndivína virtúte in inférnum detrúde.\nAmen.",
+      "language": "both",
+      "category": "standaardgebed",
+      "notes": "Gebed van paus Leo XIII (1886), destijds gebeden na de stille H. Mis en door latere pausen opnieuw aanbevolen.",
+      "source_url": "https://en.wikipedia.org/wiki/Prayer_to_Saint_Michael"
+    },
+    {
+      "key": "tantum_ergo",
+      "source": "standard",
+      "title_nl": "Eren wij dan dit heilig Sacrament",
+      "title_la": "Tantum ergo Sacramentum",
+      "text_nl": "Laten wij dan, diep gebogen,\nzo groot een Sacrament vereren;\nhet oude verbond\nwijke voor de nieuwe ritus;\nhet geloof kome te hulp\nwaar de zinnen tekortschieten.\n\nAan de Vader en de Zoon\nzij lof en jubel,\nheil, eer, kracht\nen zegening;\naan Hem die uit beiden voortkomt\nzij gelijke lof.\nAmen.\n\nV. Brood uit de hemel hebt Gij hun gegeven.\nA. Dat alle zoetheid in zich bevat.\n\nLaat ons bidden.\nGod, Gij hebt ons in dit wonderbaar sacrament\nde gedachtenis van uw lijden nagelaten;\nwij bidden U:\nlaat ons de heilige geheimen van uw Lichaam en Bloed\nzó vereren, dat wij de vrucht van uw verlossing\nvoortdurend in ons ervaren.\nGij die leeft en heerst in de eeuwen der eeuwen.\nAmen.",
+      "text_la": "Tantum ergo Sacraméntum\nvenerémur cérnui:\net antíquum documéntum\nnovo cedat rítui:\npraestet fides suppleméntum\nsénsuum deféctui.\n\nGenitóri, Genitóque\nlaus et iubilátio,\nsalus, honor, virtus quoque\nsit et benedíctio:\nprocedénti ab utróque\ncompar sit laudátio.\nAmen.\n\nV. Panem de caelo praestitísti eis.\nR. Omne delectaméntum in se habéntem.\n\nOrémus.\nDeus, qui nobis sub sacraménto mirábili\npassiónis tuae memóriam reliquísti:\ntríbue, quaésumus,\nita nos córporis et sánguinis tui\nsacra mystéria venerári,\nut redemptiónis tuae fructum\nin nobis iúgiter sentiámus.\nQui vivis et regnas in saécula saeculórum.\nAmen.",
+      "language": "both",
+      "category": "hymne",
+      "notes": "De twee slotstrofen van de hymne Pange lingua van de H. Thomas van Aquino, gezongen bij de zegen met het Allerheiligste (lof), met het versikel en het slotgebed.",
+      "source_url": "https://nl.wikipedia.org/wiki/Tantum_ergo"
+    },
+    {
       "key": "litanie_van_loreto",
       "source": "standard",
       "title_nl": "Litanie van Loreto",
