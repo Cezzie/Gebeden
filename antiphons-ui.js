@@ -3,17 +3,30 @@ import {
   getAntiphon,
   currentAntiphonKey,
 } from "./antiphons.js";
+import {
+  getLang,
+  columns,
+  subtitleLang,
+  pick,
+  common,
+  langControlHTML,
+  bindLangControl,
+  syncLangControl,
+  onLangChange,
+} from "./i18n.js";
 
 /*
  * Maria-antifoon als overlay. Opent standaard op de antifoon die nu van
  * toepassing is (op basis van het liturgisch seizoen), maar je kunt vrij
- * tussen de vier wisselen. Hergebruikt de rozenkrans-overlaystijlen en de
- * taalkeuze (localStorage "gebeden-lang").
+ * tussen de vier wisselen. Hergebruikt de rozenkrans-overlaystijlen en volgt
+ * de gedeelde taalinstelling uit i18n.js.
  */
 export function initAntiphons() {
   const root = document.getElementById("antiphon-root");
   const openBtn = document.getElementById("antiphon-open");
   if (!root || !openBtn) return;
+
+  const NAAM = { nl: "Maria-antifoon", en: "Marian antiphon", pt: "Antífona mariana" };
 
   /* Op smalle schermen nemen balk en chips te veel ruimte in; daar starten ze ingeklapt. */
   const isNarrow = () =>
@@ -23,7 +36,6 @@ export function initAntiphons() {
     open: false,
     nowKey: currentAntiphonKey(),
     selectedKey: null,
-    lang: localStorage.getItem("gebeden-lang") || "both",
     barOpen: false,
     chipsOpen: !isNarrow(),
   };
@@ -32,25 +44,21 @@ export function initAntiphons() {
   root.innerHTML = `
     <div class="rosary-overlay" role="dialog" aria-modal="true" aria-label="Maria-antifoon">
       <div class="rosary-bar">
-        <div class="rosary-brand"><span aria-hidden="true">🌸</span> Maria-antifoon</div>
+        <div class="rosary-brand"><span aria-hidden="true">🌸</span> <span class="ov-brand-name"></span></div>
         <div class="ov-bar-controls">
-          <div class="rosary-lang" role="group" aria-label="Taalkeuze">
-            <button class="r-lang-btn" data-lang="nl">NL</button>
-            <button class="r-lang-btn" data-lang="la">LA</button>
-            <button class="r-lang-btn" data-lang="both">Beide</button>
-          </div>
+          ${langControlHTML({ groupClass: "lang-pair-overlay" })}
         </div>
-        <button class="ov-bar-toggle" type="button" aria-expanded="false" aria-label="Taalkeuze">
+        <button class="ov-bar-toggle" type="button" aria-expanded="false">
           <span class="ov-bar-chevron" aria-hidden="true">›</span>
         </button>
-        <button class="rosary-close" type="button" aria-label="Sluiten">✕</button>
+        <button class="rosary-close" type="button">✕</button>
       </div>
       <button class="ov-fold" type="button" aria-expanded="true">
         <span class="ov-fold-chevron" aria-hidden="true">›</span>
         <span class="ov-fold-label"></span>
       </button>
       <div class="ov-chips">
-        <div class="rosary-sets" role="group" aria-label="Keuze van antifoon"></div>
+        <div class="rosary-sets" role="group"></div>
       </div>
       <div class="rosary-stage">
         <article class="rosary-card antiphon-card" aria-live="polite"></article>
@@ -68,7 +76,7 @@ export function initAntiphons() {
   const stage = root.querySelector(".rosary-stage");
   const card = root.querySelector(".antiphon-card");
   const closeBtn = root.querySelector(".rosary-close");
-  const langBtns = Array.from(root.querySelectorAll(".r-lang-btn"));
+  const brandName = root.querySelector(".ov-brand-name");
 
   for (const key of ANTIPHON_ORDER) {
     const a = getAntiphon(key);
@@ -76,7 +84,7 @@ export function initAntiphons() {
     chip.type = "button";
     chip.className = "rosary-set-chip";
     chip.dataset.antiphon = key;
-    chip.innerHTML = `<span>${escape(a.label)}</span><span class="r-today">nu</span>`;
+    chip.innerHTML = `<span lang="la">${escape(a.label)}</span><span class="r-today"></span>`;
     chip.addEventListener("click", () => select(key));
     setsWrap.appendChild(chip);
   }
@@ -84,26 +92,34 @@ export function initAntiphons() {
   /* ---------- Rendering ---------- */
   function render() {
     const a = getAntiphon(state.selectedKey);
-    const showNl = state.lang === "nl" || state.lang === "both";
-    const showLa = state.lang === "la" || state.lang === "both";
-    const both = state.lang === "both";
+    const { cols, both } = columns();
+    const lang = getLang();
+    const t = common();
 
     const parts = [];
-    parts.push(`<p class="rosary-kicker">${escape(a.period_nl)}</p>`);
+    parts.push(`<p class="rosary-kicker">${escape(pick(a, "period"))}</p>`);
 
-    const titleNl = showNl ? a.title_nl : a.title_la;
-    parts.push(`<h2 class="rosary-h2">${escape(titleNl)}</h2>`);
-    const sub = showNl ? a.title_la : a.title_nl;
-    if (sub && sub !== titleNl) {
-      parts.push(`<p class="rosary-sub">${escape(sub)}</p>`);
+    const title = pick(a, "title", cols[0]);
+    parts.push(`<h2 class="rosary-h2" lang="${cols[0]}">${escape(title)}</h2>`);
+    const subLang = subtitleLang(cols, true);
+    const sub = subLang ? pick(a, "title", subLang) : "";
+    if (sub && sub !== title) {
+      parts.push(`<p class="rosary-sub" lang="${subLang}">${escape(sub)}</p>`);
     }
 
     parts.push(`<div class="rosary-text-grid${both ? " both" : ""}">`);
-    if (showNl) parts.push(`<p class="rosary-text nl">${escape(a.text_nl)}</p>`);
-    if (showLa) parts.push(`<p class="rosary-text la">${escape(a.text_la)}</p>`);
+    for (const l of cols) {
+      parts.push(`<p class="rosary-text ${l}" lang="${l}">${escape(pick(a, "text", l))}</p>`);
+    }
     parts.push(`</div>`);
 
     card.innerHTML = parts.join("");
+
+    overlay.setAttribute("aria-label", NAAM[lang]);
+    brandName.textContent = NAAM[lang];
+    setsWrap.setAttribute("aria-label", NAAM[lang]);
+    closeBtn.setAttribute("aria-label", t.sluiten);
+    barToggle.setAttribute("aria-label", t.taalkeuze);
 
     foldLabel.textContent = a.label;
     foldBtn.classList.toggle("is-open", state.chipsOpen);
@@ -112,10 +128,9 @@ export function initAntiphons() {
     barControls.classList.toggle("is-open", state.barOpen);
     barToggle.classList.toggle("is-open", state.barOpen);
     barToggle.setAttribute("aria-expanded", String(state.barOpen));
-    langBtns.forEach((b) =>
-      b.classList.toggle("is-active", b.dataset.lang === state.lang)
-    );
+    syncLangControl(root);
     Array.from(setsWrap.children).forEach((c) => {
+      c.querySelector(".r-today").textContent = t.nu;
       c.classList.toggle("is-active", c.dataset.antiphon === state.selectedKey);
       c.classList.toggle("is-today", c.dataset.antiphon === state.nowKey);
     });
@@ -147,15 +162,12 @@ export function initAntiphons() {
     render();
   }
 
-  function setLang(lang) {
-    state.lang = lang;
-    localStorage.setItem("gebeden-lang", lang);
-    render();
+  function langChanged() {
+    if (state.open) render();
   }
 
   function open() {
     state.open = true;
-    state.lang = localStorage.getItem("gebeden-lang") || state.lang;
     state.nowKey = currentAntiphonKey();
     state.selectedKey = state.nowKey;
     root.hidden = false;
@@ -176,9 +188,8 @@ export function initAntiphons() {
   closeBtn.addEventListener("click", close);
   foldBtn.addEventListener("click", toggleChips);
   barToggle.addEventListener("click", toggleBar);
-  langBtns.forEach((b) =>
-    b.addEventListener("click", () => setLang(b.dataset.lang))
-  );
+  bindLangControl(root);
+  onLangChange(langChanged);
   overlay.addEventListener("click", (e) => {
     if (e.target === overlay) close();
   });

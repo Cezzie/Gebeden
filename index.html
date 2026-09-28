@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Katholieke Gebeden — Nederlands &amp; Latijn</title>
-  <meta name="description" content="Een verzameling katholieke gebeden in het Nederlands en Latijn, naast elkaar te lezen." />
+  <title>Katholieke Gebeden — Nederlands, Engels, Portugees &amp; Latijn</title>
+  <meta name="description" content="Een verzameling katholieke gebeden in het Nederlands, Engels, Portugees en Latijn, naast elkaar te lezen." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Cinzel:wght@400;600&display=swap" rel="stylesheet" />
@@ -16,33 +16,42 @@
       <div class="brand">
         <span class="brand-mark">✚</span>
         <div class="brand-text">
-          <h1>Katholieke Gebeden</h1>
-          <p>Nederlands &amp; Latijn</p>
+          <h1 data-i18n="titel">Katholieke Gebeden</h1>
+          <p data-i18n="ondertitel">Nederlands · Engels · Portugees · Latijn</p>
         </div>
       </div>
 
-      <div class="header-controls">
-        <button id="rosary-open" class="rosary-open-btn" type="button">
-          <span aria-hidden="true">📿</span> Rozenkrans bidden
-        </button>
-        <button id="antiphon-open" class="rosary-open-btn" type="button">
-          <span aria-hidden="true">🌸</span> Maria-antifoon
-        </button>
-        <button id="novena-open" class="rosary-open-btn" type="button">
-          <span aria-hidden="true">🕯️</span> Novena
-        </button>
-        <div class="lang-toggle" role="group" aria-label="Taalkeuze">
-          <button class="lang-btn" data-lang="nl">Nederlands</button>
-          <button class="lang-btn" data-lang="la">Latijn</button>
-          <button class="lang-btn is-active" data-lang="both">Beide</button>
+      <!-- Op smalle schermen klapt deze knop de hele balk hieronder in en uit. -->
+      <button id="header-toggle" class="header-toggle" type="button" aria-expanded="false" aria-controls="header-panel">
+        <span class="header-toggle-icon" aria-hidden="true">☰</span>
+        <span class="header-toggle-chevron" aria-hidden="true">›</span>
+      </button>
+
+      <div id="header-panel" class="header-panel">
+        <nav class="header-devotions" data-i18n-label="devoties">
+          <button id="rosary-open" class="rosary-open-btn" type="button">
+            <span aria-hidden="true">📿</span> <span data-i18n="rozenkrans">Rozenkrans bidden</span>
+          </button>
+          <button id="antiphon-open" class="rosary-open-btn" type="button">
+            <span aria-hidden="true">🌸</span> <span data-i18n="antifoon">Maria-antifoon</span>
+          </button>
+          <button id="novena-open" class="rosary-open-btn" type="button">
+            <span aria-hidden="true">🕯️</span> <span data-i18n="novena">Novena</span>
+          </button>
+          <button id="kruisweg-open" class="rosary-open-btn" type="button">
+            <span aria-hidden="true">✝️</span> <span data-i18n="kruisweg">Kruisweg</span>
+          </button>
+        </nav>
+        <div class="header-settings">
+          <div id="lang-control" class="lang-slot"></div>
+          <div class="fontsize-control" role="group" data-i18n-label="lettergrootte">
+            <button id="font-smaller" class="fs-btn" type="button" data-i18n-label="kleiner">A−</button>
+            <button id="font-larger" class="fs-btn" type="button" data-i18n-label="groter">A+</button>
+          </div>
+          <button id="theme-toggle" class="icon-btn" type="button" aria-pressed="false" aria-label="Donkere modus aan/uit" title="Donkere modus">
+            <span class="theme-icon" aria-hidden="true">☾</span>
+          </button>
         </div>
-        <div class="fontsize-control" role="group" aria-label="Lettergrootte">
-          <button id="font-smaller" class="fs-btn" type="button" aria-label="Tekst kleiner">A−</button>
-          <button id="font-larger" class="fs-btn" type="button" aria-label="Tekst groter">A+</button>
-        </div>
-        <button id="theme-toggle" class="icon-btn" type="button" aria-pressed="false" aria-label="Donkere modus aan/uit" title="Donkere modus">
-          <span class="theme-icon" aria-hidden="true">☾</span>
-        </button>
       </div>
     </div>
   </header>
@@ -50,7 +59,7 @@
   <main class="layout">
     <aside class="sidebar">
       <button id="sidebar-toggle" class="sidebar-toggle" type="button" aria-expanded="false">
-        <span class="sidebar-toggle-icon" aria-hidden="true">☰</span>
+        <span class="sidebar-toggle-icon" aria-hidden="true">›</span>
         <span class="sidebar-toggle-label" id="sidebar-toggle-label">Gebeden</span>
       </button>
       <div class="search-wrap">
@@ -72,12 +81,13 @@
   </main>
 
   <footer class="site-footer">
-    <p>Gemaakt met eerbied · Bron: <a href="https://rkliturgie.nl" target="_blank" rel="noopener">rkliturgie.nl</a></p>
+    <p><span data-i18n="voet">Gemaakt met eerbied · Nederlandse teksten o.a. van</span> <a href="https://rkliturgie.nl" target="_blank" rel="noopener">rkliturgie.nl</a></p>
   </footer>
 
   <div id="rosary-root" class="rosary-root" hidden></div>
   <div id="antiphon-root" class="rosary-root" hidden></div>
   <div id="novena-root" class="rosary-root" hidden></div>
+  <div id="kruisweg-root" class="rosary-root" hidden></div>
 
   <script type="module" src="app.js"></script>
 </body>

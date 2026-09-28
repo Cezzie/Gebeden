@@ -5,13 +5,12 @@ const byKey = Object.fromEntries(SEED.prayers.map((p) => [p.key, p]));
 
 function fromSeed(seedKey) {
   const p = byKey[seedKey];
-  return {
-    title_nl: p.title_nl,
-    title_la: p.title_la,
-    text_nl: p.text_nl,
-    text_la: p.text_la,
-    source_url: p.source_url,
-  };
+  const out = { source_url: p.source_url };
+  for (const l of ["nl", "en", "pt", "la"]) {
+    out[`title_${l}`] = p[`title_${l}`];
+    out[`text_${l}`] = p[`text_${l}`];
+  }
+  return out;
 }
 
 const META = {
@@ -20,24 +19,32 @@ const META = {
     seedKey: "alma_redemptoris_mater",
     label: "Alma Redemptoris",
     period_nl: "Advent en Kersttijd — van de eerste zondag van de Advent tot Maria Lichtmis (2 februari)",
+    period_en: "Advent and Christmastide — from the First Sunday of Advent to the Presentation of the Lord (2 February)",
+    period_pt: "Advento e Natal — do I Domingo do Advento à Apresentação do Senhor (2 de fevereiro)",
   },
   ave_regina: {
     key: "ave_regina",
     seedKey: "ave_regina_caelorum",
     label: "Ave Regina cælorum",
     period_nl: "Van Maria Lichtmis (2 februari) tot Woensdag in de Goede Week",
+    period_en: "From the Presentation of the Lord (2 February) to Wednesday of Holy Week",
+    period_pt: "Da Apresentação do Senhor (2 de fevereiro) até Quarta-feira da Semana Santa",
   },
   regina_caeli: {
     key: "regina_caeli",
     seedKey: "regina_caeli",
     label: "Regina caeli",
     period_nl: "Paastijd — van Pasen tot Pinksteren",
+    period_en: "Eastertide — from Easter to Pentecost",
+    period_pt: "Tempo Pascal — da Páscoa ao Pentecostes",
   },
   salve: {
     key: "salve",
     seedKey: "salve_regina",
     label: "Salve Regina",
     period_nl: "Door het jaar — van na Pinksteren tot de Advent",
+    period_en: "Ordinary Time — from after Pentecost until Advent",
+    period_pt: "Tempo Comum — de depois do Pentecostes até ao Advento",
   },
 };
 
