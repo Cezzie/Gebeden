@@ -47,6 +47,9 @@ const UI = {
     gekopieerd: "Gekopieerd",
     mislukt: "Mislukt",
     voet: "Gemaakt met eerbied · Nederlandse teksten o.a. van",
+    installeer: "Als app installeren",
+    installeerHulp:
+      "Op de iPhone: open deze pagina in Safari, tik op Deel (het vierkantje met pijl) en kies ‘Zet op beginscherm’. Op Android: menu ⋮ → ‘App installeren’ of ‘Toevoegen aan startscherm’.",
     categorie: {
       standaardgebed: "Standaardgebeden",
       geloofsbelijdenis: "Geloofsbelijdenis",
@@ -85,6 +88,9 @@ const UI = {
     gekopieerd: "Copied",
     mislukt: "Failed",
     voet: "Made with reverence · Dutch texts partly from",
+    installeer: "Install as an app",
+    installeerHulp:
+      "On iPhone: open this page in Safari, tap Share (the square with an arrow) and choose ‘Add to Home Screen’. On Android: menu ⋮ → ‘Install app’ or ‘Add to Home screen’.",
     categorie: {
       standaardgebed: "Common prayers",
       geloofsbelijdenis: "Creeds",
@@ -123,6 +129,9 @@ const UI = {
     gekopieerd: "Copiado",
     mislukt: "Falhou",
     voet: "Feito com reverência · Textos em neerlandês, em parte, de",
+    installeer: "Instalar como aplicação",
+    installeerHulp:
+      "No iPhone: abra esta página no Safari, toque em Partilhar (o quadrado com uma seta) e escolha ‘Adicionar ao ecrã principal’. No Android: menu ⋮ → ‘Instalar aplicação’ ou ‘Adicionar ao ecrã principal’.",
     categorie: {
       standaardgebed: "Orações comuns",
       geloofsbelijdenis: "Profissão de fé",
@@ -161,6 +170,10 @@ const els = {
   sidebar: document.querySelector(".sidebar"),
   sidebarToggle: document.getElementById("sidebar-toggle"),
   sidebarToggleLabel: document.getElementById("sidebar-toggle-label"),
+  install: document.getElementById("install"),
+  installBtn: document.getElementById("install-btn"),
+  installHelp: document.getElementById("install-help"),
+  themeColor: document.querySelector('meta[name="theme-color"]'),
 };
 
 /* Op smalle schermen staan de kopbalk en de gebedenlijst achter een knop. */
@@ -242,6 +255,7 @@ function applyStaticTexts() {
     const text = t[el.dataset.i18nLabel];
     if (text) el.setAttribute("aria-label", text);
   });
+  if (els.installHelp && !els.installHelp.hidden) els.installHelp.textContent = t.installeerHulp;
   els.search.placeholder = t.zoek;
   els.search.setAttribute("aria-label", t.zoekLabel);
   els.list.setAttribute("aria-label", t.lijst);
@@ -529,6 +543,8 @@ function setTheme(theme) {
     const icon = els.themeToggle.querySelector(".theme-icon");
     if (icon) icon.textContent = dark ? "☀" : "☾";
   }
+  /* Statusbalk van de geïnstalleerde app in de kleur van het papier. */
+  if (els.themeColor) els.themeColor.content = theme === "dark" ? "#16130f" : "#fbf7ef";
 }
 
 function setFontScale(scale) {
@@ -538,6 +554,44 @@ function setFontScale(scale) {
   localStorage.setItem("gebeden-fontscale", String(clamped));
   if (els.fontSmaller) els.fontSmaller.disabled = clamped <= FONT_MIN + 1e-9;
   if (els.fontLarger) els.fontLarger.disabled = clamped >= FONT_MAX - 1e-9;
+}
+
+/* ---------- Als app installeren (PWA) ---------- */
+let installPrompt = null;
+
+const isInstalled = () =>
+  (window.matchMedia && window.matchMedia("(display-mode: standalone)").matches) ||
+  navigator.standalone === true;
+
+function initInstall() {
+  if (!("serviceWorker" in navigator)) return;
+  /* Offline gebruik: zie sw.js. */
+  navigator.serviceWorker.register("./sw.js").catch((err) =>
+    console.error("Kon de service worker niet registreren:", err)
+  );
+  if (isInstalled() || !els.install) return;
+
+  els.install.hidden = false;
+  /* Chrome en Android bieden zelf een installatievenster aan; dat bewaren we voor de knop. */
+  window.addEventListener("beforeinstallprompt", (e) => {
+    e.preventDefault();
+    installPrompt = e;
+  });
+  window.addEventListener("appinstalled", () => {
+    els.install.hidden = true;
+    els.installHelp.hidden = true;
+  });
+  els.installBtn.addEventListener("click", async () => {
+    if (installPrompt) {
+      installPrompt.prompt();
+      await installPrompt.userChoice;
+      installPrompt = null;
+      return;
+    }
+    /* Safari (iPhone) en andere browsers: uitleg tonen. */
+    els.installHelp.textContent = ui().installeerHulp;
+    els.installHelp.hidden = !els.installHelp.hidden;
+  });
 }
 
 /* ---------- Init ---------- */
@@ -607,6 +661,7 @@ function init() {
   safeInit("maria-antifoon", initAntiphons);
   safeInit("novena", initNovena);
   safeInit("kruisweg", initKruisweg);
+  safeInit("installeren", initInstall);
 }
 
 init();

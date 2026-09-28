@@ -28,6 +28,7 @@ en zet zo twee willekeurige talen naast elkaar, of je toont er één.
 | `seed.js` | De gebeden-data (`export const SEED`) |
 | `rosary.js`, `antiphons.js`, `novena.js`, `kruisweg.js` | Data van de gebedsvormen |
 | `*-ui.js` | De schermen (overlays) van de gebedsvormen |
+| `sw.js`, `manifest.webmanifest`, `icons/` | Installeerbare app en offline gebruik |
 
 ## Een gebed toevoegen
 
@@ -53,6 +54,20 @@ Voeg een nieuw object toe aan de `prayers`-lijst in `seed.js`:
   source_url_pt: "https://…"
 }
 ```
+
+## Als app installeren (offline)
+
+De site is een installeerbare webapp (PWA). Na installatie opent hij schermvullend met een eigen
+icoon, zonder adresbalk, en werkt hij ook zonder internet.
+
+- **iPhone/iPad:** open de site in Safari → Deel → *Zet op beginscherm*.
+- **Android:** Chrome biedt zelf *App installeren* aan, of via menu ⋮.
+- Onderaan de pagina staat ook een knop *Als app installeren*.
+
+`sw.js` bewaart alle bestanden bij de installatie. Bij het publiceren zet de workflow het
+commitnummer in `sw.js`; geïnstalleerde apps halen zo een nieuwe versie op de achtergrond op en
+tonen die de volgende keer dat je ze opent. Voeg je een nieuw bestand toe, zet het dan ook in de
+lijst `FILES` in `sw.js` (anders wordt het pas na het eerste gebruik bewaard).
 
 ## Lokaal bekijken
 

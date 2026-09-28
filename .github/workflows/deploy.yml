@@ -25,6 +25,9 @@ jobs:
         uses: actions/checkout@v4
       - name: Setup Pages
         uses: actions/configure-pages@v5
+      # Elke publicatie is een nieuwe versie van de app: geïnstalleerde apps halen hem zo vanzelf op.
+      - name: Stamp app version in service worker
+        run: sed -i "s/__VERSION__/${GITHUB_SHA::7}/" sw.js
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
