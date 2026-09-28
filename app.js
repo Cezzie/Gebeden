@@ -46,7 +46,7 @@ const UI = {
     kopieer: "Kopieer",
     gekopieerd: "Gekopieerd",
     mislukt: "Mislukt",
-    voet: "Gemaakt met eerbied · Nederlandse teksten o.a. van",
+    voet: "Gemaakt met eerbied door",
     installeer: "Als app installeren",
     installeerHulp:
       "Op de iPhone: open deze pagina in Safari, tik op Deel (het vierkantje met pijl) en kies ‘Zet op beginscherm’. Op Android: menu ⋮ → ‘App installeren’ of ‘Toevoegen aan startscherm’.",
@@ -87,7 +87,7 @@ const UI = {
     kopieer: "Copy",
     gekopieerd: "Copied",
     mislukt: "Failed",
-    voet: "Made with reverence · Dutch texts partly from",
+    voet: "Made with reverence by",
     installeer: "Install as an app",
     installeerHulp:
       "On iPhone: open this page in Safari, tap Share (the square with an arrow) and choose ‘Add to Home Screen’. On Android: menu ⋮ → ‘Install app’ or ‘Add to Home screen’.",
@@ -128,7 +128,7 @@ const UI = {
     kopieer: "Copiar",
     gekopieerd: "Copiado",
     mislukt: "Falhou",
-    voet: "Feito com reverência · Textos em neerlandês, em parte, de",
+    voet: "Feito com reverência por",
     installeer: "Instalar como aplicação",
     installeerHulp:
       "No iPhone: abra esta página no Safari, toque em Partilhar (o quadrado com uma seta) e escolha ‘Adicionar ao ecrã principal’. No Android: menu ⋮ → ‘Instalar aplicação’ ou ‘Adicionar ao ecrã principal’.",
