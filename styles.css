@@ -587,6 +587,32 @@ body {
 }
 .site-footer a { color: var(--burgundy); }
 
+/* ---------- Als app installeren ---------- */
+.site-footer .install { margin: 12px 0 0; }
+.install[hidden],
+.install-help[hidden] { display: none; }
+.install-btn {
+  appearance: none;
+  font-family: "Cinzel", serif;
+  font-size: 13px;
+  font-style: normal;
+  letter-spacing: .5px;
+  color: var(--burgundy);
+  background: var(--paper-2);
+  border: 1px solid var(--line);
+  padding: 8px 16px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all .18s ease;
+}
+.install-btn:hover { background: var(--burgundy); color: var(--on-accent); border-color: var(--burgundy); }
+.install-help {
+  max-width: 520px;
+  margin: 10px auto 0;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
 /* ---------- Rozenkrans-knop ---------- */
 .rosary-open-btn {
   appearance: none;

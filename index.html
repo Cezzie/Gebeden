@@ -9,6 +9,16 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Cinzel:wght@400;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
+  <!-- Als app te installeren (PWA): manifest, iconen en de kleur van de statusbalk -->
+  <link rel="manifest" href="manifest.webmanifest" />
+  <meta name="theme-color" content="#fbf7ef" />
+  <link rel="icon" href="icons/icon.svg" type="image/svg+xml" />
+  <link rel="icon" href="icons/icon-192.png" sizes="192x192" type="image/png" />
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png" />
+  <meta name="apple-mobile-web-app-title" content="Gebeden" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
 </head>
 <body>
   <header class="site-header">
@@ -81,7 +91,13 @@
   </main>
 
   <footer class="site-footer">
-    <p><span data-i18n="voet">Gemaakt met eerbied · Nederlandse teksten o.a. van</span> <a href="https://rkliturgie.nl" target="_blank" rel="noopener">rkliturgie.nl</a></p>
+    <p><span data-i18n="voet">Gemaakt met eerbied door</span> <a href="https://github.com/Cezzie" target="_blank" rel="noopener">Cezzie</a></p>
+    <p class="install" id="install" hidden>
+      <button id="install-btn" class="install-btn" type="button">
+        <span aria-hidden="true">📲</span> <span data-i18n="installeer">Als app installeren</span>
+      </button>
+    </p>
+    <p class="install-help" id="install-help" hidden></p>
   </footer>
 
   <div id="rosary-root" class="rosary-root" hidden></div>
