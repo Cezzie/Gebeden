@@ -2,18 +2,140 @@ import { SEED } from "./seed.js";
 import { initRosary } from "./rosary-ui.js";
 import { initAntiphons } from "./antiphons-ui.js";
 import { initNovena } from "./novena-ui.js";
+import { initKruisweg } from "./kruisweg-ui.js";
+import {
+  getLang,
+  columns,
+  subtitleLang,
+  pick,
+  langLabel,
+  common,
+  langControlHTML,
+  bindLangControl,
+  syncLangControl,
+  onLangChange,
+} from "./i18n.js";
 
 const prayers = SEED.prayers;
 
-const CATEGORY_LABELS = {
-  standaardgebed: "Standaardgebeden",
-  geloofsbelijdenis: "Geloofsbelijdenis",
-  "maria-antifoon": "Maria-antifoon",
-  antifoon: "Antifonen",
-  litanie: "Litanieën",
-  evangelielofzang: "Evangelielofzangen",
-  hymne: "Hymnen",
+/* Vertaling van de vaste teksten van de hoofdpagina. */
+const UI = {
+  nl: {
+    docTitel: "Katholieke Gebeden — Nederlands, Engels, Portugees & Latijn",
+    titel: "Katholieke Gebeden",
+    ondertitel: "Nederlands · Engels · Portugees · Latijn",
+    rozenkrans: "Rozenkrans bidden",
+    antifoon: "Maria-antifoon",
+    novena: "Novena",
+    kruisweg: "Kruisweg",
+    devoties: "Gebedsvormen",
+    lettergrootte: "Lettergrootte",
+    kleiner: "Tekst kleiner",
+    groter: "Tekst groter",
+    donkerAan: "Donkere modus inschakelen",
+    lichtAan: "Lichte modus inschakelen",
+    donker: "Donkere modus",
+    licht: "Lichte modus",
+    menuOpen: "Menu tonen",
+    menuDicht: "Menu verbergen",
+    gebeden: "Gebeden",
+    zoek: "Zoek een gebed…",
+    zoekLabel: "Zoek een gebed",
+    lijst: "Lijst van gebeden",
+    geenGevonden: "Geen gebeden gevonden.",
+    kopieer: "Kopieer",
+    gekopieerd: "Gekopieerd",
+    mislukt: "Mislukt",
+    voet: "Gemaakt met eerbied · Nederlandse teksten o.a. van",
+    categorie: {
+      standaardgebed: "Standaardgebeden",
+      geloofsbelijdenis: "Geloofsbelijdenis",
+      "maria-antifoon": "Maria-antifoon",
+      antifoon: "Antifonen",
+      litanie: "Litanieën",
+      evangelielofzang: "Evangelielofzangen",
+      hymne: "Hymnen",
+      overig: "Overig",
+    },
+  },
+  en: {
+    docTitel: "Catholic Prayers — Dutch, English, Portuguese & Latin",
+    titel: "Catholic Prayers",
+    ondertitel: "Dutch · English · Portuguese · Latin",
+    rozenkrans: "Pray the Rosary",
+    antifoon: "Marian antiphon",
+    novena: "Novena",
+    kruisweg: "Way of the Cross",
+    devoties: "Devotions",
+    lettergrootte: "Text size",
+    kleiner: "Smaller text",
+    groter: "Larger text",
+    donkerAan: "Switch to dark mode",
+    lichtAan: "Switch to light mode",
+    donker: "Dark mode",
+    licht: "Light mode",
+    menuOpen: "Show menu",
+    menuDicht: "Hide menu",
+    gebeden: "Prayers",
+    zoek: "Search for a prayer…",
+    zoekLabel: "Search for a prayer",
+    lijst: "List of prayers",
+    geenGevonden: "No prayers found.",
+    kopieer: "Copy",
+    gekopieerd: "Copied",
+    mislukt: "Failed",
+    voet: "Made with reverence · Dutch texts partly from",
+    categorie: {
+      standaardgebed: "Common prayers",
+      geloofsbelijdenis: "Creeds",
+      "maria-antifoon": "Marian antiphons",
+      antifoon: "Antiphons",
+      litanie: "Litanies",
+      evangelielofzang: "Gospel canticles",
+      hymne: "Hymns",
+      overig: "Other",
+    },
+  },
+  pt: {
+    docTitel: "Orações Católicas — neerlandês, inglês, português e latim",
+    titel: "Orações Católicas",
+    ondertitel: "Neerlandês · Inglês · Português · Latim",
+    rozenkrans: "Rezar o Terço",
+    antifoon: "Antífona mariana",
+    novena: "Novena",
+    kruisweg: "Via-Sacra",
+    devoties: "Devoções",
+    lettergrootte: "Tamanho do texto",
+    kleiner: "Texto mais pequeno",
+    groter: "Texto maior",
+    donkerAan: "Ativar o modo escuro",
+    lichtAan: "Ativar o modo claro",
+    donker: "Modo escuro",
+    licht: "Modo claro",
+    menuOpen: "Mostrar o menu",
+    menuDicht: "Ocultar o menu",
+    gebeden: "Orações",
+    zoek: "Procurar uma oração…",
+    zoekLabel: "Procurar uma oração",
+    lijst: "Lista de orações",
+    geenGevonden: "Nenhuma oração encontrada.",
+    kopieer: "Copiar",
+    gekopieerd: "Copiado",
+    mislukt: "Falhou",
+    voet: "Feito com reverência · Textos em neerlandês, em parte, de",
+    categorie: {
+      standaardgebed: "Orações comuns",
+      geloofsbelijdenis: "Profissão de fé",
+      "maria-antifoon": "Antífonas marianas",
+      antifoon: "Antífonas",
+      litanie: "Ladainhas",
+      evangelielofzang: "Cânticos evangélicos",
+      hymne: "Hinos",
+      overig: "Outras",
+    },
+  },
 };
+const ui = () => UI[getLang()];
 
 const CATEGORY_ORDER = [
   "standaardgebed",
@@ -26,10 +148,13 @@ const CATEGORY_ORDER = [
 ];
 
 const els = {
+  header: document.querySelector(".site-header"),
+  headerToggle: document.getElementById("header-toggle"),
+  devotionBtns: Array.from(document.querySelectorAll(".header-devotions .rosary-open-btn")),
+  langSlot: document.getElementById("lang-control"),
   list: document.getElementById("prayer-list"),
   view: document.getElementById("prayer-view"),
   search: document.getElementById("search"),
-  langButtons: Array.from(document.querySelectorAll(".lang-btn")),
   themeToggle: document.getElementById("theme-toggle"),
   fontSmaller: document.getElementById("font-smaller"),
   fontLarger: document.getElementById("font-larger"),
@@ -38,7 +163,7 @@ const els = {
   sidebarToggleLabel: document.getElementById("sidebar-toggle-label"),
 };
 
-/* Op smalle schermen staat de gebedenlijst achter de hamburgerknop. */
+/* Op smalle schermen staan de kopbalk en de gebedenlijst achter een knop. */
 const isNarrow = () =>
   window.matchMedia && window.matchMedia("(max-width: 880px)").matches;
 
@@ -50,18 +175,19 @@ const prefersDark =
   window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
 
 const state = {
-  lang: localStorage.getItem("gebeden-lang") || "both",
   theme: localStorage.getItem("gebeden-theme") || (prefersDark ? "dark" : "light"),
   fontScale: parseFloat(localStorage.getItem("gebeden-fontscale")) || 1,
   query: "",
   activeKey: null,
   expanded: new Set(),
   sidebarOpen: false,
+  headerOpen: false,
 };
 
 /* ---------- Helpers ---------- */
 function categoryLabel(cat) {
-  return CATEGORY_LABELS[cat] || (cat ? cat[0].toUpperCase() + cat.slice(1) : "Overig");
+  const labels = ui().categorie;
+  return labels[cat] || (cat ? cat[0].toUpperCase() + cat.slice(1) : labels.overig);
 }
 
 function normalize(str) {
@@ -71,13 +197,21 @@ function normalize(str) {
     .replace(/[̀-ͯ]/g, "");
 }
 
+/* Zoeken gaat door alle talen heen. */
 function matchesQuery(prayer, q) {
   if (!q) return true;
   const haystack = normalize(
-    [prayer.title_nl, prayer.title_la, prayer.text_nl, prayer.text_la].join(" ")
+    ["nl", "en", "pt", "la"]
+      .flatMap((l) => [prayer[`title_${l}`], prayer[`text_${l}`]])
+      .join(" ")
   );
   return haystack.includes(normalize(q));
 }
+
+const hasLatin = (prayer) => Boolean(prayer.text_la);
+
+/* Kolommen voor dit gebed: alleen talen waarin het gebed bestaat. */
+const prayerColumns = (prayer) => columns((l) => Boolean(prayer[`text_${l}`]));
 
 function groupByCategory(items) {
   const groups = new Map();
@@ -96,6 +230,26 @@ function groupByCategory(items) {
   return ordered;
 }
 
+/* ---------- Vaste teksten ---------- */
+function applyStaticTexts() {
+  const t = ui();
+  document.title = t.docTitel;
+  document.querySelectorAll("[data-i18n]").forEach((el) => {
+    const text = t[el.dataset.i18n];
+    if (text) el.textContent = text;
+  });
+  document.querySelectorAll("[data-i18n-label]").forEach((el) => {
+    const text = t[el.dataset.i18nLabel];
+    if (text) el.setAttribute("aria-label", text);
+  });
+  els.search.placeholder = t.zoek;
+  els.search.setAttribute("aria-label", t.zoekLabel);
+  els.list.setAttribute("aria-label", t.lijst);
+  syncLangControl(els.header);
+  setHeaderOpen(state.headerOpen);
+  setTheme(state.theme);
+}
+
 /* ---------- Sidebar ---------- */
 function renderList() {
   const visible = prayers.filter((p) => matchesQuery(p, state.query));
@@ -104,7 +258,7 @@ function renderList() {
   if (visible.length === 0) {
     const empty = document.createElement("p");
     empty.className = "list-empty";
-    empty.textContent = "Geen gebeden gevonden.";
+    empty.textContent = ui().geenGevonden;
     els.list.appendChild(empty);
     return;
   }
@@ -147,13 +301,15 @@ function renderList() {
       btn.className = "list-item" + (p.key === state.activeKey ? " is-active" : "");
       btn.dataset.key = p.key;
 
-      const nl = document.createElement("span");
-      nl.textContent = p.title_nl;
-      btn.appendChild(nl);
+      const title = pick(p, "title");
+      const main = document.createElement("span");
+      main.textContent = title;
+      btn.appendChild(main);
 
-      if (p.title_la && p.title_la !== p.title_nl) {
+      if (hasLatin(p) && p.title_la && p.title_la !== title) {
         const la = document.createElement("span");
         la.className = "li-la";
+        la.lang = "la";
         la.textContent = p.title_la;
         btn.appendChild(la);
       }
@@ -185,24 +341,26 @@ function renderView() {
     return;
   }
 
-  const showNl = state.lang === "nl" || state.lang === "both";
-  const showLa = state.lang === "la" || state.lang === "both";
-  const both = state.lang === "both";
+  const { cols, both, noLatin } = prayerColumns(prayer);
+  const [first] = cols;
 
   const view = document.createElement("div");
 
-  // Head
+  // Head: titel in de linkertaal; eronder die van de rechterkolom, of anders het Latijn.
   const head = document.createElement("header");
   head.className = "prayer-head";
 
   const h2 = document.createElement("h2");
-  h2.textContent = showNl ? prayer.title_nl : prayer.title_la;
+  h2.lang = first;
+  h2.textContent = pick(prayer, "title", first);
   head.appendChild(h2);
 
-  const subtitleText = showNl ? prayer.title_la : prayer.title_nl;
+  const subLang = subtitleLang(cols, hasLatin(prayer));
+  const subtitleText = subLang ? pick(prayer, "title", subLang) : "";
   if (subtitleText && subtitleText !== h2.textContent) {
     const sub = document.createElement("p");
     sub.className = "subtitle";
+    sub.lang = subLang;
     sub.textContent = subtitleText;
     head.appendChild(sub);
   }
@@ -217,6 +375,13 @@ function renderView() {
   head.appendChild(makeCopyButton(prayer));
   view.appendChild(head);
 
+  if (noLatin) {
+    const note = document.createElement("p");
+    note.className = "no-latin-note";
+    note.textContent = common().geenLatijn;
+    view.appendChild(note);
+  }
+
   const rule = document.createElement("div");
   rule.className = "rule";
   view.appendChild(rule);
@@ -224,18 +389,19 @@ function renderView() {
   // Text grid
   const grid = document.createElement("div");
   grid.className = "text-grid" + (both ? " both" : "");
-
-  if (showNl) grid.appendChild(makeColumn("nl", "Nederlands", prayer.text_nl, both));
-  if (showLa) grid.appendChild(makeColumn("la", "Latijn", prayer.text_la, both));
+  for (const l of cols) {
+    grid.appendChild(makeColumn(l, langLabel(l), pick(prayer, "text", l), both));
+  }
   view.appendChild(grid);
 
   // Notes
-  if (prayer.notes) {
+  const notesText = pick(prayer, "notes");
+  if (notesText) {
     const notes = document.createElement("div");
     notes.className = "prayer-notes";
     const p = document.createElement("p");
     p.style.margin = "0";
-    p.textContent = prayer.notes;
+    p.textContent = notesText;
     notes.appendChild(p);
     view.appendChild(notes);
   }
@@ -245,16 +411,9 @@ function renderView() {
 }
 
 function prayerToText(prayer) {
-  const showNl = state.lang === "nl" || state.lang === "both";
-  const showLa = state.lang === "la" || state.lang === "both";
-  const blocks = [];
-  if (showNl && prayer.text_nl) {
-    blocks.push(prayer.title_nl + "\n\n" + prayer.text_nl);
-  }
-  if (showLa && prayer.text_la) {
-    blocks.push(prayer.title_la + "\n\n" + prayer.text_la);
-  }
-  return blocks.join("\n\n— — —\n\n");
+  return prayerColumns(prayer)
+    .cols.map((l) => pick(prayer, "title", l) + "\n\n" + pick(prayer, "text", l))
+    .join("\n\n— — —\n\n");
 }
 
 function makeCopyButton(prayer) {
@@ -262,9 +421,10 @@ function makeCopyButton(prayer) {
   btn.type = "button";
   btn.className = "copy-btn";
   btn.innerHTML =
-    '<span class="copy-icon" aria-hidden="true">⧉</span><span class="copy-label">Kopieer</span>';
+    '<span class="copy-icon" aria-hidden="true">⧉</span><span class="copy-label"></span>';
 
   const label = btn.querySelector(".copy-label");
+  label.textContent = ui().kopieer;
   let resetTimer = null;
 
   btn.addEventListener("click", async () => {
@@ -283,14 +443,14 @@ function makeCopyButton(prayer) {
         document.body.removeChild(ta);
       }
       btn.classList.add("is-copied");
-      label.textContent = "Gekopieerd";
+      label.textContent = ui().gekopieerd;
     } catch {
-      label.textContent = "Mislukt";
+      label.textContent = ui().mislukt;
     }
     clearTimeout(resetTimer);
     resetTimer = setTimeout(() => {
       btn.classList.remove("is-copied");
-      label.textContent = "Kopieer";
+      label.textContent = ui().kopieer;
     }, 1800);
   });
 
@@ -300,6 +460,7 @@ function makeCopyButton(prayer) {
 function makeColumn(langCode, label, text, showLabel) {
   const col = document.createElement("div");
   col.className = "text-col " + langCode;
+  col.lang = langCode;
 
   if (showLabel) {
     const lbl = document.createElement("p");
@@ -317,6 +478,15 @@ function makeColumn(langCode, label, text, showLabel) {
 }
 
 /* ---------- Actions ---------- */
+function setHeaderOpen(open) {
+  state.headerOpen = open;
+  els.header.classList.toggle("is-open", open);
+  if (els.headerToggle) {
+    els.headerToggle.setAttribute("aria-expanded", String(open));
+    els.headerToggle.setAttribute("aria-label", open ? ui().menuDicht : ui().menuOpen);
+  }
+}
+
 function setSidebarOpen(open) {
   state.sidebarOpen = open;
   if (els.sidebar) els.sidebar.classList.toggle("is-open", open);
@@ -328,7 +498,7 @@ function setSidebarOpen(open) {
 function updateSidebarLabel() {
   if (!els.sidebarToggleLabel) return;
   const prayer = prayers.find((p) => p.key === state.activeKey);
-  els.sidebarToggleLabel.textContent = prayer ? prayer.title_nl : "Gebeden";
+  els.sidebarToggleLabel.textContent = prayer ? pick(prayer, "title") : ui().gebeden;
 }
 
 function selectPrayer(key) {
@@ -347,15 +517,6 @@ function selectPrayer(key) {
   renderView();
 }
 
-function setLang(lang) {
-  state.lang = lang;
-  localStorage.setItem("gebeden-lang", lang);
-  els.langButtons.forEach((b) =>
-    b.classList.toggle("is-active", b.dataset.lang === lang)
-  );
-  renderView();
-}
-
 function setTheme(theme) {
   state.theme = theme;
   document.documentElement.dataset.theme = theme;
@@ -363,10 +524,8 @@ function setTheme(theme) {
   if (els.themeToggle) {
     const dark = theme === "dark";
     els.themeToggle.setAttribute("aria-pressed", String(dark));
-    els.themeToggle.setAttribute(
-      "aria-label",
-      dark ? "Lichte modus inschakelen" : "Donkere modus inschakelen"
-    );
+    els.themeToggle.setAttribute("aria-label", dark ? ui().lichtAan : ui().donkerAan);
+    els.themeToggle.title = dark ? ui().licht : ui().donker;
     const icon = els.themeToggle.querySelector(".theme-icon");
     if (icon) icon.textContent = dark ? "☀" : "☾";
   }
@@ -383,6 +542,9 @@ function setFontScale(scale) {
 
 /* ---------- Init ---------- */
 function init() {
+  els.langSlot.outerHTML = langControlHTML({ groupClass: "lang-pair-header" });
+  bindLangControl(els.header);
+
   setTheme(state.theme);
   setFontScale(state.fontScale);
   if (els.fontSmaller)
@@ -395,10 +557,15 @@ function init() {
     );
   }
 
-  els.langButtons.forEach((b) =>
-    b.addEventListener("click", () => setLang(b.dataset.lang))
+  if (els.headerToggle) {
+    els.headerToggle.addEventListener("click", () => setHeaderOpen(!state.headerOpen));
+  }
+  /* Een gebedsvorm openen klapt op een smal scherm de balk weer in. */
+  els.devotionBtns.forEach((b) =>
+    b.addEventListener("click", () => {
+      if (isNarrow()) setHeaderOpen(false);
+    })
   );
-  setLang(state.lang);
 
   els.search.addEventListener("input", (e) => {
     state.query = e.target.value;
@@ -419,9 +586,14 @@ function init() {
     if (cat) state.expanded.add(cat);
   }
 
-  updateSidebarLabel();
-  renderList();
-  renderView();
+  const renderAll = () => {
+    applyStaticTexts();
+    updateSidebarLabel();
+    renderList();
+    renderView();
+  };
+  onLangChange(renderAll);
+  renderAll();
 
   /* Eén falende module mag de andere niet meetrekken. */
   const safeInit = (naam, fn) => {
@@ -434,6 +606,7 @@ function init() {
   safeInit("rozenkrans", initRosary);
   safeInit("maria-antifoon", initAntiphons);
   safeInit("novena", initNovena);
+  safeInit("kruisweg", initKruisweg);
 }
 
 init();

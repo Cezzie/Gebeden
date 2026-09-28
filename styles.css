@@ -104,44 +104,105 @@ body {
   color: var(--ink-soft);
 }
 
-/* ---------- Language toggle ---------- */
-.lang-toggle {
+/* ---------- Taalkeuze: taal links ⇄ taal rechts ---------- */
+.lang-pair {
   display: inline-flex;
+  align-items: center;
+  gap: 4px;
   background: var(--paper-2);
   border: 1px solid var(--line);
   border-radius: 999px;
-  padding: 4px;
-  box-shadow: inset 0 1px 2px rgba(60, 40, 20, .05);
+  padding: 3px;
 }
 
-.lang-btn {
+.lang-select {
   appearance: none;
-  border: 0;
-  background: transparent;
+  -webkit-appearance: none;
   font-family: inherit;
   font-size: 15px;
-  color: var(--ink-soft);
-  padding: 7px 16px;
+  color: var(--ink);
+  background-color: var(--surface);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%23a9852f' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 11px center;
+  border: 1px solid var(--line);
   border-radius: 999px;
+  padding: 6px 28px 6px 13px;
   cursor: pointer;
-  transition: all .18s ease;
+  transition: border-color .15s ease;
+}
+.lang-select:hover { border-color: var(--gold); }
+.lang-select:focus-visible,
+.lang-swap:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(169, 133, 47, .25);
 }
 
-.lang-btn:hover { color: var(--ink); }
-
-.lang-btn.is-active {
-  background: var(--burgundy);
-  color: var(--on-accent);
-  box-shadow: 0 2px 6px rgba(110, 31, 43, .3);
+.lang-swap {
+  appearance: none;
+  width: 32px;
+  height: 32px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--burgundy);
+  font-size: 17px;
+  line-height: 1;
+  cursor: pointer;
+  transition: all .15s ease;
 }
+.lang-swap:hover:not(:disabled) { background: var(--burgundy); color: var(--on-accent); }
+.lang-swap:disabled { opacity: .35; cursor: default; }
+
+.lang-pair-overlay .lang-select { font-size: 14px; padding: 5px 26px 5px 11px; }
 
 /* ---------- Header controls + theme toggle ---------- */
-.header-controls {
+.header-panel {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  flex-wrap: wrap;
+  flex: 1;
+}
+
+.header-devotions,
+.header-settings {
   display: inline-flex;
   align-items: center;
   gap: 12px;
   flex-wrap: wrap;
 }
+
+/* Knop die op smalle schermen de kopbalk in- en uitklapt */
+.header-toggle {
+  display: none;
+  appearance: none;
+  align-items: center;
+  gap: 6px;
+  margin-left: auto;
+  height: 40px;
+  padding: 0 14px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--paper-2);
+  color: var(--gold-deep);
+  font-size: 19px;
+  line-height: 1;
+  cursor: pointer;
+  transition: all .18s ease;
+}
+.header-toggle:hover { color: var(--ink); border-color: var(--gold); }
+.header-toggle:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(169, 133, 47, .25);
+}
+.header-toggle .header-toggle-chevron {
+  display: inline-block;
+  font-size: 16px;
+  transition: transform .18s ease;
+}
+.site-header.is-open .header-toggle .header-toggle-chevron { transform: rotate(90deg); }
 
 .icon-btn {
   appearance: none;
@@ -243,7 +304,12 @@ body {
   transition: all .15s ease;
 }
 .sidebar-toggle:hover { color: var(--ink); border-color: var(--gold); }
-.sidebar-toggle .sidebar-toggle-icon { font-size: 16px; line-height: 1; }
+.sidebar-toggle .sidebar-toggle-icon {
+  font-size: 16px;
+  line-height: 1;
+  transition: transform .18s ease;
+}
+.sidebar.is-open .sidebar-toggle-icon { transform: rotate(90deg); }
 .sidebar-toggle .sidebar-toggle-label {
   flex: 1;
   overflow: hidden;
@@ -454,6 +520,13 @@ body {
   border-radius: 999px;
 }
 
+.no-latin-note {
+  margin: -12px 0 18px;
+  font-size: 15px;
+  font-style: italic;
+  color: var(--ink-soft);
+}
+
 .rule {
   height: 1px;
   background: linear-gradient(to right, transparent, var(--gold), transparent);
@@ -570,30 +643,6 @@ body.rosary-open-body { overflow: hidden; }
   font-size: 18px;
   color: var(--burgundy);
   margin-right: auto;
-}
-
-.rosary-lang {
-  display: inline-flex;
-  background: var(--paper-2);
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  padding: 3px;
-}
-
-.r-lang-btn {
-  appearance: none;
-  border: 0;
-  background: transparent;
-  font-family: inherit;
-  font-size: 14px;
-  color: var(--ink-soft);
-  padding: 6px 14px;
-  border-radius: 999px;
-  cursor: pointer;
-}
-.r-lang-btn.is-active {
-  background: var(--burgundy);
-  color: var(--on-accent);
 }
 
 .rosary-close {
@@ -937,6 +986,9 @@ body.rosary-open-body { overflow: hidden; }
 
 .ov-chips.is-collapsed { display: none; }
 
+/* ---------- Kruisweg ---------- */
+.rosary-ov-num.kw-num { width: 2.4em; font-size: 14px; }
+
 /* ---------- Novena ---------- */
 .novena-choice { padding-bottom: 0; }
 
@@ -966,40 +1018,6 @@ body.rosary-open-body { overflow: hidden; }
 .n-mode-btn:hover { color: var(--ink); }
 .n-mode-btn.is-active {
   background: var(--burgundy);
-  color: var(--on-accent);
-}
-
-.n-lang-btn {
-  appearance: none;
-  border: 0;
-  background: transparent;
-  font-family: inherit;
-  font-size: 14px;
-  color: var(--ink-soft);
-  padding: 6px 14px;
-  border-radius: 999px;
-  cursor: pointer;
-}
-.n-lang-btn.is-active {
-  background: var(--burgundy);
-  color: var(--on-accent);
-}
-
-.n-latin-btn {
-  appearance: none;
-  border: 0;
-  background: transparent;
-  font-family: inherit;
-  font-size: 14px;
-  font-style: italic;
-  color: var(--ink-soft);
-  padding: 6px 14px;
-  border-radius: 999px;
-  cursor: pointer;
-}
-.n-latin-btn:hover { color: var(--ink); }
-.n-latin-btn.is-active {
-  background: var(--gold-deep);
   color: var(--on-accent);
 }
 
@@ -1058,10 +1076,34 @@ body.rosary-open-body { overflow: hidden; }
   }
   .sidebar { position: static; }
   .prayer-list { max-height: 50vh; }
-  .text-grid.both { grid-template-columns: 1fr; gap: 26px; }
   .prayer-view { padding: 22px 16px 26px; }
   .prayer-head h2 { font-size: 25px; }
-  .header-inner { padding: 10px 12px; gap: 10px; }
+  .header-inner { padding: 10px 12px; gap: 10px; flex-wrap: wrap; }
+
+  /* Kopbalk: alleen merk + ☰-knop; de rest klapt uit */
+  .brand { gap: 10px; }
+  .brand-mark { font-size: 24px; }
+  .brand-text h1 { font-size: 18px; }
+  .brand-text p { font-size: 13px; }
+  .header-toggle { display: inline-flex; }
+  .header-panel { display: none; width: 100%; flex: none; }
+  .site-header.is-open .header-panel {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+    padding: 4px 0 6px;
+  }
+  .header-devotions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+  .header-devotions .rosary-open-btn { padding: 10px 12px; }
+  .header-settings { justify-content: center; gap: 10px; }
+  /* Keuzelijsten op 16px, anders zoomt iOS in bij het openen */
+  .lang-select,
+  .lang-pair-overlay .lang-select { font-size: 16px; }
 
   /* Gebedenlijst achter de hamburgerknop */
   .sidebar-toggle { display: flex; }
@@ -1088,10 +1130,25 @@ body.rosary-open-body { overflow: hidden; }
   .rosary-stage { padding: 14px 10px 20px; }
   .rosary-card { padding: 22px 18px 26px; }
   .rosary-h2 { font-size: 24px; }
-  .rosary-text-grid.both { grid-template-columns: 1fr; gap: 22px; }
   .rosary-controls { padding: 10px 14px; }
   .rosary-nav { padding: 11px 18px; font-size: 16px; }
   .rosary-nav .ov-nav-word { display: none; }
   .rosary-overview { padding: 22px 18px 26px; }
+  /* Veertien kruiswegstipjes passen zo op één regel */
+  .rosary-beads { gap: 7px; }
+  .r-bead { width: 14px; height: 14px; }
+}
+
+/* Twee talen naast elkaar, behalve op smalle staande schermen: daar onder elkaar.
+   Een telefoon in liggende stand is breed genoeg voor twee kolommen. */
+@media (max-width: 600px) {
+  .text-grid.both { grid-template-columns: 1fr; gap: 26px; }
+  .rosary-text-grid.both { grid-template-columns: 1fr; gap: 22px; }
   .rosary-ov-grid.both { grid-template-columns: 1fr; gap: 4px; }
+}
+
+/* Liggende telefoon: kolommen naast elkaar met iets minder tussenruimte. */
+@media (max-width: 880px) and (min-width: 601px) {
+  .text-grid.both { gap: 22px; }
+  .rosary-text-grid.both { gap: 20px; }
 }

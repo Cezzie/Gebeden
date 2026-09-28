@@ -1,12 +1,16 @@
 # Katholieke Gebeden
 
-Een eenvoudige, mooie web-app met katholieke gebeden in het **Nederlands** en **Latijn**.
-Je kunt per gebed kiezen om alleen het Nederlands, alleen het Latijn, of **beide naast elkaar**
-te tonen om de vertaling te vergelijken.
+Een eenvoudige, mooie web-app met katholieke gebeden in het **Nederlands**, **Engels**,
+**Portugees** (Portugal) en **Latijn**. Je kiest een taal voor de linker- en de rechterkolom
+en zet zo twee willekeurige talen naast elkaar, of je toont er één.
 
 ## Functies
 
-- **Taalwisselaar** — Nederlands · Latijn · Beide (naast elkaar). De keuze wordt onthouden.
+- **Taalkeuze links ⇄ rechts** — twee keuzelijsten (Nederlands, English, Português, Latijn; rechts ook "geen")
+  met een wisselknop. De bediening volgt de volkstaal; de keuze geldt voor de hele app en wordt onthouden.
+- **Naast elkaar, ook liggend** — alleen op smalle staande schermen komen de kolommen onder elkaar.
+- **Rozenkrans, Maria-antifoon, Novena en Kruisweg** — elk in een eigen scherm, stap voor stap te bidden.
+- **Inklapbare kopbalk** — op mobiel klapt de balk met alle knoppen in achter de ☰-knop.
 - **Zoeken** — doorzoek titels en tekst, ook zonder accenten (bv. "magnificat" of "barmhartigheid").
 - **Categorieën** — gebeden zijn gegroepeerd (standaardgebeden, lofzangen, hymnen, litanieën).
 - **Bronvermelding** — onderaan de pagina.
@@ -19,8 +23,11 @@ te tonen om de vertaling te vergelijken.
 |---|---|
 | `index.html` | De pagina-structuur |
 | `styles.css` | Vormgeving |
-| `app.js` | Logica (rendert gebeden, taalwisselaar, zoeken) |
+| `app.js` | Logica (rendert gebeden, zoeken, kopbalk) |
+| `i18n.js` | Gedeelde taalinstelling en taalknoppen |
 | `seed.js` | De gebeden-data (`export const SEED`) |
+| `rosary.js`, `antiphons.js`, `novena.js`, `kruisweg.js` | Data van de gebedsvormen |
+| `*-ui.js` | De schermen (overlays) van de gebedsvormen |
 
 ## Een gebed toevoegen
 
@@ -31,11 +38,19 @@ Voeg een nieuw object toe aan de `prayers`-lijst in `seed.js`:
   key: "uniek_id",
   title_nl: "Nederlandse titel",
   title_la: "Latijnse titel",
+  title_en: "English title",
+  title_pt: "Título português",
   text_nl: "Nederlandse tekst…\nNieuwe regel met \\n.",
-  text_la: "Latijnse tekst…",
+  text_la: "Latijnse tekst…",   // leeg laten als er geen Latijn bestaat
+  text_en: "English text…",
+  text_pt: "Texto português…",
   category: "standaardgebed", // of: evangelielofzang, hymne, litanie
   notes: "Optionele toelichting.",
-  source_url: "https://…"
+  notes_en: "Optional note.",
+  notes_pt: "Nota opcional.",
+  source_url: "https://…",      // bron van het Nederlands
+  source_url_en: "https://…",
+  source_url_pt: "https://…"
 }
 ```
 

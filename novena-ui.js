@@ -5,16 +5,25 @@ import {
   novenaDayInfo,
   buildNovenaSteps,
 } from "./novena.js";
+import {
+  getLang,
+  columns,
+  subtitleLang,
+  pick,
+  langLabel,
+  langControlHTML,
+  bindLangControl,
+  syncLangControl,
+  onLangChange,
+} from "./i18n.js";
 
 /*
  * Novena als overlay met twee weergaven, naar het voorbeeld van de rozenkrans:
  *   - "overzicht": de negen dagen met hun thema en datum
  *   - "interactief": stap voor stap bidden, met negen stipjes voor de dagen
- * Taalkeuze: Nederlands óf Portugees (Portugal) als hoofdtaal, met daarnaast
- * een Latijn-schakelaar die — waar een authentieke Latijnse tekst bestaat —
- * het Latijn naast de gekozen taal toont. Nederlands en Portugees staan
- * nooit naast elkaar. Voorkeuren onder localStorage "gebeden-novena-lang"
- * en "gebeden-novena-latin".
+ * Taalkeuze: de gedeelde talen links en rechts uit i18n.js. Latijn staat er
+ * alleen waar een authentieke Latijnse tekst bestaat; een noveen zonder de
+ * gekozen taal valt terug op het Nederlands.
  */
 export function initNovena() {
   const root = document.getElementById("novena-root");
@@ -28,7 +37,6 @@ export function initNovena() {
   const isNarrow = () =>
     window.matchMedia && window.matchMedia("(max-width: 880px)").matches;
 
-  const storedLang = localStorage.getItem("gebeden-novena-lang");
   const state = {
     open: false,
     mode: "overzicht",
@@ -36,15 +44,16 @@ export function initNovena() {
     day: 1,
     steps: [],
     index: 0,
-    lang: storedLang === "pt" ? "pt" : "nl",
-    latin: localStorage.getItem("gebeden-novena-latin") === "1",
     chipsOpen: !isNarrow(),
     barOpen: false,
     archiveOpen: false,
   };
 
-  /* Novenen zonder Portugese vertaling vallen terug op het Nederlands. */
-  const effLang = () => (getNovena(state.novenaKey).pt ? state.lang : "nl");
+  /* Bediening en overzicht in de taal van de app, of het Nederlands als de noveen die taal niet kent. */
+  const effLang = () => (getNovena(state.novenaKey).langs.includes(getLang()) ? getLang() : "nl");
+  /* Kolommen voor een stap: talen van deze noveen, en Latijn waar het bestaat. */
+  const stepColumns = (step) =>
+    columns((l) => (l === "la" ? Boolean(step.text_la) : getNovena(state.novenaKey).langs.includes(l)));
 
   /* Vertaling van de vaste UI-teksten. */
   const UI = {
@@ -59,11 +68,34 @@ export function initNovena() {
       volgende: "Volgende",
       stap: (i, n) => `Stap ${i} van ${n}`,
       start: "Stap voor stap bidden →",
-      col: "Nederlands",
-      colLa: "Latijn",
       voor: (datum) => `De noveen begint op ${datum}.`,
       tijdens: (n) => `Vandaag is het dag ${n} van 9.`,
       archief: "Archief",
+      sluiten: "Sluiten",
+      taalkeuze: "Taalkeuze",
+      weergave: "Weergave",
+      keuze: "Keuze van noveen",
+      dagkeuze: "Keuze van dag",
+    },
+    en: {
+      overzicht: "Overview",
+      interactief: "Step by step",
+      latijn: "+ Latin",
+      instellingen: "View and language",
+      dag: (n) => `Day ${n}`,
+      vandaag: "today",
+      vorige: "Previous",
+      volgende: "Next",
+      stap: (i, n) => `Step ${i} of ${n}`,
+      start: "Pray step by step →",
+      voor: (datum) => `The novena begins on ${datum}.`,
+      tijdens: (n) => `Today is day ${n} of 9.`,
+      archief: "Archive",
+      sluiten: "Close",
+      taalkeuze: "Language",
+      weergave: "View",
+      keuze: "Choice of novena",
+      dagkeuze: "Choice of day",
     },
     pt: {
       overzicht: "Vista geral",
@@ -76,11 +108,14 @@ export function initNovena() {
       volgende: "Seguinte",
       stap: (i, n) => `Passo ${i} de ${n}`,
       start: "Rezar passo a passo →",
-      col: "Português",
-      colLa: "Latim",
       voor: (datum) => `A novena começa em ${datum}.`,
       tijdens: (n) => `Hoje é o dia ${n} de 9.`,
       archief: "Arquivo",
+      sluiten: "Fechar",
+      taalkeuze: "Língua",
+      weergave: "Vista",
+      keuze: "Escolha da novena",
+      dagkeuze: "Escolha do dia",
     },
   };
   const ui = () => UI[effLang()];
@@ -94,28 +129,24 @@ export function initNovena() {
       <div class="rosary-bar">
         <div class="rosary-brand"><span aria-hidden="true">🕯️</span> Novena</div>
         <div class="ov-bar-controls">
-          <div class="rosary-mode" role="group" aria-label="Weergave">
+          <div class="rosary-mode" role="group">
             <button class="n-mode-btn" data-mode="overzicht">Overzicht</button>
             <button class="n-mode-btn" data-mode="interactief">Stap voor stap</button>
           </div>
-          <div class="rosary-lang" role="group" aria-label="Taalkeuze">
-            <button class="n-lang-btn" data-lang="nl">NL</button>
-            <button class="n-lang-btn" data-lang="pt">PT</button>
-            <button class="n-latin-btn" type="button" aria-pressed="false">+ Latijn</button>
-          </div>
+          ${langControlHTML({ groupClass: "lang-pair-overlay" })}
         </div>
         <button class="ov-bar-toggle" type="button" aria-expanded="false">
           <span class="ov-bar-chevron" aria-hidden="true">›</span>
         </button>
-        <button class="rosary-close" type="button" aria-label="Sluiten">✕</button>
+        <button class="rosary-close" type="button">✕</button>
       </div>
       <button class="ov-fold" type="button" aria-expanded="true">
         <span class="ov-fold-chevron" aria-hidden="true">›</span>
         <span class="ov-fold-label"></span>
       </button>
       <div class="ov-chips">
-        <div class="rosary-sets novena-choice" role="group" aria-label="Keuze van noveen"></div>
-        <div class="rosary-sets novena-days" role="group" aria-label="Keuze van dag"></div>
+        <div class="rosary-sets novena-choice" role="group"></div>
+        <div class="rosary-sets novena-days" role="group"></div>
       </div>
       <div class="rosary-progress"><span class="rosary-progress-bar"></span></div>
       <div class="rosary-stage"></div>
@@ -143,8 +174,7 @@ export function initNovena() {
   const prevBtn = root.querySelector(".rosary-nav.prev");
   const nextBtn = root.querySelector(".rosary-nav.next");
   const closeBtn = root.querySelector(".rosary-close");
-  const langBtns = Array.from(root.querySelectorAll(".n-lang-btn"));
-  const latinBtn = root.querySelector(".n-latin-btn");
+  const modeGroup = root.querySelector(".rosary-mode");
   const modeBtns = Array.from(root.querySelectorAll(".n-mode-btn"));
 
   /* Noveen-keuze: actieve novenen eerst, afgesloten novenen achter "Archief". */
@@ -187,7 +217,7 @@ export function initNovena() {
 
   /* ---------- Datums ---------- */
   function formatDate(date, opts) {
-    const locale = effLang() === "pt" ? "pt-PT" : "nl-NL";
+    const locale = { nl: "nl-NL", en: "en-GB", pt: "pt-PT" }[effLang()];
     return new Intl.DateTimeFormat(
       locale,
       opts || { weekday: "long", day: "numeric", month: "long" }
@@ -206,9 +236,7 @@ export function initNovena() {
     const t = ui();
     const info = dayInfo();
     const activeNovena = getNovena(state.novenaKey);
-    foldLabel.textContent = `${
-      effLang() === "pt" ? activeNovena.label_pt || activeNovena.label_nl : activeNovena.label_nl
-    } · ${t.dag(state.day)}`;
+    foldLabel.textContent = `${pick(activeNovena, "label", effLang())} · ${t.dag(state.day)}`;
     foldBtn.classList.toggle("is-open", state.chipsOpen);
     foldBtn.setAttribute("aria-expanded", String(state.chipsOpen));
     chipsWrap.classList.toggle("is-collapsed", !state.chipsOpen);
@@ -216,13 +244,11 @@ export function initNovena() {
     barToggle.classList.toggle("is-open", state.barOpen);
     barToggle.setAttribute("aria-expanded", String(state.barOpen));
     barToggle.setAttribute("aria-label", t.instellingen);
-    langBtns.forEach((b) => {
-      b.hidden = b.dataset.lang === "pt" && !activeNovena.pt;
-      b.classList.toggle("is-active", b.dataset.lang === effLang());
-    });
-    latinBtn.textContent = t.latijn;
-    latinBtn.classList.toggle("is-active", state.latin);
-    latinBtn.setAttribute("aria-pressed", String(state.latin));
+    closeBtn.setAttribute("aria-label", t.sluiten);
+    modeGroup.setAttribute("aria-label", t.weergave);
+    choiceWrap.setAttribute("aria-label", t.keuze);
+    daysWrap.setAttribute("aria-label", t.dagkeuze);
+    syncLangControl(root);
     modeBtns.forEach((b) => {
       b.classList.toggle("is-active", b.dataset.mode === state.mode);
       b.textContent = t[b.dataset.mode];
@@ -230,8 +256,7 @@ export function initNovena() {
     Array.from(choiceWrap.children).forEach((c) => {
       if (!c.dataset.novena) return;
       const n = getNovena(c.dataset.novena);
-      c.querySelector(".n-chip-label").textContent =
-        effLang() === "pt" ? n.label_pt || n.label_nl : n.label_nl;
+      c.querySelector(".n-chip-label").textContent = pick(n, "label", effLang());
       c.classList.toggle("is-active", c.dataset.novena === state.novenaKey);
       if (n.archived) c.hidden = !state.archiveOpen;
     });
@@ -263,8 +288,7 @@ export function initNovena() {
       return t.voor(formatDate(novenaDayDate(getNovena(state.novenaKey), 1)));
     }
     if (info.status === "na") {
-      const n = getNovena(state.novenaKey);
-      return effLang() === "pt" ? n.voltooid_pt || n.voltooid_nl : n.voltooid_nl;
+      return pick(getNovena(state.novenaKey), "voltooid", effLang());
     }
     return t.tijdens(info.dayNumber);
   }
@@ -273,7 +297,7 @@ export function initNovena() {
     const novena = getNovena(state.novenaKey);
     const t = ui();
     const info = dayInfo();
-    const pt = effLang() === "pt";
+    const lang = effLang();
 
     const items = novena.days
       .map((d, i) => {
@@ -282,7 +306,7 @@ export function initNovena() {
           day: "numeric",
           month: "long",
         });
-        const theme = pt ? d.theme_pt : d.theme_nl;
+        const theme = pick(d, "theme", lang);
         const today =
           info.status === "tijdens" && info.dayNumber === i + 1 ? " is-today" : "";
         return `
@@ -290,7 +314,7 @@ export function initNovena() {
             <span class="rosary-ov-num">${i + 1}</span>
             <div class="novena-ov-body">
               <p class="novena-ov-date">${escape(date)}</p>
-              <div class="rosary-ov-grid"><p class="rosary-ov-nl">${escape(theme)}</p></div>
+              <div class="rosary-ov-grid"><p class="rosary-ov-nl" lang="${lang}">${escape(theme)}</p></div>
             </div>
           </li>`;
       })
@@ -299,11 +323,11 @@ export function initNovena() {
     stage.innerHTML = `
       <div class="rosary-overview">
         <header class="rosary-ov-head">
-          <p class="rosary-kicker">${escape(pt ? novena.subtitle_pt : novena.subtitle_nl)}</p>
-          <h2 class="rosary-h2">${escape(pt ? novena.title_pt : novena.title_nl)}</h2>
+          <p class="rosary-kicker">${escape(pick(novena, "subtitle", lang))}</p>
+          <h2 class="rosary-h2">${escape(pick(novena, "title", lang))}</h2>
           <p class="novena-status">${escape(statusLine())}</p>
         </header>
-        <p class="novena-intro">${escape(pt ? novena.intro_pt : novena.intro_nl)}</p>
+        <p class="novena-intro">${escape(pick(novena, "intro", lang))}</p>
         <ol class="rosary-ov-list">${items}</ol>
         <button class="rosary-start" type="button">${escape(t.start)}</button>
       </div>`;
@@ -316,24 +340,22 @@ export function initNovena() {
   function renderInteractive() {
     const step = state.steps[state.index];
     const t = ui();
-    const pt = effLang() === "pt";
-    /* Latijn ernaast, alleen waar een authentieke Latijnse tekst bestaat. */
-    const withLatin = state.latin && Boolean(step.text_la);
+    const { cols, both } = stepColumns(step);
 
     const parts = [];
-    parts.push(
-      `<p class="rosary-kicker">${escape(pt ? step.kicker_pt : step.kicker_nl)}</p>`
-    );
+    parts.push(`<p class="rosary-kicker">${escape(pick(step, "kicker", effLang()))}</p>`);
 
-    const title = pt ? step.title_pt : step.title_nl;
-    parts.push(`<h2 class="rosary-h2">${escape(title)}</h2>`);
-    if (state.latin && step.title_la && step.title_la !== title) {
-      parts.push(`<p class="rosary-sub">${escape(step.title_la)}</p>`);
+    const title = pick(step, "title", cols[0]);
+    parts.push(`<h2 class="rosary-h2" lang="${cols[0]}">${escape(title)}</h2>`);
+    /* Bij één kolom geen Latijnse ondertitel: die hoort bij de keuze voor Latijn. */
+    const subLang = subtitleLang(cols, false);
+    const sub = subLang ? pick(step, "title", subLang) : "";
+    if (sub && sub !== title) {
+      parts.push(`<p class="rosary-sub" lang="${subLang}">${escape(sub)}</p>`);
     }
 
-    parts.push(`<div class="rosary-text-grid${withLatin ? " both" : ""}">`);
-    parts.push(textCol(pt ? "pt" : "nl", t.col, pt ? step.text_pt : step.text_nl, withLatin));
-    if (withLatin) parts.push(textCol("la", t.colLa, step.text_la, true));
+    parts.push(`<div class="rosary-text-grid${both ? " both" : ""}">`);
+    for (const l of cols) parts.push(textCol(l, langLabel(l), pick(step, "text", l), both));
     parts.push(`</div>`);
 
     stage.innerHTML = `<article class="rosary-card" tabindex="0" aria-live="polite">${parts.join(
@@ -351,7 +373,7 @@ export function initNovena() {
     const lbl = showLabel
       ? `<p class="novena-col-label">${escape(label)}</p>`
       : "";
-    return `<div class="novena-text-col">${lbl}<p class="rosary-text ${lang}">${escape(
+    return `<div class="novena-text-col" lang="${lang}">${lbl}<p class="rosary-text ${lang}">${escape(
       text || "—"
     )}</p></div>`;
   }
@@ -412,16 +434,8 @@ export function initNovena() {
     focusCard();
   }
 
-  function setLang(lang) {
-    state.lang = lang;
-    localStorage.setItem("gebeden-novena-lang", lang);
-    render();
-  }
-
-  function toggleLatin() {
-    state.latin = !state.latin;
-    localStorage.setItem("gebeden-novena-latin", state.latin ? "1" : "0");
-    render();
+  function langChanged() {
+    if (state.open) render();
   }
 
   function open() {
@@ -448,10 +462,8 @@ export function initNovena() {
   closeBtn.addEventListener("click", close);
   prevBtn.addEventListener("click", () => go(-1));
   nextBtn.addEventListener("click", () => go(1));
-  langBtns.forEach((b) =>
-    b.addEventListener("click", () => setLang(b.dataset.lang))
-  );
-  latinBtn.addEventListener("click", toggleLatin);
+  bindLangControl(root);
+  onLangChange(langChanged);
   foldBtn.addEventListener("click", toggleChips);
   barToggle.addEventListener("click", toggleBar);
   modeBtns.forEach((b) =>

@@ -1,9 +1,4 @@
-import {
-  MYSTERY_SETS,
-  MYSTERY_ORDER,
-  defaultMysteryKey,
-  buildRosarySteps,
-} from "./rosary.js";
+import { KRUISWEG, STATIONS, buildKruiswegSteps } from "./kruisweg.js";
 import {
   getLang,
   columns,
@@ -17,43 +12,31 @@ import {
 } from "./i18n.js";
 
 /*
- * Rozenkrans als overlay met twee weergaven:
- *   - "overzicht": de geheimen op een rij (volkstaal en Latijn naast elkaar of één taal)
- *   - "interactief": stap voor stap, kraal voor kraal bidden
- * Volgt de gedeelde taalinstelling uit i18n.js.
+ * Kruisweg als overlay, naar het voorbeeld van de rozenkrans:
+ *   - "overzicht": de veertien staties op een rij
+ *   - "interactief": statie voor statie bidden, met veertien stipjes
+ * Volgt de gedeelde taalinstelling uit i18n.js. Het Latijn staat alleen
+ * waar een authentieke Latijnse tekst bestaat; anders valt de stap terug
+ * op de volkstaal.
  */
-export function initRosary() {
-  const root = document.getElementById("rosary-root");
-  const openBtn = document.getElementById("rosary-open");
+export function initKruisweg() {
+  const root = document.getElementById("kruisweg-root");
+  const openBtn = document.getElementById("kruisweg-open");
   if (!root || !openBtn) return;
-
-  /* "Vandaag" wordt live bepaald, zodat een lang openstaande tab klopt. */
-  const currentWeekday = () => new Date().getDay();
-
-  const NAAM = { nl: "Rozenkrans", en: "Rosary", pt: "Terço" };
-
-  /* Op smalle schermen nemen balk en chips te veel ruimte in; daar starten ze ingeklapt. */
-  const isNarrow = () =>
-    window.matchMedia && window.matchMedia("(max-width: 880px)").matches;
 
   const state = {
     open: false,
     mode: "overzicht",
-    todayKey: defaultMysteryKey(currentWeekday()),
-    setKey: null,
-    steps: [],
+    steps: buildKruiswegSteps(getLang()),
     index: 0,
     barOpen: false,
-    chipsOpen: !isNarrow(),
   };
-  state.setKey = state.todayKey;
-  state.steps = buildRosarySteps(state.setKey, getLang());
 
   /* ---------- Statische opbouw ---------- */
   root.innerHTML = `
-    <div class="rosary-overlay" role="dialog" aria-modal="true" aria-label="Rozenkrans bidden">
+    <div class="rosary-overlay" role="dialog" aria-modal="true">
       <div class="rosary-bar">
-        <div class="rosary-brand"><span aria-hidden="true">📿</span> <span class="ov-brand-name"></span></div>
+        <div class="rosary-brand"><span aria-hidden="true">✝️</span> <span class="ov-brand-name"></span></div>
         <div class="ov-bar-controls">
           <div class="rosary-mode" role="group">
             <button class="r-mode-btn" data-mode="overzicht"></button>
@@ -66,13 +49,6 @@ export function initRosary() {
         </button>
         <button class="rosary-close" type="button">✕</button>
       </div>
-      <button class="ov-fold" type="button" aria-expanded="true">
-        <span class="ov-fold-chevron" aria-hidden="true">›</span>
-        <span class="ov-fold-label"></span>
-      </button>
-      <div class="ov-chips">
-        <div class="rosary-sets" role="group"></div>
-      </div>
       <div class="rosary-progress"><span class="rosary-progress-bar"></span></div>
       <div class="rosary-stage"></div>
       <div class="rosary-controls">
@@ -84,12 +60,10 @@ export function initRosary() {
   `;
 
   const overlay = root.querySelector(".rosary-overlay");
+  const brandName = root.querySelector(".ov-brand-name");
   const barControls = root.querySelector(".ov-bar-controls");
   const barToggle = root.querySelector(".ov-bar-toggle");
-  const foldBtn = root.querySelector(".ov-fold");
-  const foldLabel = root.querySelector(".ov-fold-label");
-  const chipsWrap = root.querySelector(".ov-chips");
-  const setsWrap = root.querySelector(".rosary-sets");
+  const modeGroup = root.querySelector(".rosary-mode");
   const stage = root.querySelector(".rosary-stage");
   const progress = root.querySelector(".rosary-progress");
   const progressBar = root.querySelector(".rosary-progress-bar");
@@ -98,21 +72,7 @@ export function initRosary() {
   const prevBtn = root.querySelector(".rosary-nav.prev");
   const nextBtn = root.querySelector(".rosary-nav.next");
   const closeBtn = root.querySelector(".rosary-close");
-  const brandName = root.querySelector(".ov-brand-name");
-  const modeGroup = root.querySelector(".rosary-mode");
   const modeBtns = Array.from(root.querySelectorAll(".r-mode-btn"));
-
-  /* Geheimen-keuze chips */
-  for (const key of MYSTERY_ORDER) {
-    const set = MYSTERY_SETS[key];
-    const chip = document.createElement("button");
-    chip.type = "button";
-    chip.className = "rosary-set-chip";
-    chip.dataset.set = key;
-    chip.innerHTML = `<span class="r-chip-label"></span><span class="r-today"></span>`;
-    chip.addEventListener("click", () => selectSet(key));
-    setsWrap.appendChild(chip);
-  }
 
   /* ---------- Rendering ---------- */
   function render() {
@@ -124,11 +84,10 @@ export function initRosary() {
     else renderOverview();
 
     const t = common();
-    const lang = getLang();
-    overlay.setAttribute("aria-label", NAAM[lang]);
-    brandName.textContent = NAAM[lang];
+    const name = pick(KRUISWEG, "title");
+    overlay.setAttribute("aria-label", name);
+    brandName.textContent = name;
     modeGroup.setAttribute("aria-label", t.weergave);
-    setsWrap.setAttribute("aria-label", NAAM[lang]);
     closeBtn.setAttribute("aria-label", t.sluiten);
     barToggle.setAttribute("aria-label", t.instellingen);
     prevBtn.setAttribute("aria-label", t.vorige);
@@ -136,10 +95,6 @@ export function initRosary() {
     nextBtn.setAttribute("aria-label", t.volgende);
     nextBtn.querySelector(".ov-nav-word").textContent = t.volgende;
 
-    foldLabel.textContent = pick(MYSTERY_SETS[state.setKey], "title");
-    foldBtn.classList.toggle("is-open", state.chipsOpen);
-    foldBtn.setAttribute("aria-expanded", String(state.chipsOpen));
-    chipsWrap.classList.toggle("is-collapsed", !state.chipsOpen);
     barControls.classList.toggle("is-open", state.barOpen);
     barToggle.classList.toggle("is-open", state.barOpen);
     barToggle.setAttribute("aria-expanded", String(state.barOpen));
@@ -148,41 +103,33 @@ export function initRosary() {
       b.classList.toggle("is-active", b.dataset.mode === state.mode);
       b.textContent = t[b.dataset.mode];
     });
-    Array.from(setsWrap.children).forEach((c) => {
-      c.querySelector(".r-chip-label").textContent = pick(MYSTERY_SETS[c.dataset.set], "title");
-      c.querySelector(".r-today").textContent = t.vandaag;
-      c.classList.toggle("is-active", c.dataset.set === state.setKey);
-      c.classList.toggle("is-today", c.dataset.set === state.todayKey);
-    });
   }
 
   function renderOverview() {
-    const set = MYSTERY_SETS[state.setKey];
     const { cols, both } = columns();
     const sub = subtitleLang(cols, true);
 
     /* Eerste kolom als hoofdtekst, tweede kolom in de stijl van de ondertitel. */
-    const items = set.mysteries
-      .map((m, i) => {
-        const cells = cols.map(
-          (l, ci) =>
-            `<p class="${ci ? "rosary-ov-la" : "rosary-ov-nl"}" lang="${l}">${escape(pick(m, "title", l))}</p>`
-        );
-        return `
-          <li class="rosary-ov-item">
-            <span class="rosary-ov-num">${i + 1}</span>
-            <div class="rosary-ov-grid${both ? " both" : ""}">${cells.join("")}</div>
-          </li>`;
-      })
-      .join("");
+    const items = STATIONS.map((s) => {
+      const cells = cols.map(
+        (l, ci) =>
+          `<p class="${ci ? "rosary-ov-la" : "rosary-ov-nl"}" lang="${l}">${escape(pick(s, "title", l))}</p>`
+      );
+      return `
+        <li class="rosary-ov-item">
+          <span class="rosary-ov-num kw-num">${roman(s.n)}</span>
+          <div class="rosary-ov-grid${both ? " both" : ""}">${cells.join("")}</div>
+        </li>`;
+    }).join("");
 
     stage.innerHTML = `
       <div class="rosary-overview">
         <header class="rosary-ov-head">
-          <p class="rosary-kicker">${escape(pick(set, "days"))}</p>
-          <h2 class="rosary-h2" lang="${cols[0]}">${escape(pick(set, "title", cols[0]))}</h2>
-          ${sub ? `<p class="rosary-sub" lang="${sub}">${escape(pick(set, "title", sub))}</p>` : ""}
+          <p class="rosary-kicker">${escape(pick(KRUISWEG, "subtitle"))}</p>
+          <h2 class="rosary-h2" lang="${cols[0]}">${escape(pick(KRUISWEG, "title", cols[0]))}</h2>
+          ${sub ? `<p class="rosary-sub" lang="${sub}">${escape(pick(KRUISWEG, "title", sub))}</p>` : ""}
         </header>
+        <p class="novena-intro">${escape(pick(KRUISWEG, "intro"))}</p>
         <ol class="rosary-ov-list">${items}</ol>
         <button class="rosary-start" type="button">${escape(common().start)}</button>
       </div>`;
@@ -194,28 +141,28 @@ export function initRosary() {
 
   function renderInteractive() {
     const step = state.steps[state.index];
-    const { cols, both } = columns((l) => Boolean(step[`title_${l}`]));
+    const { cols, both } = columns((l) => Boolean(step[`text_${l}`]));
 
     const parts = [];
     parts.push(`<p class="rosary-kicker">${escape(step.kicker)}</p>`);
 
-    const title = pick(step, "title", cols[0]);
-    parts.push(`<h2 class="rosary-h2" lang="${cols[0]}">${escape(title)}</h2>`);
+    /* Stappen zonder Latijnse titel (het voorbereidingsgebed) houden de kop in de volkstaal. */
+    const headLang = pick(step, "title", cols[0]) ? cols[0] : getLang();
+    const title = pick(step, "title", headLang);
+    parts.push(`<h2 class="rosary-h2" lang="${headLang}">${escape(title)}</h2>`);
     const subLang = subtitleLang(cols, Boolean(step.title_la));
     const sub = subLang ? pick(step, "title", subLang) : "";
     if (sub && sub !== title) {
       parts.push(`<p class="rosary-sub" lang="${subLang}">${escape(sub)}</p>`);
     }
 
-    if (step.beadTotal) {
-      parts.push(renderBeads(step.bead, step.beadTotal));
+    if (step.station) {
+      parts.push(renderStations(step.station, STATIONS.length));
     }
 
-    if (!step.mysteryHeading) {
-      parts.push(`<div class="rosary-text-grid${both ? " both" : ""}">`);
-      for (const l of cols) parts.push(textCol(l, pick(step, "text", l)));
-      parts.push(`</div>`);
-    }
+    parts.push(`<div class="rosary-text-grid${both ? " both" : ""}">`);
+    for (const l of cols) parts.push(textCol(l, pick(step, "text", l)));
+    parts.push(`</div>`);
 
     stage.innerHTML = `<article class="rosary-card" tabindex="0" aria-live="polite">${parts.join(
       ""
@@ -228,13 +175,32 @@ export function initRosary() {
     nextBtn.disabled = state.index === state.steps.length - 1;
   }
 
-  function renderBeads(current, total) {
+  /* Veertien stipjes: gebeden staties, de huidige, de nog komende. */
+  function renderStations(current, total) {
     let dots = "";
     for (let i = 1; i <= total; i++) {
       const cls = i < current ? "done" : i === current ? "active" : "todo";
       dots += `<span class="r-bead ${cls}"></span>`;
     }
     return `<div class="rosary-beads" aria-hidden="true">${dots}</div>`;
+  }
+
+  function roman(n) {
+    const map = [
+      [10, "X"],
+      [9, "IX"],
+      [5, "V"],
+      [4, "IV"],
+      [1, "I"],
+    ];
+    let out = "";
+    for (const [v, r] of map) {
+      while (n >= v) {
+        out += r;
+        n -= v;
+      }
+    }
+    return out;
   }
 
   function textCol(lang, text) {
@@ -254,22 +220,6 @@ export function initRosary() {
   }
 
   /* ---------- Acties ---------- */
-  function selectSet(key) {
-    state.setKey = key;
-    state.steps = buildRosarySteps(key, getLang());
-    state.index = 0;
-    /* Na een keuze op een smal scherm klappen de chips weer in. */
-    if (isNarrow()) state.chipsOpen = false;
-    render();
-    stage.scrollTop = 0;
-    if (state.mode === "interactief") focusCard();
-  }
-
-  function toggleChips() {
-    state.chipsOpen = !state.chipsOpen;
-    render();
-  }
-
   function toggleBar() {
     state.barOpen = !state.barOpen;
     render();
@@ -292,17 +242,15 @@ export function initRosary() {
     focusCard();
   }
 
-  /* Bij een taalwissel blijven reeks en stap staan; alleen de teksten wisselen. */
+  /* Bij een taalwissel blijft de statie staan; alleen de teksten wisselen. */
   function langChanged() {
-    state.steps = buildRosarySteps(state.setKey, getLang());
+    state.steps = buildKruiswegSteps(getLang());
     if (state.open) render();
   }
 
   function open() {
     state.open = true;
-    state.todayKey = defaultMysteryKey(currentWeekday());
-    state.setKey = state.todayKey;
-    state.steps = buildRosarySteps(state.setKey, getLang());
+    state.steps = buildKruiswegSteps(getLang());
     state.index = 0;
     root.hidden = false;
     document.body.classList.add("rosary-open-body");
@@ -321,7 +269,6 @@ export function initRosary() {
   /* ---------- Koppelingen ---------- */
   openBtn.addEventListener("click", open);
   closeBtn.addEventListener("click", close);
-  foldBtn.addEventListener("click", toggleChips);
   barToggle.addEventListener("click", toggleBar);
   prevBtn.addEventListener("click", () => go(-1));
   nextBtn.addEventListener("click", () => go(1));
