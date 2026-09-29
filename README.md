@@ -9,7 +9,8 @@ en zet zo twee willekeurige talen naast elkaar, of je toont er één.
 - **Taalkeuze links ⇄ rechts** — twee keuzelijsten (Nederlands, English, Português, Latijn; rechts ook "geen")
   met een wisselknop. De bediening volgt de volkstaal; de keuze geldt voor de hele app en wordt onthouden.
 - **Naast elkaar, ook liggend** — alleen op smalle staande schermen komen de kolommen onder elkaar.
-- **Rozenkrans, Maria-antifoon, Novena en Kruisweg** — elk in een eigen scherm, stap voor stap te bidden.
+- **Rozenkrans, Maria-antifoon, Novena, Kruisweg en Zondagsmis** — elk in een eigen scherm, stap voor stap te bidden;
+  de zondagsmis ook als doorlopende tekst om mee te lezen, met keuze van het eucharistisch gebed.
 - **Inklapbare kopbalk** — op mobiel klapt de balk met alle knoppen in achter de ☰-knop.
 - **Zoeken** — doorzoek titels en tekst, ook zonder accenten (bv. "magnificat" of "barmhartigheid").
 - **Categorieën** — gebeden zijn gegroepeerd (standaardgebeden, gebeden van de mis, geloofsbelijdenis, lofzangen, hymnen, Maria-antifonen, litanieën).
@@ -26,7 +27,7 @@ en zet zo twee willekeurige talen naast elkaar, of je toont er één.
 | `app.js` | Logica (rendert gebeden, zoeken, kopbalk) |
 | `i18n.js` | Gedeelde taalinstelling en taalknoppen |
 | `seed.js` | De gebeden-data (`export const SEED`) |
-| `rosary.js`, `antiphons.js`, `novena.js`, `kruisweg.js` | Data van de gebedsvormen |
+| `rosary.js`, `antiphons.js`, `novena.js`, `kruisweg.js`, `mis.js` | Data van de gebedsvormen |
 | `*-ui.js` | De schermen (overlays) van de gebedsvormen |
 | `sw.js`, `manifest.webmanifest`, `icons/` | Installeerbare app en offline gebruik |
 
@@ -69,10 +70,11 @@ commitnummer in `sw.js`; geïnstalleerde apps halen zo een nieuwe versie op de a
 tonen die de volgende keer dat je ze opent. Voeg je een nieuw bestand toe, zet het dan ook in de
 lijst `FILES` in `sw.js` (anders wordt het pas na het eerste gebruik bewaard).
 
-### Een samengesteld gebed
+### Samengestelde teksten (de zondagsmis)
 
-Een gebed kan ook uit delen van andere gebeden bestaan (zoals *De zondagsmis*). Geef dan `parts`
-in plaats van teksten; `compose.js` vult de teksten in alle talen in:
+De zondagsmis (`mis.js`, scherm `mis-ui.js`) is samengesteld uit de losse misgebeden, zodat elke tekst
+maar één keer bestaat; het eucharistisch gebed is daar te kiezen. `compose.js` zet zulke delen om in
+tekst per taal:
 
 ```js
 parts: [

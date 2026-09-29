@@ -3,8 +3,9 @@ import { initRosary } from "./rosary-ui.js";
 import { initAntiphons } from "./antiphons-ui.js";
 import { initNovena } from "./novena-ui.js";
 import { initKruisweg } from "./kruisweg-ui.js";
+import { initMis } from "./mis-ui.js";
 import { textGridHTML } from "./textgrid.js";
-import { composePrayers, plainText } from "./compose.js";
+import { plainText } from "./compose.js";
 import {
   getLang,
   columns,
@@ -18,8 +19,7 @@ import {
   onLangChange,
 } from "./i18n.js";
 
-/* Samengestelde gebeden (zoals de zondagsmis) krijgen hier hun tekst uit hun delen. */
-const prayers = composePrayers(SEED.prayers);
+const prayers = SEED.prayers;
 
 /* Vertaling van de vaste teksten van de hoofdpagina. */
 const UI = {
@@ -31,6 +31,7 @@ const UI = {
     antifoon: "Maria-antifoon",
     novena: "Novena",
     kruisweg: "Kruisweg",
+    mis: "Zondagsmis",
     devoties: "Gebedsvormen",
     lettergrootte: "Lettergrootte",
     kleiner: "Tekst kleiner",
@@ -73,6 +74,7 @@ const UI = {
     antifoon: "Marian antiphon",
     novena: "Novena",
     kruisweg: "Way of the Cross",
+    mis: "Sunday Mass",
     devoties: "Devotions",
     lettergrootte: "Text size",
     kleiner: "Smaller text",
@@ -115,6 +117,7 @@ const UI = {
     antifoon: "Antífona mariana",
     novena: "Novena",
     kruisweg: "Via-Sacra",
+    mis: "Missa de domingo",
     devoties: "Devoções",
     lettergrootte: "Tamanho do texto",
     kleiner: "Texto mais pequeno",
@@ -648,6 +651,7 @@ function init() {
   safeInit("maria-antifoon", initAntiphons);
   safeInit("novena", initNovena);
   safeInit("kruisweg", initKruisweg);
+  safeInit("zondagsmis", initMis);
   safeInit("installeren", initInstall);
 }
 
