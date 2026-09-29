@@ -1014,6 +1014,11 @@ body.rosary-open-body { overflow: hidden; }
 
 .ov-chips.is-collapsed { display: none; }
 
+/* ---------- Zondagsmis ---------- */
+/* Doorlopende tekst: breder voor twee kolommen; klikken bladert hier niet */
+.rosary-card.mis-card { max-width: 900px; cursor: auto; }
+.mis-card .rosary-ov-head { margin-bottom: 14px; }
+
 /* ---------- Kruisweg ---------- */
 .rosary-ov-num.kw-num { width: 2.4em; font-size: 14px; }
 
