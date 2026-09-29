@@ -12,7 +12,7 @@ en zet zo twee willekeurige talen naast elkaar, of je toont er één.
 - **Rozenkrans, Maria-antifoon, Novena en Kruisweg** — elk in een eigen scherm, stap voor stap te bidden.
 - **Inklapbare kopbalk** — op mobiel klapt de balk met alle knoppen in achter de ☰-knop.
 - **Zoeken** — doorzoek titels en tekst, ook zonder accenten (bv. "magnificat" of "barmhartigheid").
-- **Categorieën** — gebeden zijn gegroepeerd (standaardgebeden, lofzangen, hymnen, litanieën).
+- **Categorieën** — gebeden zijn gegroepeerd (standaardgebeden, gebeden van de mis, geloofsbelijdenis, lofzangen, hymnen, Maria-antifonen, litanieën).
 - **Bronvermelding** — per gebed en per taal in `seed.js` (`source_url`, `source_url_en`, `source_url_pt`).
 - **Responsief** — werkt op telefoon, tablet en desktop.
 - **Geen build-stap** — pure HTML/CSS/JS, klaar voor GitHub Pages.

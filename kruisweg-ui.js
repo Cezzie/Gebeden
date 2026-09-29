@@ -10,6 +10,7 @@ import {
   syncLangControl,
   onLangChange,
 } from "./i18n.js";
+import { textGridHTML } from "./textgrid.js";
 
 /*
  * Kruisweg als overlay, naar het voorbeeld van de rozenkrans:
@@ -141,7 +142,7 @@ export function initKruisweg() {
 
   function renderInteractive() {
     const step = state.steps[state.index];
-    const { cols, both } = columns((l) => Boolean(step[`text_${l}`]));
+    const { cols } = columns((l) => Boolean(step[`text_${l}`]));
 
     const parts = [];
     parts.push(`<p class="rosary-kicker">${escape(step.kicker)}</p>`);
@@ -160,9 +161,12 @@ export function initKruisweg() {
       parts.push(renderStations(step.station, STATIONS.length));
     }
 
-    parts.push(`<div class="rosary-text-grid${both ? " both" : ""}">`);
-    for (const l of cols) parts.push(textCol(l, pick(step, "text", l)));
-    parts.push(`</div>`);
+    parts.push(
+      textGridHTML(
+        cols.map((l) => ({ lang: l, text: pick(step, "text", l) })),
+        { gridClass: "rosary-text-grid", textClass: "rosary-text" }
+      )
+    );
 
     stage.innerHTML = `<article class="rosary-card" tabindex="0" aria-live="polite">${parts.join(
       ""
@@ -201,10 +205,6 @@ export function initKruisweg() {
       }
     }
     return out;
-  }
-
-  function textCol(lang, text) {
-    return `<p class="rosary-text ${lang}" lang="${lang}">${escape(text || "—")}</p>`;
   }
 
   function escape(s) {

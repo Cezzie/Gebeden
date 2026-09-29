@@ -14,6 +14,7 @@ import {
   syncLangControl,
   onLangChange,
 } from "./i18n.js";
+import { textGridHTML } from "./textgrid.js";
 
 /*
  * Maria-antifoon als overlay. Opent standaard op de antifoon die nu van
@@ -92,7 +93,7 @@ export function initAntiphons() {
   /* ---------- Rendering ---------- */
   function render() {
     const a = getAntiphon(state.selectedKey);
-    const { cols, both } = columns();
+    const { cols } = columns();
     const lang = getLang();
     const t = common();
 
@@ -107,11 +108,12 @@ export function initAntiphons() {
       parts.push(`<p class="rosary-sub" lang="${subLang}">${escape(sub)}</p>`);
     }
 
-    parts.push(`<div class="rosary-text-grid${both ? " both" : ""}">`);
-    for (const l of cols) {
-      parts.push(`<p class="rosary-text ${l}" lang="${l}">${escape(pick(a, "text", l))}</p>`);
-    }
-    parts.push(`</div>`);
+    parts.push(
+      textGridHTML(
+        cols.map((l) => ({ lang: l, text: pick(a, "text", l) })),
+        { gridClass: "rosary-text-grid", textClass: "rosary-text" }
+      )
+    );
 
     card.innerHTML = parts.join("");
 

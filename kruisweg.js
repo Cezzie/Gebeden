@@ -57,9 +57,9 @@ const SLOTVERSIKEL = {
 
 const NA_ELKE_STATIE = {
   nl: "Onze Vader, enz. — Wees gegroet, enz.",
-  en: "Our Father…\nHail Mary…\nGlory be…",
+  en: "Our Father… Hail Mary… Glory be…",
   pt: "Pai-nosso, Ave-Maria, Glória.",
-  la: "Pater noster…\nAve María…\nGlória Patri…",
+  la: "Pater noster… Ave María… Glória Patri…",
 };
 
 const VOORBEREIDING = {
@@ -105,7 +105,7 @@ export const STATIONS = [
     liefde_pt: "Amo-vos, ó Jesus, meu Amor, mais do que a mim mesmo, e do fundo do coração me arrependo de ter-vos ofendido. Não permitais que eu novamente me separe de vós. Dai-me amor perpétuo a vós e fazei de mim o que quiserdes. O que vos for agradável também o será para mim.",
     strofe_nl: "Door haar droef en zuchtend harte\nVol van wee en lijdenssmarte\nBoorde ’t zwaard van marteling.",
     strofe_en: "Through her heart, His sorrow sharing,\nall His bitter anguish bearing,\nnow at length the sword has passed.",
-    strofe_pt: "A morrer crucificado,\nTeu Jesus é condenado\nPor teus crimes, pecador.\n\nPela Virgem dolorosa,\nVossa Mãe tão piedosa,\nPerdoai-me, meu Jesus.",
+    strofe_pt: "A morrer crucificado,\nTeu Jesus é condenado\nPor teus crimes, pecador.\nPela Virgem dolorosa,\nVossa Mãe tão piedosa,\nPerdoai-me, meu Jesus.",
     strofe_la: "Cuius ánimam geméntem,\ncontristátam et doléntem\npertransívit gládius.",
   },
   {
@@ -125,7 +125,7 @@ export const STATIONS = [
     liefde_pt: "Amo-vos, ó Jesus, meu Amor, e arrependo-me de ter-vos ofendido. Não permitais que novamente me separe de ti. Dai-me amor perpétuo a vós e fazei de mim o que quiserdes.",
     strofe_nl: "Hoe bedrukt, met smart beladen\nWas die Maagd zo vol genaden,\nMoeder van Gods een’gen Zoon!",
     strofe_en: "O how sad and sore distressed\nwas that Mother, highly blest,\nof the sole-begotten One.",
-    strofe_pt: "Com a Cruz é carregado,\nE do peso acabrunhado,\nVai morrer por teu amor.\n\nPela Virgem dolorosa,\nVossa Mãe tão piedosa,\nPerdoai-me, meu Jesus.",
+    strofe_pt: "Com a Cruz é carregado,\nE do peso acabrunhado,\nVai morrer por teu amor.\nPela Virgem dolorosa,\nVossa Mãe tão piedosa,\nPerdoai-me, meu Jesus.",
     strofe_la: "O quam tristis et afflícta\nfuit illa benedícta,\nmater Unigéniti!",
   },
   {
@@ -145,7 +145,7 @@ export const STATIONS = [
     liefde_pt: "Amo-vos, ó Jesus, de todo o meu coração; arrependo-me de ter-vos ofendido. Não me permitais novamente cair em pecado. Dai-me amor perpétuo a vós e fazei de mim o que quiserdes.",
     strofe_nl: "Hoe die lieve Moeder snikte,\nAls ze op naar Jezus blikte,\nZwaar gewond door kruis en kroon.",
     strofe_en: "Christ above in torment hangs,\nshe beneath beholds the pangs\nof her dying glorious Son.",
-    strofe_pt: "Pela Cruz tão oprimido,\nCai Jesus, desfalecido,\nPela tua salvação.\n\nPela Virgem dolorosa,\nVossa Mãe tão piedosa,\nPerdoai-me, meu Jesus.",
+    strofe_pt: "Pela Cruz tão oprimido,\nCai Jesus, desfalecido,\nPela tua salvação.\nPela Virgem dolorosa,\nVossa Mãe tão piedosa,\nPerdoai-me, meu Jesus.",
     strofe_la: "Quæ mærébat et dolébat,\npia Mater, dum vidébat\nnati pœnas íncliti.",
   },
   {
@@ -165,7 +165,7 @@ export const STATIONS = [
     liefde_pt: "Amo-vos, ó Jesus, meu Amor; arrependo-me de ter-vos ofendido. Não me permitais novamente pecar contra vós. Dai-me amor perpétuo a vós e fazei de mim o que quiserdes.",
     strofe_nl: "Wie toch zou er zonder rouwen\nChristus’ Moeder hier aanschouwen,\nDragend zulk een foltering?",
     strofe_en: "Is there one who would not weep,\nwhelmed in miseries so deep,\nChrist’s dear Mother to behold?",
-    strofe_pt: "De Maria lacrimosa,\nNo encontro lastimosa,\nVê a imensa compaixão.\n\nPela Virgem dolorosa,\nVossa Mãe tão piedosa,\nPerdoai-me, meu Jesus.",
+    strofe_pt: "De Maria lacrimosa,\nNo encontro lastimosa,\nVê a imensa compaixão.\nPela Virgem dolorosa,\nVossa Mãe tão piedosa,\nPerdoai-me, meu Jesus.",
     strofe_la: "Quis est homo qui non fleret,\nmatrem Christi si vidéret\nin tanto supplício?",
   },
   {
@@ -185,7 +185,7 @@ export const STATIONS = [
     liefde_pt: "Amo-vos, ó Jesus, meu Amor, e arrependo-me de ter-vos ofendido. Não permitais que eu novamente vos ofenda. Dai-me amor perpétuo a vós e fazei de mim o que quiserdes.",
     strofe_nl: "Wie toch zou niet medesnikken,\nDie Maria aan zou blikken,\nLijdend met haar Lieveling?",
     strofe_en: "Can the human heart refrain\nfrom partaking in her pain,\nin that Mother’s pain untold?",
-    strofe_pt: "Em extremo desmaiado,\nTeve auxílio, tão cansado,\nRecebendo o Cireneu.\n\nPela Virgem dolorosa,\nVossa Mãe tão piedosa,\nPerdoai-me, meu Jesus.",
+    strofe_pt: "Em extremo desmaiado,\nTeve auxílio, tão cansado,\nRecebendo o Cireneu.\nPela Virgem dolorosa,\nVossa Mãe tão piedosa,\nPerdoai-me, meu Jesus.",
     strofe_la: "Quis non posset contristári\nChristi Matrem contemplári\ndoléntem cum Fílio?",
   },
   {
@@ -205,7 +205,7 @@ export const STATIONS = [
     liefde_pt: "Amo-vos, ó Jesus, meu Amor; arrependo-me de ter-vos ofendido. Não permitais que eu novamente vos ofenda. Dai-me amor perpétuo a vós e fazei de mim o que quiserdes.",
     strofe_nl: "Voor des mensen euveldaden\nZag zij Hem met smart beladen,\nEn verscheurd door geseling.",
     strofe_en: "Bruised, derided, cursed, defiled,\nshe beheld her tender Child\nAll with bloody scourges rent:",
-    strofe_pt: "O seu rosto ensanguentado,\nPor Verônica enxugado,\nEis, no pano, apareceu.\n\nPela Virgem dolorosa,\nVossa Mãe tão piedosa,\nPerdoai-me, meu Jesus.",
+    strofe_pt: "O seu rosto ensanguentado,\nPor Verônica enxugado,\nEis, no pano, apareceu.\nPela Virgem dolorosa,\nVossa Mãe tão piedosa,\nPerdoai-me, meu Jesus.",
     strofe_la: "Pro peccátis suæ gentis\nvidit Iesum in torméntis,\net flagéllis súbditum.",
   },
   {
@@ -225,7 +225,7 @@ export const STATIONS = [
     liefde_pt: "Amo-vos de todo o meu coração, ó Jesus, meu Amor; arrependo-me de ter-vos ofendido. Não permitais que eu novamente vos ofenda. Dai-me amor perpétuo a vós e fazei de mim o que quiserdes.",
     strofe_nl: "Zag zij ’t Kind haars harten stervend,\nGans verlaten, alles dervend,\nToen zijn ziele henenging.",
     strofe_en: "For the sins of His own nation,\nsaw Him hang in desolation,\nTill His spirit forth He sent.",
-    strofe_pt: "Outra vez desfalecido,\nPelas dores abatido,\nCai por terra o Salvador.\n\nPela Virgem dolorosa,\nVossa Mãe tão piedosa,\nPerdoai-me, meu Jesus.",
+    strofe_pt: "Outra vez desfalecido,\nPelas dores abatido,\nCai por terra o Salvador.\nPela Virgem dolorosa,\nVossa Mãe tão piedosa,\nPerdoai-me, meu Jesus.",
     strofe_la: "Vidit suum dulcem Natum\nmoriéndo desolátum,\ndum emísit spíritum.",
   },
   {
@@ -245,7 +245,7 @@ export const STATIONS = [
     liefde_pt: "Ó meu Jesus, amo-vos mais do que a mim mesmo; arrependo-me de ter-vos ofendido. Não permitais que eu novamente vos ofenda. Dai-me amor perpétuo a vós e fazei de mim o que quiserdes.",
     strofe_nl: "Ach dan, Moeder, bron van liefde,\nDoe mij voelen, wat u griefde,\nDoe mij treuren zo als gij.",
     strofe_en: "O thou Mother! fount of love!\nTouch my spirit from above,\nmake my heart with thine accord:",
-    strofe_pt: "Das mulheres piedosas,\nDe Sião filhas chorosas,\nÉ Jesus consolador.\n\nPela Virgem dolorosa,\nVossa Mãe tão piedosa,\nPerdoai-me, meu Jesus.",
+    strofe_pt: "Das mulheres piedosas,\nDe Sião filhas chorosas,\nÉ Jesus consolador.\nPela Virgem dolorosa,\nVossa Mãe tão piedosa,\nPerdoai-me, meu Jesus.",
     strofe_la: "Éia, Mater, fons amóris\nme sentíre vim dolóris\nfac, ut tecum lúgeam.",
   },
   {
@@ -265,7 +265,7 @@ export const STATIONS = [
     liefde_pt: "Amo-vos, ó Jesus, meu Amor, de todo o meu coração; arrependo-me de ter-vos ofendido. Não permitais que eu novamente vos ofenda. Dai-me amor perpétuo a vós e fazei de mim o que quiserdes.",
     strofe_nl: "Ja, ontsteek mijn hart van binnen,\nLeer mij Jezus Christus minnen,\nDat ik Hem behaaglijk zij.",
     strofe_en: "Make me feel as thou hast felt;\nmake my soul to glow and melt\nwith the love of Christ my Lord.",
-    strofe_pt: "Cai, terceira vez, prostrado,\nPelo peso redobrado\nDos pecados e da Cruz.\n\nPela Virgem dolorosa,\nVossa Mãe tão piedosa,\nPerdoai-me, meu Jesus.",
+    strofe_pt: "Cai, terceira vez, prostrado,\nPelo peso redobrado\nDos pecados e da Cruz.\nPela Virgem dolorosa,\nVossa Mãe tão piedosa,\nPerdoai-me, meu Jesus.",
     strofe_la: "Fac, ut árdeat cor meum\nin amándo Christum Deum\nut sibi compláceam.",
   },
   {
@@ -285,7 +285,7 @@ export const STATIONS = [
     liefde_pt: "Amo-vos de todo o meu coração; arrependo-me de ter-vos ofendido. Não permitais que eu novamente vos ofenda. Dai-me amor perpétuo a vós e fazei de mim o que quiserdes.",
     strofe_nl: "Heil’ge Moeder, hoor mijn beden,\nDruk de wonden van zijn leden\nOnuitwisbaar in mijn hart.",
     strofe_en: "Holy Mother! pierce me through,\nin my heart each wound renew\nof my Saviour crucified:",
-    strofe_pt: "Dos vestidos despojado,\nPor algozes maltratado,\nEu vos vejo, meu Jesus.\n\nPela Virgem dolorosa,\nVossa Mãe tão piedosa,\nPerdoai-me, meu Jesus.",
+    strofe_pt: "Dos vestidos despojado,\nPor algozes maltratado,\nEu vos vejo, meu Jesus.\nPela Virgem dolorosa,\nVossa Mãe tão piedosa,\nPerdoai-me, meu Jesus.",
     strofe_la: "Sancta Mater, istud agas,\ncrucifíxi fige plagas\ncordi meo válide.",
   },
   {
@@ -305,7 +305,7 @@ export const STATIONS = [
     liefde_pt: "Amo-vos mais do que a mim mesmo, arrependo-me de ter-vos ofendido. Não permitais que eu novamente vos ofenda. Dai-me amor perpétuo a vós e fazei de mim o que quiserdes.",
     strofe_nl: "Ach, uw Zoon liet om mijn zonden\nZich onmens’lijk wreed verwonden.\nDoe mij delen in zijn smart.",
     strofe_en: "Let me share with thee His pain,\nwho for all my sins was slain,\nwho for me in torments died.",
-    strofe_pt: "Sois por mim na Cruz pregado,\nInsultado, blasfemado,\nCom cegueira e com furor.\n\nPela Virgem dolorosa,\nVossa Mãe tão piedosa,\nPerdoai-me, meu Jesus.",
+    strofe_pt: "Sois por mim na Cruz pregado,\nInsultado, blasfemado,\nCom cegueira e com furor.\nPela Virgem dolorosa,\nVossa Mãe tão piedosa,\nPerdoai-me, meu Jesus.",
     strofe_la: "Tui Nati vulneráti,\ntam dignáti pro me pati,\npœnas mecum dívide.",
   },
   {
@@ -325,7 +325,7 @@ export const STATIONS = [
     liefde_pt: "Amo-vos de todo o meu coração; arrependo-me de ter-vos ofendido. Não permitais que eu novamente vos ofenda. Dai-me amor perpétuo a vós e fazei de mim o que quiserdes.",
     strofe_nl: "Laat mij innig met u wenen,\nMet zijn lijden mij verenen,\nTot mijn leven einden zal.",
     strofe_en: "Let me mingle tears with thee,\nmourning Him who mourned for me,\nall the days that I may live:",
-    strofe_pt: "Por meus crimes padecestes,\nMeu Jesus, por mim morrestes,\nOh, quão grande é minha dor!\n\nPela Virgem dolorosa,\nVossa Mãe tão piedosa,\nPerdoai-me, meu Jesus.",
+    strofe_pt: "Por meus crimes padecestes,\nMeu Jesus, por mim morrestes,\nOh, quão grande é minha dor!\nPela Virgem dolorosa,\nVossa Mãe tão piedosa,\nPerdoai-me, meu Jesus.",
     strofe_la: "Fac me tecum píe flere,\ncrucifíxo condolére,\ndonec ego víxero.",
   },
   {
@@ -345,7 +345,7 @@ export const STATIONS = [
     liefde_pt: "Amo-vos, ó Jesus, meu Amor, e arrependo-me de ter-vos ofendido. Não permitais que eu novamente vos ofenda. Dai-me amor perpétuo a vós e fazei de mim o que quiserdes.",
     strofe_nl: "Met u naast het kruis te toeven,\nMet u ’t bitter leed te proeven\nIs mijn hartewens vooral.",
     strofe_en: "By the Cross with thee to stay,\nthere with thee to weep and pray,\nis all I ask of thee to give.",
-    strofe_pt: "Do madeiro vos tiraram\nE à Mãe vos entregaram\nCom que dor e compaixão!\n\nPela Virgem dolorosa,\nVossa Mãe tão piedosa,\nPerdoai-me, meu Jesus.",
+    strofe_pt: "Do madeiro vos tiraram\nE à Mãe vos entregaram\nCom que dor e compaixão!\nPela Virgem dolorosa,\nVossa Mãe tão piedosa,\nPerdoai-me, meu Jesus.",
     strofe_la: "Iuxta Crucem tecum stare,\net me tibi sociáre\nin planctu desídero.",
   },
   {
@@ -365,7 +365,7 @@ export const STATIONS = [
     liefde_pt: "Amo-vos e arrependo-me de ter-vos ofendido. Não permitais que eu novamente vos ofenda. Dai-me amor perpétuo a vós e fazei de mim o que quiserdes.",
     strofe_nl: "Maagd der maagden, rijk aan zegen,\nWees mij toch niet ongenegen,\nDat ik met u treuren leer.",
     strofe_en: "Virgin of all virgins blest!\nListen to my fond request:\nlet me share thy grief divine;",
-    strofe_pt: "No sepulcro vos deixaram,\nSepultado, vos choraram,\nMagoado o coração.\n\nMeu Jesus, por vossos passos,\nRecebei em vossos braços\nA mim, pobre pecador.",
+    strofe_pt: "No sepulcro vos deixaram,\nSepultado, vos choraram,\nMagoado o coração.\nMeu Jesus, por vossos passos,\nRecebei em vossos braços\nA mim, pobre pecador.",
     strofe_la: "Virgo vírginum præclara,\nmihi iam non sis amára,\nfac me tecum plángere.",
   }
 ];
@@ -382,6 +382,8 @@ const K = {
 };
 
 const delen = (...stukken) => stukken.filter(Boolean).join("\n\n");
+/* Zelfde blokken als de volkstaal, met lege blokken waar geen Latijn bestaat (voor de uitlijning). */
+const delenLa = (...stukken) => stukken.map((s) => s || "").join("\n\n");
 
 /*
  * Bouwt de stappen van de kruisweg met stapkoppen in de gekozen taal.
@@ -410,7 +412,7 @@ export function buildKruiswegSteps(lang = "nl") {
     text_nl: delen(VOORBEREIDING.text_nl, VOORBEREIDING.strofe_nl),
     text_en: delen(VOORBEREIDING.text_en, VOORBEREIDING.strofe_en),
     text_pt: delen(VOORBEREIDING.text_pt, VOORBEREIDING.strofe_pt),
-    text_la: VOORBEREIDING.strofe_la,
+    text_la: delenLa("", VOORBEREIDING.strofe_la),
   });
 
   for (const s of STATIONS) {
@@ -427,7 +429,7 @@ export function buildKruiswegSteps(lang = "nl") {
         s[`strofe_${l}`]
       );
     }
-    step.text_la = delen(VERSIKEL.la, NA_ELKE_STATIE.la, SLOTVERSIKEL.la, s.strofe_la);
+    step.text_la = delenLa(VERSIKEL.la, "", "", "", NA_ELKE_STATIE.la, SLOTVERSIKEL.la, s.strofe_la);
     steps.push(step);
   }
 
