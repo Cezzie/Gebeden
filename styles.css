@@ -1205,3 +1205,24 @@ body.rosary-open-body { overflow: hidden; }
   .aligned .al-label.b { order: 2; margin-top: 26px; }
   .aligned .al-cell.b { order: 3; }
 }
+
+/* ---------- Tussenkoppen en aanduidingen in gebedsteksten ---------- */
+/* Blokken in één kolom */
+.text-col > p + .tg-block { margin-top: 1.1em; }
+.tg-head,
+.aligned .al-cell.tg-head {
+  font-family: "Cinzel", serif;
+  font-size: 13px;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--gold-deep);
+  font-style: normal;
+  line-height: 1.5;
+  margin-top: 1.8em;
+}
+.text-col > .tg-head:first-child,
+.aligned .al-label + .al-cell.tg-head,
+.aligned .al-label + .al-cell.tg-head + .al-cell.tg-head,
+.aligned > .al-cell.tg-head:first-child,
+.aligned > .al-cell.tg-head:first-child + .al-cell.tg-head { margin-top: 0; }
+.tg-note { font-style: italic; color: var(--ink-soft); }

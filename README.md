@@ -69,6 +69,22 @@ commitnummer in `sw.js`; geïnstalleerde apps halen zo een nieuwe versie op de a
 tonen die de volgende keer dat je ze opent. Voeg je een nieuw bestand toe, zet het dan ook in de
 lijst `FILES` in `sw.js` (anders wordt het pas na het eerste gebruik bewaard).
 
+### Een samengesteld gebed
+
+Een gebed kan ook uit delen van andere gebeden bestaan (zoals *De zondagsmis*). Geef dan `parts`
+in plaats van teksten; `compose.js` vult de teksten in alle talen in:
+
+```js
+parts: [
+  { heading: { nl: "Openingsriten", en: "Introductory Rites", pt: "Ritos iniciais", la: "Ritus initiales" } },
+  { ref: "signum_crucis" },                 // een heel gebed
+  { ref: "mis_antwoorden", block: 0, strip: 1 }, // één blok, zonder de kopregel
+  { note: { nl: "(Eerste lezing)", en: "(First Reading)", pt: "(Primeira leitura)", la: "(Lectio prima)" } },
+]
+```
+
+Regels die met `## ` beginnen worden als tussenkop getoond; regels tussen haakjes als aanduiding.
+
 ## Lokaal bekijken
 
 Omdat de app ES-modules gebruikt, moet je hem via een lokale server openen

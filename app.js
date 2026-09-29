@@ -4,6 +4,7 @@ import { initAntiphons } from "./antiphons-ui.js";
 import { initNovena } from "./novena-ui.js";
 import { initKruisweg } from "./kruisweg-ui.js";
 import { textGridHTML } from "./textgrid.js";
+import { composePrayers, plainText } from "./compose.js";
 import {
   getLang,
   columns,
@@ -17,7 +18,8 @@ import {
   onLangChange,
 } from "./i18n.js";
 
-const prayers = SEED.prayers;
+/* Samengestelde gebeden (zoals de zondagsmis) krijgen hier hun tekst uit hun delen. */
+const prayers = composePrayers(SEED.prayers);
 
 /* Vertaling van de vaste teksten van de hoofdpagina. */
 const UI = {
@@ -431,7 +433,7 @@ function renderView() {
 
 function prayerToText(prayer) {
   return prayerColumns(prayer)
-    .cols.map((l) => pick(prayer, "title", l) + "\n\n" + pick(prayer, "text", l))
+    .cols.map((l) => pick(prayer, "title", l) + "\n\n" + plainText(pick(prayer, "text", l)))
     .join("\n\n— — —\n\n");
 }
 

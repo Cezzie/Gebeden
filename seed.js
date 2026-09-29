@@ -601,6 +601,294 @@ export const SEED = {
       "source_url_pt": "https://agencia.ecclesia.pt/portal/papa-francisco-pede-oracao-do-terco-contra-a-divisao-da-igreja/"
     },
     {
+      "key": "mis_orde",
+      "source": "standard",
+      "title_nl": "De zondagsmis",
+      "title_la": "Ordo Missæ",
+      "title_en": "Sunday Mass",
+      "title_pt": "A Missa de domingo",
+      "parts": [
+        {
+          "heading": {
+            "nl": "Openingsriten",
+            "en": "Introductory Rites",
+            "pt": "Ritos iniciais",
+            "la": "Ritus initiales"
+          }
+        },
+        {
+          "ref": "signum_crucis"
+        },
+        {
+          "ref": "mis_antwoorden",
+          "block": 0,
+          "strip": 1
+        },
+        {
+          "ref": "mis_priestergebeden",
+          "block": 0,
+          "strip": 1
+        },
+        {
+          "ref": "mis_schuldbelijdenis"
+        },
+        {
+          "ref": "mis_kyrie"
+        },
+        {
+          "ref": "mis_gloria"
+        },
+        {
+          "note": {
+            "nl": "(Openingsgebed van de dag)",
+            "en": "(Collect of the day)",
+            "pt": "(Oração coleta do dia)",
+            "la": "(Collecta diei)"
+          }
+        },
+        {
+          "heading": {
+            "nl": "Woorddienst",
+            "en": "Liturgy of the Word",
+            "pt": "Liturgia da Palavra",
+            "la": "Liturgia verbi"
+          }
+        },
+        {
+          "note": {
+            "nl": "(Eerste lezing)",
+            "en": "(First Reading)",
+            "pt": "(Primeira leitura)",
+            "la": "(Lectio prima)"
+          }
+        },
+        {
+          "ref": "mis_antwoorden",
+          "block": 1,
+          "strip": 1
+        },
+        {
+          "note": {
+            "nl": "(Antwoordpsalm)",
+            "en": "(Responsorial Psalm)",
+            "pt": "(Salmo responsorial)",
+            "la": "(Psalmus responsorius)"
+          }
+        },
+        {
+          "note": {
+            "nl": "(Tweede lezing)",
+            "en": "(Second Reading)",
+            "pt": "(Segunda leitura)",
+            "la": "(Lectio secunda)"
+          }
+        },
+        {
+          "ref": "mis_antwoorden",
+          "block": 1,
+          "strip": 1
+        },
+        {
+          "note": {
+            "nl": "(Vers voor het evangelie — Alleluia)",
+            "en": "(Gospel Acclamation — Alleluia)",
+            "pt": "(Aclamação ao Evangelho — Aleluia)",
+            "la": "(Acclamatio ante Evangelium — Alleluia)"
+          }
+        },
+        {
+          "ref": "mis_antwoorden",
+          "block": 0,
+          "strip": 1
+        },
+        {
+          "ref": "mis_antwoorden",
+          "block": 2,
+          "strip": 1
+        },
+        {
+          "note": {
+            "nl": "(Evangelie)",
+            "en": "(Gospel)",
+            "pt": "(Evangelho)",
+            "la": "(Evangelium)"
+          }
+        },
+        {
+          "ref": "mis_antwoorden",
+          "block": 3,
+          "strip": 1
+        },
+        {
+          "note": {
+            "nl": "(Homilie)",
+            "en": "(Homily)",
+            "pt": "(Homilia)",
+            "la": "(Homilia)"
+          }
+        },
+        {
+          "ref": "credo"
+        },
+        {
+          "note": {
+            "nl": "(Voorbede)",
+            "en": "(Prayer of the Faithful)",
+            "pt": "(Oração universal)",
+            "la": "(Oratio universalis)"
+          }
+        },
+        {
+          "heading": {
+            "nl": "Eucharistische liturgie",
+            "en": "Liturgy of the Eucharist",
+            "pt": "Liturgia eucarística",
+            "la": "Liturgia eucharistica"
+          }
+        },
+        {
+          "ref": "mis_offertorium"
+        },
+        {
+          "ref": "mis_antwoorden",
+          "block": 4,
+          "strip": 1
+        },
+        {
+          "note": {
+            "nl": "(Gebed over de gaven)",
+            "en": "(Prayer over the Offerings)",
+            "pt": "(Oração sobre as oferendas)",
+            "la": "(Oratio super oblata)"
+          }
+        },
+        {
+          "ref": "mis_antwoorden",
+          "block": 5,
+          "strip": 1
+        },
+        {
+          "note": {
+            "nl": "(Prefatie van de dag)",
+            "en": "(Preface of the day)",
+            "pt": "(Prefácio do dia)",
+            "la": "(Praefatio diei)"
+          }
+        },
+        {
+          "ref": "mis_sanctus"
+        },
+        {
+          "note": {
+            "nl": "(De priester bidt Eucharistisch gebed II of III, of een ander)",
+            "en": "(The priest prays Eucharistic Prayer II or III, or another)",
+            "pt": "(O sacerdote reza a Oração Eucarística II ou III, ou outra)",
+            "la": "(Sacerdos dicit Precem eucharisticam II vel III, vel aliam)"
+          }
+        },
+        {
+          "heading": {
+            "nl": "Eucharistisch gebed II",
+            "en": "Eucharistic Prayer II",
+            "pt": "Oração Eucarística II",
+            "la": "Prex eucharistica II"
+          }
+        },
+        {
+          "ref": "mis_eucharistisch_gebed_2",
+          "from": 1
+        },
+        {
+          "heading": {
+            "nl": "Eucharistisch gebed III",
+            "en": "Eucharistic Prayer III",
+            "pt": "Oração Eucarística III",
+            "la": "Prex eucharistica III"
+          }
+        },
+        {
+          "ref": "mis_eucharistisch_gebed_3"
+        },
+        {
+          "heading": {
+            "nl": "Communieritus",
+            "en": "Communion Rite",
+            "pt": "Ritos da comunhão",
+            "la": "Ritus communionis"
+          }
+        },
+        {
+          "ref": "mis_priestergebeden",
+          "block": 1,
+          "strip": 1
+        },
+        {
+          "ref": "our_father"
+        },
+        {
+          "ref": "mis_antwoorden",
+          "block": 6,
+          "strip": 1
+        },
+        {
+          "ref": "mis_priestergebeden",
+          "block": 2,
+          "strip": 1
+        },
+        {
+          "ref": "mis_antwoorden",
+          "block": 7,
+          "strip": 1
+        },
+        {
+          "ref": "mis_agnus_dei"
+        },
+        {
+          "ref": "mis_domine_non_sum_dignus"
+        },
+        {
+          "note": {
+            "nl": "(Communie)",
+            "en": "(Communion)",
+            "pt": "(Comunhão)",
+            "la": "(Communio)"
+          }
+        },
+        {
+          "note": {
+            "nl": "(Gebed na de communie)",
+            "en": "(Prayer after Communion)",
+            "pt": "(Oração depois da comunhão)",
+            "la": "(Oratio post communionem)"
+          }
+        },
+        {
+          "heading": {
+            "nl": "Slotritus",
+            "en": "Concluding Rites",
+            "pt": "Ritos de conclusão",
+            "la": "Ritus conclusionis"
+          }
+        },
+        {
+          "ref": "mis_zegen"
+        },
+        {
+          "ref": "mis_antwoorden",
+          "block": 8,
+          "strip": 1
+        }
+      ],
+      "language": "both",
+      "category": "mis",
+      "notes": "De hele orde van de mis in één doorlopende tekst om mee te lezen. Samengesteld uit de losse misgebeden hieronder; de wisselende delen (lezingen, gebeden van de dag, prefatie) staan als aanduiding tussen haakjes.",
+      "notes_en": "The whole Order of Mass as one continuous text to follow along. Composed from the separate Mass prayers below; the variable parts (readings, prayers of the day, preface) are indicated in brackets.",
+      "notes_pt": "Toda a ordem da Missa num único texto seguido, para acompanhar. Composta a partir das orações da Missa abaixo; as partes variáveis (leituras, orações do dia, prefácio) estão indicadas entre parênteses.",
+      "source_url": "",
+      "source_url_en": "",
+      "source_url_pt": ""
+    },
+    {
       "key": "mis_schuldbelijdenis",
       "source": "standard",
       "title_nl": "Schuldbelijdenis van de mis",
@@ -757,6 +1045,106 @@ export const SEED = {
       "notes_en": "The people's fixed responses throughout the Mass: greeting, readings and Gospel, prayer over the offerings, preface, after the Our Father, sign of peace and dismissal.",
       "notes_pt": "As respostas fixas do povo ao longo da Missa: saudação, leituras e Evangelho, oração sobre as oferendas, prefácio, depois do Pai-nosso, saudação da paz e despedida.",
       "source_url": "https://www.tiltenberg.org/missaal/1/",
+      "source_url_en": "https://www.liturgyoffice.org.uk/Missal/Text/MCFL.pdf",
+      "source_url_pt": "https://www.liturgia.pt/ordinario/ordinario.pdf"
+    },
+    {
+      "key": "mis_offertorium",
+      "source": "standard",
+      "title_nl": "Gebeden bij de gaven",
+      "text_nl": "V. Gezegend zijt Gij God, Heer van al wat leeft.\nUit uw milde hand hebben wij het brood ontvangen.\nAan U dragen wij op de vrucht van de aarde, het werk van onze handen.\nMaak het voor ons tot brood van eeuwig leven.\nA. Gezegend zijt Gij, God in alle eeuwen.\n\nV. Gezegend zijt Gij God, Heer van al wat leeft.\nUit uw milde hand hebben wij de beker ontvangen.\nAan U dragen wij op de vrucht van de wijngaard, het werk van onze handen.\nMaak het voor ons tot bron van eeuwig leven.\nA. Gezegend zijt Gij, God in alle eeuwen.",
+      "title_la": "Oratiónes ad obláta",
+      "text_la": "V. Benedíctus es, Dómine, Deus univérsi,\nquia de tua largitáte accépimus panem,\nquem tibi offérimus, fructum terræ et óperis mánuum hóminum:\nex quo nobis fiet panis vitæ.\nR. Benedíctus Deus in sǽcula.\n\nV. Benedíctus es, Dómine, Deus univérsi,\nquia de tua largitáte accépimus vinum,\nquod tibi offérimus, fructum vitis et óperis mánuum hóminum,\nex quo nobis fiet potus spiritális.\nR. Benedíctus Deus in sǽcula.",
+      "title_en": "Prayers at the Preparation of the Gifts",
+      "text_en": "V. Blessed are you, Lord God of all creation,\nfor through your goodness we have received\nthe bread we offer you: fruit of the earth and work of human hands,\nit will become for us the bread of life.\nR. Blessed be God for ever.\n\nV. Blessed are you, Lord God of all creation,\nfor through your goodness we have received\nthe wine we offer you: fruit of the vine and work of human hands\nit will become our spiritual drink.\nR. Blessed be God for ever.",
+      "title_pt": "Apresentação dos dons (Bendito sejais, Senhor)",
+      "text_pt": "V. Bendito sejais, Senhor, Deus do universo,\npelo pão que recebemos da vossa bondade,\nfruto da terra e do trabalho do homem, que hoje Vos apresentamos\ne que para nós se vai tornar pão da vida.\nR. Bendito seja Deus para sempre.\n\nV. Bendito sejais, Senhor, Deus do universo,\npelo vinho que recebemos da vossa bondade,\nfruto da videira e do trabalho do homem, que hoje Vos apresentamos\ne que para nós se vai tornar vinho da salvação.\nR. Bendito seja Deus para sempre.",
+      "language": "both",
+      "category": "mis",
+      "notes": "Zegenbeden van de priester bij het aanbrengen van brood en wijn, met het antwoord van het volk.",
+      "notes_en": "The priest's blessings over the bread and wine at the preparation of the gifts, with the people's response.",
+      "notes_pt": "Bênçãos do sacerdote sobre o pão e o vinho na preparação dos dons, com a resposta do povo.",
+      "source_url": "https://www.tiltenberg.org/missaal/1/",
+      "source_url_en": "https://www.liturgies.net/Liturgies/Catholic/roman_missal/roman_missal_order_of_mass.htm",
+      "source_url_pt": "https://www.liturgia.pt/ordinario/ordinario.pdf"
+    },
+    {
+      "key": "mis_priestergebeden",
+      "source": "standard",
+      "title_nl": "Uitnodigingen en gebeden van de priester",
+      "text_nl": "Uitnodiging tot de schuldbelijdenis\nV. Broeders en zusters,\nbelijden wij onze zonden, bekeren wij ons tot God om de heilige eucharistie goed te kunnen vieren.\n\nUitnodiging tot het Onze Vader\nV. Aangespoord door een gebod van de Heer en door zijn goddelijk woord onderricht,\ndurven wij zeggen:\n\nGebed om vrede\nV. Heer Jezus Christus,\nGij hebt aan uw apostelen gezegd:\n‘Vrede laat Ik u; mijn vrede geef Ik u’,\nlet niet op onze zonden\nmaar op het geloof van uw Kerk;\nvervul uw belofte: geef vrede in uw naam en maak ons één.\nGij, die leeft in eeuwigheid.\nA. Amen.",
+      "title_la": "Monitiónes et oratiónes sacerdótis",
+      "text_la": "Invitátio ad actum pænitentiálem\nV. Fratres,\nagnoscámus peccáta nostra, ut apti simus ad sacra mystéria celebránda.\n\nInvitátio ad oratiónem domínicam\nV. Præcéptis salutáribus móniti, et divína institutióne formáti,\naudémus dícere:\n\nOrátio pro pace\nV. Dómine Iesu Christe,\nqui dixísti Apóstolis tuis:\nPacem relínquo vobis, pacem meam do vobis:\nne respícias peccáta nostra,\nsed fidem Ecclésiæ tuæ;\neámque secúndum voluntátem tuam pacificáre et coadunáre digneris.\nQui vivis et regnas in sǽcula sæculórum.\nR. Amen.",
+      "title_en": "Invitations and prayers of the priest",
+      "text_en": "Invitation to the Penitential Act\nV. Brethren (brothers and sisters),\nlet us acknowledge our sins, and so prepare ourselves to celebrate the sacred mysteries.\n\nInvitation to the Lord's Prayer\nV. At the Saviour's command and formed by divine teaching,\nwe dare to say:\n\nPrayer for peace\nV. Lord Jesus Christ,\nwho said to your Apostles,\nPeace I leave you, my peace I give you,\nlook not on our sins,\nbut on the faith of your Church,\nand graciously grant her peace and unity in accordance with your will.\nWho live and reign for ever and ever.\nR. Amen.",
+      "title_pt": "Convites e orações do sacerdote",
+      "text_pt": "Convite ao ato penitencial\nV. Irmãos:\nPara celebrarmos dignamente os santos mistérios, reconheçamos que somos pecadores.\n\nConvite ao Pai-nosso\nV. Fiéis aos ensinamentos do Salvador,\nousamos dizer:\n\nOração pela paz\nV. Senhor Jesus Cristo,\nque dissestes aos vossos apóstolos:\nDeixo-vos a paz, dou-vos a minha paz:\nnão olheis aos nossos pecados,\nmas à fé da vossa Igreja,\ne dai-lhe a união e a paz, segundo a vossa vontade,\nVós que viveis e reinais pelos séculos dos séculos.\nR. Amen.",
+      "language": "both",
+      "category": "mis",
+      "notes": "Drie vaste teksten van de priester: de uitnodiging tot de schuldbelijdenis, de inleiding op het Onze Vader en het vredesgebed.",
+      "notes_en": "Three fixed texts of the priest: the invitation to the Penitential Act, the introduction to the Our Father and the prayer for peace.",
+      "notes_pt": "Três textos fixos do sacerdote: o convite ao ato penitencial, a introdução ao Pai-nosso e a oração pela paz.",
+      "source_url": "https://www.tiltenberg.org/missaal/1/",
+      "source_url_en": "https://www.liturgies.net/Liturgies/Catholic/roman_missal/roman_missal_order_of_mass.htm",
+      "source_url_pt": "https://www.liturgia.pt/ordinario/ordinario.pdf"
+    },
+    {
+      "key": "mis_eucharistisch_gebed_2",
+      "source": "standard",
+      "title_nl": "Eucharistisch gebed II",
+      "text_nl": "Ja, het is een voorrecht, een hoge en heilzame plicht\ndat wij U, heilige Vader, altijd en overal danken\ndoor Jezus Christus, de Zoon van uw welbehagen.\nHij is uw eigen Woord waardoor Gij alles geschapen hebt.\nHem hebt Gij tot ons gezonden als Heiland en Verlosser.\nHij is vlees geworden door de heilige Geest\nen uit een maagd geboren.\nOm uw wil te vervullen\nen U een heilig volk te verwerven\nstrekte Hij zijn handen uit,\nopdat Hij door zijn lijden aan de dood een eind zou maken\nen de verrijzenis klaar als de dag voor onze ogen zou doen stralen.\nDaarom stemmen wij in met de engelen\nen met alle heiligen roemen wij uw heerlijkheid\nen wij juichen en zeggen:\nHeilig, heilig, heilig…\n\nGij zijt waarlijk heilig, onze Heer,\nde bron van alle heiligheid.\n\nHeilig dan deze gaven\nmet de dauw van uw heilige Geest,\ndat zij voor ons worden tot Lichaam en Bloed\nvan Jezus Christus onze Heer.\n\nToen Hij werd overgeleverd en vrijwillig zijn lijden op zich nam,\nnam Hij het brood, sprak de dankzegging uit,\nbrak het en gaf het zijn leerlingen met deze woorden:\nNEEMT EN EET HIERVAN, GIJ ALLEN,\nWANT DIT IS MIJN LICHAAM,\nDAT VOOR U GEGEVEN WORDT.\n\nZo nam Hij na de maaltijd ook de kelk,\nsprak opnieuw de dankzegging uit,\nen gaf hem zijn leerlingen met deze woorden:\nNEEMT DEZE BEKER EN DRINKT HIER ALLEN UIT,\nWANT DIT IS DE BEKER\nVAN HET NIEUWE ALTIJDDURENDE VERBOND,\nDIT IS MIJN BLOED DAT VOOR U EN ALLE MENSEN WORDT VERGOTEN\nTOT VERGEVING VAN DE ZONDEN.\nBLIJFT DIT DOEN OM MIJ TE GEDENKEN.\n\nV. Verkondigen wij het mysterie van het geloof.\nA. Heer Jezus, wij verkondigen uw dood\nen wij belijden tot Gij wederkeert, dat Gij verrezen zijt.\n\nZijn dood en verrijzenis indachtig, God,\nbieden wij U aan het levensbrood en de kelk van het heil.\nWij danken U omdat Gij ons waardig keurt\nom voor uw aangezicht te staan\nen uw heilige dienst te verrichten.\n\nZó delen wij in het Lichaam en Bloed van Christus\nen wij smeken U dat wij\ndoor de heilige Geest worden vergaderd tot één enige kudde.\n\nDenk toch, Heer, aan uw kerk,\nverspreid over de hele wereld,\ndat haar liefde volkomen wordt,\néén heilig volk met N. onze paus en N. onze bisschop,\nen allen die uw heilig dienstwerk verrichten.\n\nGedenk ook onze broeders en zusters\ndie reeds ontslapen zijn in de hoop der verrijzenis,\nja, alle gestorvenen dragen wij op aan uw zorg.\nNeem hen aan en laat hen verschijnen in het licht van uw gelaat.\n\nWij vragen U, ontferm U over ons allen,\nopdat wij tezamen met de maagd Maria, de moeder van Christus,\nmet de heilige Jozef, haar bruidegom,\nmet de apostelen en met alle heiligen,\ndie hier eens leefden in uw welbehagen,\nwaardig bevonden worden het eeuwig leven deelachtig te zijn en U loven en eren.\nDoor Jezus Christus, uw Zoon.\n\nDoor Hem en met Hem en in Hem\nzal uw Naam geprezen zijn,\nHeer onze God, almachtige Vader,\nin de eenheid van de heilige Geest\nhier en nu en tot in eeuwigheid.\nA. Amen.",
+      "title_la": "Prex eucharística II",
+      "text_la": "Vere dignum et iustum est, æquum et salutáre,\nnos tibi, sancte Pater, semper et ubíque grátias ágere,\nper Fílium dilectiónis tuæ Iesum Christum,\nVerbum tuum per quod cuncta fecísti:\nquem misísti nobis Salvatórem et Redemptórem,\nincarnátum de Spíritu Sancto\net ex Vírgine natum.\nQui voluntátem tuam adímplens\net pópulum tibi sanctum acquírens\nexténdit manus cum paterétur,\nut mortem sólveret\net resurrectiónem manifestáret.\nEt ídeo cum Angelis et ómnibus Sanctis\nglóriam tuam prædicámus,\nuna voce dicéntes:\nSanctus…\n\nVere Sanctus es, Dómine,\nfons omnis sanctitátis.\n\nHæc ergo dona, quǽsumus,\nSpíritus tui rore sanctífica,\nut nobis Corpus et Sanguis fiant\nDómini nostri Iesu Christi.\n\nQui, cum Passióni voluntárie traderétur,\naccépit panem et grátias agens\nfregit, dedítque discípulis suis, dicens:\nACCÍPITE ET MANDUCÁTE EX HOC OMNES:\nHOC EST ENIM CORPUS MEUM,\nQUOD PRO VOBIS TRADÉTUR.\n\nSímili modo, postquam cenátum est, accípiens et cálicem\níterum tibi grátias agens\ndedit discípulis suis, dicens:\nACCÍPITE ET BÍBITE EX EO OMNES:\nHIC EST ENIM CALIX SÁNGUINIS MEI\nNOVI ET ÆTÉRNI TESTAMÉNTI,\nQUI PRO VOBIS ET PRO MULTIS EFFUNDÉTUR\nIN REMISSIÓNEM PECCATÓRUM.\nHOC FÁCITE IN MEAM COMMEMORATIÓNEM.\n\nV. Mystérium fídei.\nR. Mortem tuam annuntiámus, Dómine,\net tuam resurrectiónem confitémur, donec vénias.\n\nMémores ígitur mortis et resurrectiónis eius,\ntibi, Dómine, panem vitæ et cálicem salútis offérimus,\ngrátias agéntes quia nos dignos habuísti\nastáre coram te\net tibi ministráre.\n\nEt súpplices deprecámur\nut Córporis et Sánguinis Christi partícipes\na Spíritu Sancto congregémur in unum.\n\nRecordáre, Dómine, Ecclésiæ tuæ\ntoto orbe diffúsæ,\nut eam in caritáte perfícias\nuna cum Papa nostro N. et Epíscopo nostro N.\net univérso clero.\n\nMeménto étiam fratrum nostrórum,\nqui in spe resurrectiónis dormiérunt,\nomniúmque in tua miseratióne defunctórum,\net eos in lumen vultus tui admítte.\n\nOmnium nostrum, quǽsumus, miserére,\nut cum beáta Dei Genetríce Vírgine María,\nbeáto Ioseph, eius sponso,\nbeátis Apóstolis et ómnibus Sanctis,\nqui tibi a sǽculo placuérunt,\nætérnæ vitæ mereámur esse consórtes, et te laudémus et glorificémus\nper Fílium tuum Iesum Christum.\n\nPer ipsum, et cum ipso, et in ipso,\nest tibi Deo Patri omnipoténti,\nin unitáte Spíritus Sancti,\nomnis honor et glória\nper ómnia sǽcula sæculórum.\nR. Amen.",
+      "title_en": "Eucharistic Prayer II",
+      "text_en": "It is truly right and just, our duty and our salvation,\nalways and everywhere to give you thanks, Father most holy,\nthrough your beloved Son, Jesus Christ,\nyour Word through whom you made all things,\nwhom you sent as our Saviour and Redeemer,\nincarnate by the Holy Spirit\nand born of the Virgin.\nFulfilling your will\nand gaining for you a holy people,\nhe stretched out his hands as he endured his Passion,\nso as to break the bonds of death\nand manifest the resurrection.\nAnd so, with the Angels and all the Saints\nwe declare your glory,\nas with one voice we acclaim:\nHoly, Holy, Holy…\n\nYou are indeed Holy, O Lord,\nthe fount of all holiness.\n\nMake holy, therefore, these gifts, we pray,\nby sending down your Spirit upon them like the dewfall,\nso that they may become for us\nthe Body and Blood of our Lord Jesus Christ.\n\nAt the time he was betrayed and entered willingly into his Passion,\nhe took bread and, giving thanks, broke it,\nand gave it to his disciples, saying:\nTAKE THIS, ALL OF YOU, AND EAT OF IT,\nFOR THIS IS MY BODY,\nWHICH WILL BE GIVEN UP FOR YOU.\n\nIn a similar way, when supper was ended, he took the chalice\nand, once more giving thanks,\nhe gave it to his disciples, saying:\nTAKE THIS, ALL OF YOU, AND DRINK FROM IT,\nFOR THIS IS THE CHALICE OF MY BLOOD,\nTHE BLOOD OF THE NEW AND ETERNAL COVENANT,\nWHICH WILL BE POURED OUT FOR YOU AND FOR MANY\nFOR THE FORGIVENESS OF SINS.\nDO THIS IN MEMORY OF ME.\n\nV. The mystery of faith.\nR. We proclaim your Death, O Lord,\nand profess your Resurrection until you come again.\n\nTherefore, as we celebrate the memorial of his Death and Resurrection,\nwe offer you, Lord, the Bread of life and the Chalice of salvation,\ngiving thanks that you have held us worthy\nto be in your presence\nand minister to you.\n\nHumbly we pray\nthat, partaking of the Body and Blood of Christ,\nwe may be gathered into one by the Holy Spirit.\n\nRemember, Lord, your Church,\nspread throughout the world,\nand bring her to the fullness of charity,\ntogether with N. our Pope and N. our Bishop\nand all the clergy.\n\nRemember also our brothers and sisters\nwho have fallen asleep in the hope of the resurrection,\nand all who have died in your mercy:\nwelcome them into the light of your face.\n\nHave mercy on us all, we pray,\nthat with the Blessed Virgin Mary, Mother of God,\nwith blessed Joseph, her Spouse,\nwith the blessed Apostles, and all the Saints\nwho have pleased you throughout the ages,\nwe may merit to be coheirs to eternal life, and may praise and glorify you\nthrough your Son, Jesus Christ.\n\nThrough him, and with him, and in him,\nO God, almighty Father,\nin the unity of the Holy Spirit,\nall glory and honour is yours,\nfor ever and ever.\nR. Amen.",
+      "title_pt": "Oração eucarística II",
+      "text_pt": "Senhor, Pai santo, Deus eterno e omnipotente, é verdadeiramente nosso dever, é nossa salvação\ndar-Vos graças, sempre e em toda a parte,\npor Jesus Cristo, vosso amado Filho.\nEle é a vossa palavra, por quem tudo criastes.\nEnviado por Vós, como Salvador e Redentor,\nfez-Se homem pelo poder do Espírito Santo\ne nasceu da Virgem Maria.\nPara cumprir a vossa vontade\ne adquirir para Vós um povo santo,\nestendeu os braços e morreu na cruz;\ne, destruindo assim a morte,\nmanifestou a vitória da ressurreição.\nPor isso, com os anjos e todos os santos,\nproclamamos a vossa glória,\ndizendo (cantando) numa só voz:\nSanto, Santo, Santo…\n\nVós, Senhor, sois verdadeiramente santo,\nsois a fonte de toda a santidade.\n\nSantificai estes dons,\nderramando sobre eles o vosso Espírito,\nde modo que se convertam, para nós,\nno Corpo e Sangue de nosso Senhor Jesus Cristo.\n\nNa hora em que Ele Se entregava, para voluntariamente sofrer a morte,\ntomou o pão e, dando graças, partiu-o\ne deu-o aos seus discípulos, dizendo:\nTOMAI, TODOS, E COMEI:\nISTO É O MEU CORPO,\nQUE SERÁ ENTREGUE POR VÓS.\n\nDe igual modo, no fim da Ceia, tomou o cálice,\nde novo Vos deu graças\ne deu-o aos seus discípulos, dizendo:\nTOMAI, TODOS, E BEBEI:\nESTE É O CÁLICE DO MEU SANGUE,\nO SANGUE DA NOVA E ETERNA ALIANÇA,\nQUE SERÁ DERRAMADO POR VÓS E POR TODOS\nPARA REMISSÃO DOS PECADOS.\nFAZEI ISTO EM MEMÓRIA DE MIM.\n\nV. Mistério da fé!\nR. Anunciamos, Senhor, a vossa morte,\nproclamamos a vossa ressurreição. Vinde, Senhor Jesus!\n\nCelebrando agora, Senhor, o memorial da morte e ressurreição de vosso Filho,\nnós Vos oferecemos o pão da vida e o cálice da salvação\ne Vos damos graças,\nporque nos admitistes à vossa presença,\npara Vos servir nestes santos mistérios.\n\nHumildemente Vos suplicamos\nque, participando no Corpo e Sangue de Cristo,\nsejamos reunidos, pelo Espírito Santo, num só corpo.\n\nLembrai-Vos, Senhor, da vossa Igreja,\ndispersa por toda a terra,\ne tornai-a perfeita na caridade,\nem comunhão com o nosso papa N., o nosso bispo N.\ne todos os ministros sagrados.\n\nLembrai-Vos também dos (outros) nossos irmãos,\nque adormeceram na esperança da ressurreição,\ne de todos aqueles que na vossa misericórdia partiram deste mundo:\nadmiti-os na luz da vossa presença.\n\nTende misericórdia de nós, Senhor, e dai-nos a graça de participar na vida eterna,\ncom a Virgem santa Maria, Mãe de Deus,\nsão José, seu esposo,\nos bem-aventurados apóstolos, e todos os santos,\nque, desde o princípio do mundo, viveram na vossa amizade,\npara cantarmos os vossos louvores,\npor Jesus Cristo, vosso Filho.\n\nPor Cristo, com Cristo, em Cristo,\na Vós, Deus Pai todo-poderoso,\nna unidade do Espírito Santo,\ntoda a honra e toda a glória,\npor todos os séculos dos séculos.\nR. Amen.",
+      "language": "both",
+      "category": "mis",
+      "notes": "Het tweede eucharistisch gebed, met zijn eigen prefatie; het kortste en het meest gebruikte. De acclamatie na de consecratie staat hier in de eerste vorm; de andere twee staan bij de losse acclamatie.",
+      "notes_en": "The second Eucharistic Prayer, with its own preface; the shortest and most often used. The memorial acclamation is given in its first form; the other two are under the separate acclamation entry.",
+      "notes_pt": "A segunda Oração Eucarística, com o seu próprio prefácio; a mais breve e a mais usada. A aclamação depois da consagração está aqui na primeira forma; as outras duas estão na aclamação em separado.",
+      "source_url": "https://www.tiltenberg.org/missaal/1/server/get_content.php?output=web&translation=old&hashtag=eg_2c&type=simple",
+      "source_url_en": "https://www.liturgyoffice.org.uk/Missal/Text/EP2-A4.pdf",
+      "source_url_pt": "https://www.liturgia.pt/ordinario/ordinario.pdf"
+    },
+    {
+      "key": "mis_eucharistisch_gebed_3",
+      "source": "standard",
+      "title_nl": "Eucharistisch gebed III",
+      "text_nl": "Ja Heer, Gij zijt werkelijk de heilige;\nheel uw schepping moet U wel prijzen,\nwant door Jezus Christus, uw Zoon, onze Heer,\nmaakt Gij alles levend en heilig, in de kracht van de heilige Geest.\nAltijd blijft Gij bezig, U een volk bijeen te brengen uit alle naties en rassen en talen;\nwant van oost tot west\nmoet door een zuivere offergave hulde worden gebracht aan uw Naam.\n\nWij hebben deze gaven dan ook hier gebracht om ze aan U toe te wijden.\nIn alle ootmoed vragen wij U, ze te heiligen door uw Geest,\nen ze Lichaam en Bloed te doen zijn\nvan Jezus Christus, uw Zoon, onze Heer,\nop wiens woord wij deze geheimen vieren.\n\nWant in de nacht dat Hij werd overgeleverd\nnam Hij brood\nen sprak daarover het dankgebed om uw Naam te verheerlijken.\nToen brak Hij het brood, gaf het aan zijn leerlingen en zei:\nNEEMT EN EET HIERVAN, GIJ ALLEN,\nWANT DIT IS MIJN LICHAAM,\nDAT VOOR U GEGEVEN WORDT.\n\nZo nam Hij ook na de maaltijd de beker\nen sprak een zegenbede om uw Naam te verheerlijken.\nHij gaf hem aan zijn leerlingen en zei:\nNEEMT DEZE BEKER EN DRINKT HIER ALLEN UIT,\nWANT DIT IS DE BEKER\nVAN HET NIEUWE ALTIJDDURENDE VERBOND,\nDIT IS MIJN BLOED DAT VOOR U EN ALLE MENSEN WORDT VERGOTEN\nTOT VERGEVING VAN DE ZONDEN.\nBLIJFT DIT DOEN OM MIJ TE GEDENKEN.\n\nV. Verkondigen wij het mysterie van het geloof.\nA. Heer Jezus, wij verkondigen uw dood\nen wij belijden tot Gij wederkeert, dat Gij verrezen zijt.\n\nDaarom Heer, gedenken wij\nhet heilzaam lijden en sterven van uw Zoon,\nzijn glorievolle verrijzenis,\nen zijn verheffing aan uw rechterhand;\nzo staan wij vol verwachting open voor zijn wederkomst,\nen bieden U vol dankbaarheid\ndit offer aan, zo levend en heilig.\n\nWij vragen U, Heer: zie welwillend neer op het offer van uw kerk,\nen wil er uw Zoon in herkennen,\ndoor wiens dood Gij ons met U verzoend hebt.\nGeef dat wij mogen worden verkwikt door het nuttigen van zijn Lichaam en Bloed.\nVervul ons van zijn heilige Geest\nopdat men ons in Christus zal zien worden tot één lichaam en één geest.\n\nMoge Hij ons maken tot een blijvende offergave voor U:\ndan zullen wij het erfdeel verkrijgen dat Gij ons beloofd hebt,\nsamen met Maria, de heilige Maagd en Moeder van God;\nmet de heilige Jozef, haar bruidegom,\nsamen met uw apostelen en martelaren,\nen met allen die in uw heerlijkheid zijn\nen daar voor ons bidden.\n\nMogen de vrede in de wereld en het heil van alle mensen toenemen door dit offer van uw Zoon,\ndat ons in handen is gegeven opdat wij met U worden verzoend.\nMaak uw volk, onderweg hier op aarde, sterk in liefde en geloof:\nsamen met uw dienaar N., onze paus en N., onze bisschop,\nmet alle bisschoppen, de geestelijkheid\nen heel het gelovige volk dat Gij U hebt verworven.\n\nWij vragen U, welwillend te staan tegenover de wensen van deze gemeenschap\ndie hier bij U is, en waarvan Gij de Vader zijt.\nGoede God, breng in uw barmhartigheid\nal uw kinderen van overal bijeen.\n\nLaat onze overleden broeders en zusters,\nja, laat allen die U lief waren en die van hier zijn heengegaan,\ngenadig binnen in uw rijk.\nOok wijzelf hopen daar eens te mogen zijn,\nom met hen samen voor altijd te mogen genieten van uw heerlijkheid,\ndoor Christus onze Heer.\nIn Hem schenkt Gij alles wat goed is aan deze wereld.\n\nDoor Hem en met Hem en in Hem\nzal uw Naam geprezen zijn,\nHeer onze God, almachtige Vader,\nin de eenheid van de heilige Geest,\nhier en nu en tot in eeuwigheid.\nA. Amen.",
+      "title_la": "Prex eucharística III",
+      "text_la": "Vere Sanctus es, Dómine,\net mérito te laudat omnis a te cóndita creatúra,\nquia per Fílium tuum, Dóminum nostrum Iesum Christum,\nSpíritus Sancti operánte virtúte, vivíficas et sanctíficas univérsa,\net pópulum tibi congregáre non désinis,\nut a solis ortu usque ad occásum\noblátio munda offerátur nómini tuo.\n\nSúpplices ergo te, Dómine, deprecámur,\nut hæc múnera, quæ tibi sacránda detúlimus, eódem Spíritu sanctificáre dignéris,\nut Corpus et Sanguis fiant\nFílii tui Dómini nostri Iesu Christi,\ncuius mandáto hæc mystéria celebrámus.\n\nIpse enim in qua nocte tradebátur\naccépit panem\net tibi grátias agens benedíxit,\nfregit, dedítque discípulis suis, dicens:\nACCÍPITE ET MANDUCÁTE EX HOC OMNES:\nHOC EST ENIM CORPUS MEUM,\nQUOD PRO VOBIS TRADÉTUR.\n\nSímili modo, postquam cenátum est, accípiens cálicem\net tibi grátias agens benedíxit,\ndedítque discípulis suis, dicens:\nACCÍPITE ET BÍBITE EX EO OMNES:\nHIC EST ENIM CALIX SÁNGUINIS MEI\nNOVI ET ÆTÉRNI TESTAMÉNTI,\nQUI PRO VOBIS ET PRO MULTIS EFFUNDÉTUR\nIN REMISSIÓNEM PECCATÓRUM.\nHOC FÁCITE IN MEAM COMMEMORATIÓNEM.\n\nV. Mystérium fídei.\nR. Mortem tuam annuntiámus, Dómine,\net tuam resurrectiónem confitémur, donec vénias.\n\nMémores ígitur, Dómine\neiúsdem Fílii tui salutíferæ passiónis\nnecnon mirábilis resurrectiónis\net ascensiónis in cælum,\nsed et præstolántes álterum eius adventum,\nofférimus tibi, grátias referéntes,\nhoc sacrifícium vivum et sanctum.\n\nRéspice, quǽsumus, in oblatiónem Ecclésiæ tuæ\net, agnóscens Hóstiam,\ncuius voluísti immolatióne placári,\nconcéde, ut qui Córpore et Sánguine Fílii tui refícimur,\nSpíritu eius Sancto repléti,\nunum corpus et unus spíritus inveniámur in Christo.\n\nIpse nos tibi perfíciat munus ætérnum,\nut cum eléctis tuis hereditátem cónsequi valeámus,\nin primis cum beatíssima Vírgine, Dei Genetríce, María,\ncum beáto Ioseph, eius sponso,\ncum beátis Apóstolis tuis et gloriosis Martýribus\net ómnibus Sanctis,\nquorum intercessióne perpétuo apud te confídimus adiuvári.\n\nHæc Hóstia nostræ reconciliatiónis profíciat, quǽsumus, Dómine,\nad totíus mundi pacem atque salútem.\nEcclésiam tuam, peregrinántem in terra, in fide et caritáte firmáre dignéris\ncum fámulo tuo Papa nostro N. et Epíscopo nostro N.,\ncum episcopáli órdine et univérso clero\net omni pópulo acquisitiónis tuæ.\n\nVotis huius famíliæ, quam tibi astáre voluísti,\nadésto propítius.\nOmnes fílios tuos ubíque dispérsos\ntibi, clemens Pater, miserátus coniúnge.\n\nFratres nostros defúnctos\net omnes qui, tibi placéntes, ex hoc sǽculo transiérunt,\nin regnum tuum benígnus admítte,\nubi fore sperámus,\nut simul glória tua perénniter satiémur,\nper Christum Dóminum nostrum,\nper quem mundo bona cuncta largíris.\n\nPer ipsum, et cum ipso, et in ipso,\nest tibi Deo Patri omnipoténti,\nin unitáte Spíritus Sancti,\nomnis honor et glória\nper ómnia sǽcula sæculórum.\nR. Amen.",
+      "title_en": "Eucharistic Prayer III",
+      "text_en": "You are indeed Holy, O Lord,\nand all you have created rightly gives you praise,\nfor through your Son our Lord Jesus Christ,\nby the power and working of the Holy Spirit, you give life to all things and make them holy,\nand you never cease to gather a people to yourself,\nso that from the rising of the sun to its setting\na pure sacrifice may be offered to your name.\n\nTherefore, O Lord, we humbly implore you:\nby the same Spirit graciously make holy these gifts we have brought to you for consecration,\nthat they may become the Body and Blood\nof your Son our Lord Jesus Christ,\nat whose command we celebrate these mysteries.\n\nFor on the night he was betrayed\nhe himself took bread,\nand, giving you thanks, he said the blessing,\nbroke the bread and gave it to his disciples, saying:\nTAKE THIS, ALL OF YOU, AND EAT OF IT,\nFOR THIS IS MY BODY,\nWHICH WILL BE GIVEN UP FOR YOU.\n\nIn a similar way, when supper was ended, he took the chalice,\nand, giving you thanks, he said the blessing,\nand gave the chalice to his disciples, saying:\nTAKE THIS, ALL OF YOU, AND DRINK FROM IT,\nFOR THIS IS THE CHALICE OF MY BLOOD,\nTHE BLOOD OF THE NEW AND ETERNAL COVENANT,\nWHICH WILL BE POURED OUT FOR YOU AND FOR MANY\nFOR THE FORGIVENESS OF SINS.\nDO THIS IN MEMORY OF ME.\n\nV. The mystery of faith.\nR. We proclaim your Death, O Lord,\nand profess your Resurrection until you come again.\n\nTherefore, O Lord, as we celebrate the memorial\nof the saving Passion of your Son,\nhis wondrous Resurrection\nand Ascension into heaven,\nand as we look forward to his second coming,\nwe offer you in thanksgiving\nthis holy and living sacrifice.\n\nLook, we pray, upon the oblation of your Church\nand, recognizing the sacrificial Victim\nby whose death you willed to reconcile us to yourself,\ngrant that we, who are nourished by the Body and Blood of your Son\nand filled with his Holy Spirit,\nmay become one body, one spirit in Christ.\n\nMay he make of us an eternal offering to you,\nso that we may obtain an inheritance with your elect,\nespecially with the most Blessed Virgin Mary, Mother of God,\nwith blessed Joseph, her Spouse,\nwith your blessed Apostles and glorious Martyrs\n(with Saint N.: the Saint of the day or Patron Saint) and with all the Saints,\non whose constant intercession in your presence we rely for unfailing help.\n\nMay this Sacrifice of our reconciliation, we pray, O Lord,\nadvance the peace and salvation of all the world.\nBe pleased to confirm in faith and charity your pilgrim Church on earth,\nwith your servant N. our Pope and N. our Bishop,\nthe Order of Bishops, all the clergy,\nand the entire people you have gained for your own.\n\nListen graciously to the prayers of this family,\nwhom you have summoned before you:\nin your compassion, O merciful Father,\ngather to yourself all your children scattered throughout the world.\n\nTo our departed brothers and sisters\nand to all who were pleasing to you at their passing from this life,\ngive kind admittance to your kingdom.\nThere we hope\nto enjoy for ever the fullness of your glory\nthrough Christ our Lord,\nthrough whom you bestow on the world all that is good.\n\nThrough him, and with him, and in him,\nO God, almighty Father,\nin the unity of the Holy Spirit,\nall glory and honour is yours,\nfor ever and ever.\nR. Amen.",
+      "title_pt": "Oração eucarística III",
+      "text_pt": "Vós, Senhor, sois verdadeiramente santo\ne todas as criaturas cantam os vossos louvores,\nporque dais a vida e santificais todas as coisas, por nosso Senhor Jesus Cristo, vosso Filho,\ncom o poder do Espírito Santo,\ne não cessais de reunir para Vós um povo,\nque, de um extremo ao outro da terra,\nVos ofereça uma oblação pura.\n\nHumildemente Vos suplicamos, Senhor:\nsantificai, pelo Espírito Santo, estes dons que Vos apresentamos,\npara que se convertam no Corpo e Sangue\nde nosso Senhor Jesus Cristo, vosso Filho,\nque nos mandou celebrar estes mistérios.\n\nNa noite em que Ele ia ser entregue,\ntomou o pão,\ndando graças Vos bendisse,\npartiu-o e deu-o aos seus discípulos, dizendo:\nTOMAI, TODOS, E COMEI:\nISTO É O MEU CORPO,\nQUE SERÁ ENTREGUE POR VÓS.\n\nDe igual modo, no fim da Ceia, tomou o cálice,\ndando graças Vos bendisse\ne deu-o aos seus discípulos, dizendo:\nTOMAI, TODOS, E BEBEI:\nESTE É O CÁLICE DO MEU SANGUE,\nO SANGUE DA NOVA E ETERNA ALIANÇA,\nQUE SERÁ DERRAMADO POR VÓS E POR TODOS\nPARA REMISSÃO DOS PECADOS.\nFAZEI ISTO EM MEMÓRIA DE MIM.\n\nV. Mistério da fé!\nR. Anunciamos, Senhor, a vossa morte,\nproclamamos a vossa ressurreição. Vinde, Senhor Jesus!\n\nCelebrando agora, Senhor, o memorial\nda paixão redentora do vosso Filho,\nda sua admirável ressurreição\ne ascensão aos céus,\ne esperando a sua vinda gloriosa,\nnós Vos oferecemos, em ação de graças,\neste sacrifício vivo e santo.\n\nOlhai benignamente para a oblação da vossa Igreja:\nvede nela a vítima\nque nos reconciliou convosco\ne fazei que, alimentando-nos do Corpo e Sangue do vosso Filho,\ncheios do seu Espírito Santo,\nsejamos em Cristo um só corpo e um só espírito.\n\nO Espírito Santo faça de nós uma oferenda permanente,\na fim de alcançarmos a herança eterna, em companhia dos vossos eleitos,\ncom a Virgem santa Maria, Mãe de Deus,\nsão José, seu esposo,\nos bem-aventurados apóstolos e gloriosos mártires,\ne todos os santos,\npor cuja intercessão esperamos sempre o vosso auxílio.\n\nPor este sacrifício de reconciliação,\ndai, Senhor, a salvação e a paz ao mundo inteiro;\nconfirmai a vossa Igreja na fé e na caridade, ao longo da sua peregrinação na terra,\ncom o vosso servo, o nosso papa N., o nosso bispo N.\ne todos os bispos e ministros sagrados,\ne todo o povo por Vós redimido.\n\nAtendei benignamente às preces desta família,\nque Vos dignastes reunir na vossa presença.\nReconduzi a Vós, Pai de misericórdia,\ntodos os vossos filhos dispersos.\n\nLembrai-Vos dos nossos irmãos defuntos\ne de todos os que morreram na vossa amizade.\nAcolhei-os com bondade no vosso reino,\nonde também nós esperamos ser recebidos,\npara vivermos com eles eternamente na vossa glória,\npor nosso Senhor Jesus Cristo.\nPor Ele concedeis ao mundo todos os bens.\n\nPor Cristo, com Cristo, em Cristo,\na Vós, Deus Pai todo-poderoso,\nna unidade do Espírito Santo,\ntoda a honra e toda a glória,\npor todos os séculos dos séculos.\nR. Amen.",
+      "language": "both",
+      "category": "mis",
+      "notes": "Het derde eucharistisch gebed, veel gebruikt op zondagen en feesten; het heeft geen eigen prefatie. De acclamatie na de consecratie staat hier in de eerste vorm.",
+      "notes_en": "The third Eucharistic Prayer, often used on Sundays and feasts; it has no preface of its own. The memorial acclamation is given in its first form.",
+      "notes_pt": "A terceira Oração Eucarística, muito usada aos domingos e festas; não tem prefácio próprio. A aclamação depois da consagração está aqui na primeira forma.",
+      "source_url": "https://www.tiltenberg.org/missaal/1/server/get_content.php?output=web&translation=old&hashtag=eg_3b&type=simple",
+      "source_url_en": "https://www.liturgyoffice.org.uk/Missal/Text/EP3-A4.pdf",
+      "source_url_pt": "https://www.liturgia.pt/ordinario/ordinario.pdf"
+    },
+    {
+      "key": "mis_zegen",
+      "source": "standard",
+      "title_nl": "Slotzegen",
+      "text_nl": "V. De Heer zij met u.\nA. En met uw geest.\nV. Zegene u de almachtige God,\nVader, Zoon en heilige Geest.\nA. Amen.",
+      "title_la": "Benedíctio finális",
+      "text_la": "V. Dóminus vobíscum.\nR. Et cum spíritu tuo.\nV. Benedícat vos omnípotens Deus,\nPater, et Fílius, et Spíritus Sanctus.\nR. Amen.",
+      "title_en": "Final Blessing",
+      "text_en": "V. The Lord be with you.\nR. And with your spirit.\nV. May almighty God bless you,\nthe Father, and the Son, and the Holy Spirit.\nR. Amen.",
+      "title_pt": "Bênção final",
+      "text_pt": "V. O Senhor esteja convosco.\nR. Ele está no meio de nós.\nV. Abençoe-vos Deus todo-poderoso,\nPai, Filho e Espírito Santo.\nR. Amen.",
+      "language": "both",
+      "category": "mis",
+      "notes": "De gewone slotzegen aan het einde van de mis.",
+      "notes_en": "The simple final blessing at the end of Mass.",
+      "notes_pt": "A bênção final simples no fim da Missa.",
+      "source_url": "https://www.tiltenberg.org/missaal/1/server/get_content.php?output=web&translation=old&hashtag=ze_gw&type=simple",
       "source_url_en": "https://www.liturgyoffice.org.uk/Missal/Text/MCFL.pdf",
       "source_url_pt": "https://www.liturgia.pt/ordinario/ordinario.pdf"
     },
