@@ -3,6 +3,7 @@ import { initRosary } from "./rosary-ui.js";
 import { initAntiphons } from "./antiphons-ui.js";
 import { initNovena } from "./novena-ui.js";
 import { initKruisweg } from "./kruisweg-ui.js";
+import { textGridHTML } from "./textgrid.js";
 import {
   getLang,
   columns,
@@ -52,6 +53,7 @@ const UI = {
       "Op de iPhone: open deze pagina in Safari, tik op Deel (het vierkantje met pijl) en kies ‘Zet op beginscherm’. Op Android: menu ⋮ → ‘App installeren’ of ‘Toevoegen aan startscherm’.",
     categorie: {
       standaardgebed: "Standaardgebeden",
+      mis: "Gebeden van de mis",
       geloofsbelijdenis: "Geloofsbelijdenis",
       "maria-antifoon": "Maria-antifoon",
       antifoon: "Antifonen",
@@ -93,6 +95,7 @@ const UI = {
       "On iPhone: open this page in Safari, tap Share (the square with an arrow) and choose ‘Add to Home Screen’. On Android: menu ⋮ → ‘Install app’ or ‘Add to Home screen’.",
     categorie: {
       standaardgebed: "Common prayers",
+      mis: "Prayers of the Mass",
       geloofsbelijdenis: "Creeds",
       "maria-antifoon": "Marian antiphons",
       antifoon: "Antiphons",
@@ -134,6 +137,7 @@ const UI = {
       "No iPhone: abra esta página no Safari, toque em Partilhar (o quadrado com uma seta) e escolha ‘Adicionar ao ecrã principal’. No Android: menu ⋮ → ‘Instalar aplicação’ ou ‘Adicionar ao ecrã principal’.",
     categorie: {
       standaardgebed: "Orações comuns",
+      mis: "Orações da Missa",
       geloofsbelijdenis: "Profissão de fé",
       "maria-antifoon": "Antífonas marianas",
       antifoon: "Antífonas",
@@ -148,6 +152,7 @@ const ui = () => UI[getLang()];
 
 const CATEGORY_ORDER = [
   "standaardgebed",
+  "mis",
   "geloofsbelijdenis",
   "evangelielofzang",
   "hymne",
@@ -400,13 +405,13 @@ function renderView() {
   rule.className = "rule";
   view.appendChild(rule);
 
-  // Text grid
+  // Tekst: één kolom, of twee talen regel voor regel naast elkaar
   const grid = document.createElement("div");
-  grid.className = "text-grid" + (both ? " both" : "");
-  for (const l of cols) {
-    grid.appendChild(makeColumn(l, langLabel(l), pick(prayer, "text", l), both));
-  }
-  view.appendChild(grid);
+  grid.innerHTML = textGridHTML(
+    cols.map((l) => ({ lang: l, label: langLabel(l), text: pick(prayer, "text", l) })),
+    { gridClass: "text-grid", textClass: "prayer-text", labelClass: "col-label", labels: both }
+  );
+  view.appendChild(grid.firstElementChild);
 
   // Notes
   const notesText = pick(prayer, "notes");
@@ -469,26 +474,6 @@ function makeCopyButton(prayer) {
   });
 
   return btn;
-}
-
-function makeColumn(langCode, label, text, showLabel) {
-  const col = document.createElement("div");
-  col.className = "text-col " + langCode;
-  col.lang = langCode;
-
-  if (showLabel) {
-    const lbl = document.createElement("p");
-    lbl.className = "col-label";
-    lbl.textContent = label;
-    col.appendChild(lbl);
-  }
-
-  const body = document.createElement("p");
-  body.className = "prayer-text";
-  body.textContent = text || "—";
-  col.appendChild(body);
-
-  return col;
 }
 
 /* ---------- Actions ---------- */

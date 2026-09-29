@@ -16,6 +16,7 @@ import {
   syncLangControl,
   onLangChange,
 } from "./i18n.js";
+import { textGridHTML } from "./textgrid.js";
 
 /*
  * Novena als overlay met twee weergaven, naar het voorbeeld van de rozenkrans:
@@ -354,9 +355,12 @@ export function initNovena() {
       parts.push(`<p class="rosary-sub" lang="${subLang}">${escape(sub)}</p>`);
     }
 
-    parts.push(`<div class="rosary-text-grid${both ? " both" : ""}">`);
-    for (const l of cols) parts.push(textCol(l, langLabel(l), pick(step, "text", l), both));
-    parts.push(`</div>`);
+    parts.push(
+      textGridHTML(
+        cols.map((l) => ({ lang: l, label: langLabel(l), text: pick(step, "text", l) })),
+        { gridClass: "rosary-text-grid", textClass: "rosary-text", labelClass: "novena-col-label", labels: both }
+      )
+    );
 
     stage.innerHTML = `<article class="rosary-card" tabindex="0" aria-live="polite">${parts.join(
       ""
@@ -367,15 +371,6 @@ export function initNovena() {
     counter.textContent = t.stap(state.index + 1, state.steps.length);
     prevBtn.disabled = state.index === 0;
     nextBtn.disabled = state.index === state.steps.length - 1;
-  }
-
-  function textCol(lang, label, text, showLabel) {
-    const lbl = showLabel
-      ? `<p class="novena-col-label">${escape(label)}</p>`
-      : "";
-    return `<div class="novena-text-col" lang="${lang}">${lbl}<p class="rosary-text ${lang}">${escape(
-      text || "—"
-    )}</p></div>`;
   }
 
   function escape(s) {

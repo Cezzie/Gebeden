@@ -15,6 +15,7 @@ import {
   syncLangControl,
   onLangChange,
 } from "./i18n.js";
+import { textGridHTML } from "./textgrid.js";
 
 /*
  * Rozenkrans als overlay met twee weergaven:
@@ -194,7 +195,7 @@ export function initRosary() {
 
   function renderInteractive() {
     const step = state.steps[state.index];
-    const { cols, both } = columns((l) => Boolean(step[`title_${l}`]));
+    const { cols } = columns((l) => Boolean(step[`title_${l}`]));
 
     const parts = [];
     parts.push(`<p class="rosary-kicker">${escape(step.kicker)}</p>`);
@@ -212,9 +213,12 @@ export function initRosary() {
     }
 
     if (!step.mysteryHeading) {
-      parts.push(`<div class="rosary-text-grid${both ? " both" : ""}">`);
-      for (const l of cols) parts.push(textCol(l, pick(step, "text", l)));
-      parts.push(`</div>`);
+      parts.push(
+        textGridHTML(
+          cols.map((l) => ({ lang: l, text: pick(step, "text", l) })),
+          { gridClass: "rosary-text-grid", textClass: "rosary-text" }
+        )
+      );
     }
 
     stage.innerHTML = `<article class="rosary-card" tabindex="0" aria-live="polite">${parts.join(
@@ -235,10 +239,6 @@ export function initRosary() {
       dots += `<span class="r-bead ${cls}"></span>`;
     }
     return `<div class="rosary-beads" aria-hidden="true">${dots}</div>`;
-  }
-
-  function textCol(lang, text) {
-    return `<p class="rosary-text ${lang}" lang="${lang}">${escape(text || "—")}</p>`;
   }
 
   function escape(s) {

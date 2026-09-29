@@ -709,7 +709,7 @@ function buildIgnatiusSteps(novena, day) {
 
   return [
     seedStap(K.begin, "signum_crucis"),
-    seedStap(K.ignatius, "suscipe", (lang) => beurtgebed("suscipe", lang, 2)),
+    seedStap(K.ignatius, "suscipe", (lang) => beurtgebed("suscipe", lang, 1)),
     seedStap(K.ignatius, "anima_christi"),
     /* Het Portugees opent met de aanspreking "Senhor Jesus" op een eigen regel. */
     seedStap(K.ignatius, "gebed_om_edelmoedigheid", (lang) =>

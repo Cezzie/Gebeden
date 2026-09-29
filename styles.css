@@ -556,7 +556,9 @@ body {
   margin: 0;
 }
 
-.text-col.la .prayer-text { font-style: italic; }
+.text-col.la .prayer-text,
+.prayer-text.la { font-style: italic; }
+
 
 .prayer-notes {
   margin-top: 32px;
@@ -1177,4 +1179,29 @@ body.rosary-open-body { overflow: hidden; }
 @media (max-width: 880px) and (min-width: 601px) {
   .text-grid.both { gap: 22px; }
   .rosary-text-grid.both { gap: 20px; }
+}
+
+/* ---------- Twee talen regel voor regel naast elkaar ---------- */
+/* Cellen in documentvolgorde: links, rechts, links, rechts … (zie textgrid.js).
+   Deze regels staan als laatste, zodat ze winnen van de gewone kolomafstand. */
+.text-grid.aligned,
+.rosary-text-grid.aligned {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 34px;
+  align-items: start;
+}
+.rosary-text-grid.aligned { gap: 0 30px; }
+.aligned .al-cell { margin: 0; }
+.aligned .al-blk { margin-top: 1.1em; }
+.aligned .al-label { margin-bottom: 10px; }
+
+/* Smalle staande schermen: eerst de hele linkerkolom, dan de rechter */
+@media (max-width: 600px) {
+  .text-grid.aligned,
+  .rosary-text-grid.aligned { grid-template-columns: 1fr; gap: 0; }
+  .aligned .al-label.a { order: 0; }
+  .aligned .al-cell.a { order: 1; }
+  .aligned .al-label.b { order: 2; margin-top: 26px; }
+  .aligned .al-cell.b { order: 3; }
 }
